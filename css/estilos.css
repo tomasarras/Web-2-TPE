@@ -1,0 +1,249 @@
+
+body{
+background: url(../imgs/fondo.jpg);
+}
+.redondeado{
+    border: 1px solid black;
+    box-shadow: 10px 10px 8px #888888;
+    margin: 2%;
+    padding: 3%;
+    border-radius: 25px;
+}
+header{
+    background:#1B1B1B;
+    display: flex;
+    justify-content: space-between;
+    }
+    header .logo a{
+        color:#fff;
+        font-size:30px;
+        margin-left: 12px;
+        text-decoration: none;
+    }
+    header .logo a:hover{
+        color: orange;
+    }
+    header social{
+        margin-right: 3px;
+        }
+        /* TOP BAR */
+        social .facebook{
+            background: url(../imgs/LINKSA/social_fb.png) #666666 no-repeat 50% 50%;
+        }
+        social .twitter{
+            background: url(../imgs/LINKSA/social_tt.png) #666666 no-repeat 50% 50%;
+        }
+        social .google{
+            background: url(../imgs/LINKSA/social_gp.png) #666666 no-repeat 50% 50%;
+        }
+        social .facebook:hover{
+            padding: 3px;
+         background-color: #2A4887;
+        }
+        social .twitter:hover{
+            padding: 3px;
+            background-color: #009AE0;
+        }
+        social .google:hover{
+            padding: 3px;
+            background-color: #C23725;
+        }
+.h2right{
+        padding: 10px 30px;
+        display: block;
+        margin: 30px 8% 0 0;
+        background: #444444;
+        color: #eeeeee;
+        border-right: 4px solid #FF3300;
+        border-bottom: 0;
+}
+.botones-tabla{
+    display: flex;
+    justify-content: center;
+}
+.botones-tabla .btn{
+    margin: 5px;
+    padding: 3px;
+}
+.boton-modiciar{
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+.filtrado{
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+.borrarfilas{
+    display: flex;
+    justify-content: center;
+}
+.modificarfilas{
+display:flex;
+justify-content: center;
+}
+.noticias-TABLA{
+background: gray;
+}
+.h4neo{
+margin: 3px;
+color: white;
+}
+.noticias{
+background-color: white;
+
+}
+.titulo-tabla{
+text-align: center;
+}
+.tabla-cuerpo{
+display: flex;
+justify-content: center;
+}
+footer{
+    display: flex;
+    justify-content: center;
+background: #2A4887;
+}
+footer .pie{
+    color: white;
+}
+.titulo{
+display: flex;
+justify-content: center;
+font-family: Oswald;
+}
+.imagen-portada{
+    display: flex;
+    justify-content: center;
+}
+.historia{
+margin-left: 7px;
+}
+/* Contactanos */
+.contactanos{
+    background: white;
+}
+.editartabla{
+color: #1B1B1B;
+}
+.form-contacto{
+width: 450px;
+margin: auto;
+background: rgba(0, 0, 0, 0.4);
+padding: 10px 20px;
+box-sizing: border-box;
+margin-top: 20px;
+border-radius: 7px;
+}
+.titulo-contacto{
+color: #fff;
+text-align: center;
+margin: 0;
+font-size: 30px;
+margin-bottom: 20px;
+}
+input, textarea{
+width: 100%;
+margin-bottom: 10px;
+padding: 7px;
+box-sizing: border-box;
+font-size: 17px;
+border: none;
+}
+textarea{
+min-height: 100px;
+max-height: 200px;
+max-width: 100%;
+}
+#btn-enviar{
+background: #FD7700;
+color: #fff;
+padding: 20px;
+}
+#imagencaptcha{
+margin: auto;
+padding: 7px;
+}
+/* Tabla */
+.titulo-form-tabla{
+text-align: center;
+}
+#inputfiltro{
+width: 100px;
+margin: 3px;
+}
+#modificaruno{
+    width: 100px;
+    margin: 3px;
+}
+#modificardos{
+    width: 100px;
+    margin: 3px;
+}
+#modificartres{
+    width: 100px;
+    margin: 3px;
+}
+.tabladidactica{
+width: 50%;
+}
+.section-tabla{
+display: flex;
+justify-content: space-between;
+}
+.resaltado{ background: yellow;}
+.th{
+background: greenyellow;
+}
+td{
+background: black;
+color: white;
+}
+.table, td, tr {
+	border: 2px solid blue;
+    }
+h2{
+text-align: center;
+}
+@media screen and (max-width: 800px) {
+    #foto-inicio{
+    width: 100%;
+    }
+    header .logo a{
+        font-size:20px;
+    }
+    .titulo-metal{
+        font-size:30px;
+    }
+  header{box-shadow: 3px 3px 3px #888888;margin: 10px;}
+  .navbar{
+    box-shadow: 3px 3px 3px #888888;
+    margin: 10px;
+  }
+  .noticias{
+    box-shadow: 3px 3px 3px #888888;
+    margin: 10px;
+  }
+  .noticias-TABLA{
+    box-shadow: 3px 3px 3px #888888;
+    margin: 10px;
+  }
+  footer{
+    box-shadow: 3px 3px 3px #888888;
+    margin: 10px;
+  }
+  .section-tabla{
+    display: flex;
+    flex-direction: column;
+    }
+    .tabladidactica{
+        width: 100%;
+        }
+}
+@media screen and (max-width: 480px){
+.form-contacto{
+width: 100%;
+}
+}
