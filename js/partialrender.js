@@ -8,11 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
             let script = function () { };
 
             switch (i) {
-                case 0: link = "inicio.html"; break;
-                case 1: link = "contacto.html"; script = CargarCaptcha; break;
-                case 2: link = "listadobandas.html"; break;
-                case 3: link = "tablainteractiva.html"; script = tabla; break;
+                case 0: link = "login.html"; break;
+                case 1: link = "inicio.html"; break;
+                case 2: link = "contacto.html"; script = CargarCaptcha; break;
+                case 3: link = "listadobandas.html"; break;
+                case 4: link = "tablainteractiva.html"; script = tabla; break;
             }
+
+            console.log(link);
 
             let response = await fetch(link);
             let text = await response.text();
