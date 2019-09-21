@@ -175,11 +175,24 @@ document.addEventListener("DOMContentLoaded", function () {
             tds[tds.length - 1].appendChild(boton);
         }
     
-    
         //Agregar elementos a la tabla
         let btn_agregar_tabla = document.querySelector("#btn-agregar-tabla");
         btn_agregar_tabla.addEventListener("click", async function () {
-    
+            let table = document.querySelectorAll("td");
+            let objeto;
+            let id;
+
+            for (let i = 0; i < table.length; i = i + 3){
+                objeto = {
+                    "banda": table[i].innerHTML,
+                    "ultimoconcierto": table[i + 1].innerHTML
+                };
+
+                id = table[i+2].firstChild.name;
+
+                ModificarFila(objeto, id, ()=>{});
+            }
+    /*
             let inputs = document.querySelectorAll(".td-input");
             let table = document.querySelectorAll("td");
     
@@ -197,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 VaciarTabla();
                 ObtenerDatos(CargarTabla);
             });
-    
+    */
         });
     
     
@@ -225,34 +238,37 @@ document.addEventListener("DOMContentLoaded", function () {
             let ultimoconcierto = objeto.thing.ultimoconcierto;
             let id = objeto._id;
     
-            let tds = document.querySelectorAll("td");
             let table = document.querySelector(".tabladidactica");
             let row = table.insertRow(table.rows.length);
             let elemento_uno = row.insertCell(0);
             let elemento_dos = row.insertCell(1);
             let elemento_tres = row.insertCell(2);
-    
+            /*
+            let tds = document.querySelectorAll("td");
             let input_uno = document.createElement("input");
             let input_dos = document.createElement("input");
             let br = document.createElement("br");
-    
-            let div_cargar_tabla = document.querySelector(".cargar-tabla");
-    
             input_uno.className = "td-input";
             input_dos.className = "td-input";
-    
             input_uno.name = id;
             input_dos.name = id;
-    
             input_uno.value = banda;
             input_dos.value = ultimoconcierto;
-    
             div_cargar_tabla.appendChild(input_uno);
             div_cargar_tabla.appendChild(input_dos);
             div_cargar_tabla.appendChild(br);
+            let div_cargar_tabla = document.querySelector(".cargar-tabla");
+            */
+
+    
+    
+    
     
             elemento_uno.innerHTML = banda;
             elemento_dos.innerHTML = ultimoconcierto;
+
+            elemento_uno.contentEditable = "true";
+            elemento_dos.contentEditable = "true";
     
             elemento_uno.className = "grande";
             elemento_dos.className = "grande";
@@ -273,11 +289,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     
         function VaciarTabla() {
-            let div_inputs = document.querySelector(".cargar-tabla");
+            //let div_inputs = document.querySelector(".cargar-tabla");
             let div_tabla = document.querySelector(".tabladidactica");
     
-            div_inputs.innerHTML = "";
-            div_tabla.innerHTML =   '<tr><th class="th">Banda</th><th class="th">UltimoConcierto</th><th class="th">Borrar</th></tr>';
+            //div_inputs.innerHTML = "";
+            div_tabla.innerHTML =   '<tr><th scope="col" class="th">Banda</th><th scope="col" class="th">Ultimo Concierto</th><th scope="col" class="th">Borrar</th></tr>';
         }
     
     
