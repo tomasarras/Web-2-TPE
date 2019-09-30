@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2019 a las 21:54:47
+-- Tiempo de generación: 30-09-2019 a las 22:31:30
 -- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.8
+-- Versión de PHP: 7.1.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `tpedb`
+-- Base de datos: `tpe`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +32,7 @@ CREATE TABLE `bandas` (
   `id_banda` int(11) NOT NULL,
   `banda` text NOT NULL,
   `ultimo_concierto` text NOT NULL,
-  `concierto` int(11) NOT NULL
+  `proximo_concierto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -69,7 +69,7 @@ CREATE TABLE `usuarios` (
 --
 ALTER TABLE `bandas`
   ADD PRIMARY KEY (`id_banda`),
-  ADD KEY `concierto` (`concierto`);
+  ADD KEY `concierto` (`proximo_concierto`);
 
 --
 -- Indices de la tabla `eventos`
@@ -113,7 +113,7 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `bandas`
 --
 ALTER TABLE `bandas`
-  ADD CONSTRAINT `bandas_ibfk_1` FOREIGN KEY (`concierto`) REFERENCES `eventos` (`id_evento`);
+  ADD CONSTRAINT `bandas_ibfk_1` FOREIGN KEY (`proximo_concierto`) REFERENCES `eventos` (`id_evento`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
