@@ -10,7 +10,7 @@ require('libs/Smarty.class.php');
       $smarty = new Smarty();
       $smarty->assign('titulo',$titulo);
       $smarty->assign('bandas',$bandas);
-      $smarty->assign('BASE_URL',BASE_URL);
+      $smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
       $smarty->display('templates/home.tpl');
            
     }

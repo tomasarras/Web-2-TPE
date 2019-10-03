@@ -4,11 +4,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <base href= {$home}>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css">
 
     <title>{$titulo}</title>
 </head>
@@ -31,11 +32,11 @@
                         <a class="nav-item nav-link active" href="registro.html">Contacto</a>
                         <a class="nav-item nav-link active" href="#">Bandas</a>
                         <div class="log nav-item btn btn-danger">
-                            <img src="../images/newuser.png">
+                            <img src="images/newuser.png">
                             <a class="white">Login</a>
                         </div>
                         <div class="log nav-item btn btn-danger">
-                            <img src="../images/newuser.png">
+                            <img src="images/newuser.png">
                             <a class="white">Registro</a>
                         </div>
                     </div>
