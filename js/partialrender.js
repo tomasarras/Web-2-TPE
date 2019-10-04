@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let text = await response.text();
 
             articulo.innerHTML = text;
+            console.log();
             script();
         });
     }
