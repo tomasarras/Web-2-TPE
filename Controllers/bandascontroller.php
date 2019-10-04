@@ -18,6 +18,23 @@ class BandasController
         $this->view->Mostrar($this->titulo, $bandas);
     }
 
+    function getNoticias(){
+        $bandas = $this->model->GetBandas();
+        $eventos = $this->model->getEventos();
+        
+
+        foreach($bandas as $banda){
+            $banda->eventos = array();
+            foreach($eventos as $evento){
+                if ($banda->id_banda == $evento->id_banda){
+                    array_push($banda->eventos, $evento);
+                }
+            }
+        }
+        
+        $this->view->getNoticias($this->titulo, $bandas);
+    }
+
 }
 
 

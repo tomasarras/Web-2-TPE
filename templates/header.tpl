@@ -32,6 +32,7 @@
                         <a class="nav-item nav-link active" href="#">Inicio <span class="sr-only">(current)</span></a>
                         <a class="nav-item nav-link active" href="registro.html">Contacto</a>
                         <a class="nav-item nav-link active" href="#">Bandas</a>
+                        <a class="nav-item nav-link active" href="noticias">Noticias</a>
                         <div class="log nav-item btn btn-danger">
                             <img src="images/newuser.png">
                             <a class="white">Login</a>

@@ -13,6 +13,12 @@ class BandasModel
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
 
     }
+
+    function getEventos(){
+        $sentencia = $this->db->prepare( "select * from evento");
+        $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
     
 }
 

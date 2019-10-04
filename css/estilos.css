@@ -1,24 +1,24 @@
 th {
-    background-color: #4CAF50;
-    color: white;
-  }
-   tbody {
-    color: blue;
-  }
-   tfoot {
-    color: red;
-  }
-   table, td, tr {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-  table{
-      width: 60%;
-  }
- .completada{
-background: red;
- }
- .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+  background-color: #4CAF50;
+  color: white;
+}
+tbody {
+  color: blue;
+}
+tfoot {
+  color: red;
+}
+table, td, tr {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table{
+  width: 60%;
+}
+.completada{
+  background: red;
+}
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
   color: white;
   font-weight: bold;
 }
@@ -28,32 +28,55 @@ background: red;
   font-weight: bold;
 }
 .slider{
-background-image: url("../images/bg-3.png");
-background-size: cover;
-background-position: center;
-height: 450px;
+  background-image: url("../images/bg-3.png");
+  background-size: cover;
+  background-position: center;
+  height: 450px;
 }
 .img-user{
-margin-top: -50px;
-margin-bottom: 25px;
+  margin-top: -50px;
+  margin-bottom: 25px;
 }
 .img-user img{
-width: 100px;
-height: 100px;
+  width: 100px;
+  height: 100px;
 }
 body{
   background-image: url(images/fondo.jpg);
   background-color: transparent;
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-clip: border-box;
-    background-origin: padding-box;
-    background-size: auto auto;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-clip: border-box;
+  background-origin: padding-box;
+  background-size: auto auto;
   background-size: cover;
 }
 .modal-content{
-background-color: #3b4652;
-opacity: .95;
-padding: 0 20px;
-box-shadow: 0px 0px 3px #8484;
+  background-color: #3b4652;
+  opacity: .95;
+  padding: 0 20px;
+  box-shadow: 0px 0px 3px #8484;
 }
+
+
+
+/* Tabla noticias */
+.tabla-noticias th,.tabla-noticias td {
+  text-align: center;
+  padding: 20px;
+  background-color: lightblue;
+  color: black;
+  border: none;
+}
+
+table.tabla-noticias {
+  border-collapse: separate;
+  border: none;
+}
+
+/* Borde de tabla */
+.tabla-noticias thead td:first-of-type { border-radius: 15px 0 0 0;}
+.tabla-noticias thead td:last-of-type { border-radius: 0 15px 0 0;}
+.tabla-noticias tbody tr:last-of-type td:last-of-type { border-radius: 0 0 15px 0;}
+.tabla-noticias tbody tr:last-of-type td:first-of-type { border-radius: 0 0 0 15px;}
+

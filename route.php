@@ -19,6 +19,8 @@ if($action == ''){
             $controller->FinalizarTarea($partesURL[1]);
         }elseif($partesURL[0] == "borrar") {
             $controller->BorrarTarea($partesURL[1]);
+        }elseif($partesURL[0] == "noticias") {
+            $controller->getNoticias();
         }
     }
 }
