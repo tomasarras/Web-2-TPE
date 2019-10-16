@@ -14,11 +14,11 @@
                 <a class="nav-item nav-link active" href="#">Bandas</a>
                 <div class="log nav-item btn btn-danger">
                     <img src="images/newuser.png">
-                    <a class="white">Login</a>
+                    <a class="white btn-login" href="login">Login</a>
                 </div>
                 <div class="log nav-item btn btn-danger">
                     <img src="images/newuser.png">
-                    <a class="white">Registro</a>
+                    <a class="white btn-login" href="registro">Registro</a>
                 </div>
             </div>
         </div>

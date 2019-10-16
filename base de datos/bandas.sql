@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2019 a las 20:47:10
+-- Tiempo de generación: 16-10-2019 a las 18:42:43
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.1.31
 
@@ -35,14 +35,6 @@ CREATE TABLE `banda` (
   `cantidadCanciones` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `banda`
---
-
-INSERT INTO `banda` (`id_banda`, `banda`, `anio`, `cantidadCanciones`) VALUES
-(1, 'Iron maiden', 1800, 20),
-(6, 'sabaleta', 1999, 10);
-
 -- --------------------------------------------------------
 
 --
@@ -56,15 +48,17 @@ CREATE TABLE `evento` (
   `detalle` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `evento`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-INSERT INTO `evento` (`id`, `id_banda`, `nombre`, `detalle`) VALUES
-(2, 1, 'Lolapalooza', 'no fue nadie xd'),
-(4, 1, 'otro', 'asfasf'),
-(9, 1, 'caca', 'koko'),
-(96, 6, 'sabaleta', 'xd');
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  `contraseña` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Índices para tablas volcadas
@@ -85,6 +79,12 @@ ALTER TABLE `evento`
   ADD KEY `fk_banda` (`id_banda`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -99,6 +99,12 @@ ALTER TABLE `banda`
 --
 ALTER TABLE `evento`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

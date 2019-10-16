@@ -19,7 +19,15 @@ class BandasModel
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
-    
+
+    function registrarse($email,$password){
+       //$sql = 'select * from usuario where nombre = "'.mysql_real_escape_string($nombre).'" and pass = "'.mysql_real_escape_string($hash).'"';
+       
+       $hash = password_hash($password, PASSWORD_DEFAULT);
+       $sql = "INSERT INTO usuarios (nombre,contraseña) VALUES ('$email', '$hash')";
+       $sentencia = $this->db->prepare($sql);
+       $sentencia->execute();
+    }
 }
 
 

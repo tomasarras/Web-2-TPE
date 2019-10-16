@@ -35,6 +35,28 @@ class BandasController
         $this->view->getNoticias($this->titulo, $bandas);
     }
 
+    function getLogin(){
+        $this->view->getLogin($this->titulo);
+
+        if( isset( $_GET['email']) && isset($_GET['password']) ){ 
+            $email = $_GET['email']; 
+            $password = $_GET['password'];
+        } 
+
+
+    }
+
+    function getRegistro(){
+        $this->view->getRegistro($this->titulo);
+
+        if( isset( $_GET['email']) && isset($_GET['password']) ){ 
+            $email = $_GET['email']; 
+            $password = $_GET['password'];
+
+            $this->model->registrarse($email,$password);
+        } 
+    }
+
 }
 
 

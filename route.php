@@ -21,6 +21,10 @@ if($action == ''){
             $controller->BorrarTarea($partesURL[1]);
         }elseif($partesURL[0] == "noticias") {
             $controller->getNoticias();
+        }elseif($partesURL[0] == "login") {
+            $controller->getLogin();
+        }elseif($partesURL[0] == "registro") {
+            $controller->getRegistro();
         }
     }
 }

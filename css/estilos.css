@@ -80,3 +80,44 @@ table.tabla-noticias {
 .tabla-noticias tbody tr:last-of-type td:last-of-type { border-radius: 0 0 15px 0;}
 .tabla-noticias tbody tr:last-of-type td:first-of-type { border-radius: 0 0 0 15px;}
 
+a.btn-login {
+  text-decoration: none;
+  color: white;
+}
+
+.login {
+  margin: 200px 0 100px 0;
+}
+
+div.centrado{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gris {
+  background-color: grey;
+}
+
+.borde {
+  border-radius: 16px 16px 16px 16px;
+  -moz-border-radius: 16px 16px 16px 16px;
+  -webkit-border-radius: 16px 16px 16px 16px;
+  border: 0px solid #000000;
+}
+
+section.grande {
+  width: 400px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blanco {
+  color: white;
+}
+
+input.largo {
+  width: 300px;
+}
