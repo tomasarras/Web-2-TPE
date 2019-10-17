@@ -1,31 +1,34 @@
 <?php
 
 require_once "Controllers/bandascontroller.php";
+require_once "Controllers/loginController.php";
 
 $action = $_GET["action"];
-$controller = new BandasController();
+$bandasController = new BandasController();
+$loginController = new loginController();
 
 if($action == ''){
-    $controller->Home(); 
+    $bandasController->Home(); 
 }else{
     if (isset($action)){
         $partesURL = explode("/", $action);
 
         if($partesURL[0] == "tareas"){
-            $controller->GetTareas();
+            $bandasController->GetTareas();
         }elseif($partesURL[0] == "insertar") {
-            $controller->InsertarTarea();
+            $bandasController->InsertarTarea();
         }elseif($partesURL[0] == "finalizar") {
-            $controller->FinalizarTarea($partesURL[1]);
+            $bandasController->FinalizarTarea($partesURL[1]);
         }elseif($partesURL[0] == "borrar") {
-            $controller->BorrarTarea($partesURL[1]);
+            $bandasController->BorrarTarea($partesURL[1]);
         }elseif($partesURL[0] == "noticias") {
-            $controller->getNoticias();
+            $bandasController->getNoticias();
         }elseif($partesURL[0] == "login") {
-            $controller->getLogin();
+            $loginController->getLogin();
         }elseif($partesURL[0] == "registro") {
-            $controller->getRegistro();
+            $loginController->getRegistro();
         }
     }
 }
+
 

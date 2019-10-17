@@ -28,6 +28,14 @@ class BandasModel
        $sentencia = $this->db->prepare($sql);
        $sentencia->execute();
     }
+
+    function getUsuario($email,$password){
+        $sql = "SELECT * FROM usuarios WHERE nombre = '$email'";
+
+        $sentencia = $this->db->prepare($sql);
+        $sentencia->execute();
+        return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
 }
 
 

@@ -1,6 +1,6 @@
 <div class="centrado login">
     <section class="bg-dark borde grande centrado">
-        <form action="registro" method="get">
+        <form action="registro" method="post">
             
             <div class="form-group">
                 <label for="email" class="blanco">Email</label>

@@ -38,20 +38,27 @@ class BandasController
     function getLogin(){
         $this->view->getLogin($this->titulo);
 
-        if( isset( $_GET['email']) && isset($_GET['password']) ){ 
-            $email = $_GET['email']; 
-            $password = $_GET['password'];
+        if( isset( $_POST['email']) && isset($_POST['password']) ){ 
+            $email = $_POST['email']; 
+            $password = $_POST['password'];
+
+            $usuario = $this->model->getUsuario($email,$password);
+            $hash = $usuario->contraseña;
+
+            if ( password_verify($password, $hash) ){
+                //logeado
+            } else {
+                //incorrecto
+            }
         } 
-
-
     }
 
     function getRegistro(){
         $this->view->getRegistro($this->titulo);
 
-        if( isset( $_GET['email']) && isset($_GET['password']) ){ 
-            $email = $_GET['email']; 
-            $password = $_GET['password'];
+        if( isset( $_POST['email']) && isset($_POST['password']) ){ 
+            $email = $_POST['email']; 
+            $password = $_POST['password'];
 
             $this->model->registrarse($email,$password);
         } 
