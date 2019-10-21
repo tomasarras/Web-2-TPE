@@ -10,11 +10,11 @@ class loginModel {
         $this->db = $this->Connect();
     }
 
-    function registrarse($email,$password){
+    function registrarse($user,$password){
         //$sql = 'select * from usuario where nombre = "'.mysql_real_escape_string($nombre).'" and pass = "'.mysql_real_escape_string($hash).'"';
         
         $hash = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO usuarios (nombre,contraseña) VALUES ('$email', '$hash')";
+        $sql = "INSERT INTO usuarios (nombre,contraseña) VALUES ('$user', '$hash')";
         $sentencia = $this->db->prepare($sql);
         $sentencia->execute();
      }
@@ -26,5 +26,9 @@ class loginModel {
          $sentencia->execute();
          return $sentencia->fetch(PDO::FETCH_OBJ);
      }
-
+     function GetUser($user){
+        $sentencia = $this->db->prepare( "select * from usuarios where nombre=?");
+        $sentencia->execute(array($user));
+        return $sentencia->fetch(PDO::FETCH_ASSOC);
+    }
 }

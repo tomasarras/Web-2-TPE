@@ -33,17 +33,28 @@ class loginController {
             }
         } 
     }
+    function guardaUsuario(){
+        //$this->view->getRegistro($this->titulo);
+        $user = $_POST["user"];
+        $pass = $_POST["password"];
+        $existe = $this->model->getUser($user);
 
-    function getRegistro(){
-        $this->view->getRegistro($this->titulo);
-
-        if( isset( $_POST['email']) && isset($_POST['password']) ){ 
-            $email = $_POST['email']; 
-            $password = $_POST['password'];
-
-            $this->model->registrarse($email,$password);
+        if (empty($user)){
+            $this->view->getRegistro("El campo Usuario esta vacio");
+        }
+        if (empty($pass)){
+            $this->view->getRegistro("El campo contraseña esta vacio");
+        }
+        // buscamos si existe el usuario en la db y llamamos al model para comprobar
+        elseif(isset($existe['nombre'])) { // si existe ..
+                $this->view->getRegistro("Este nombre ya existe");
+             // ya existe (mensaje);
+            }else{    
+            $this->model->registrarse($user,$pass);
         } 
     }
+function MostrarRegistro(){
+    $this->view->MostrarRegistro();
+   }
 }
-
 ?>

@@ -12,6 +12,6 @@
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="icon"  href="images/favicon.png">
 
-    <title>{$titulo}</title>
+    <title>{$Titulo}</title>
 </head>
 <body>

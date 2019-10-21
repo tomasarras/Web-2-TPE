@@ -18,7 +18,11 @@
                 </div>
                 <div class="log nav-item btn btn-danger">
                     <img src="images/newuser.png">
-                    <a class="white btn-login" href="registro">Registro</a>
+                    <a class="white btn-login" href="NuevoUsuario">Registro</a>
+                </div>
+                <div class="log nav-item btn btn-danger">
+                    <img src="images/newuser.png">
+                    <a class="white btn-login" href="Cerrar sesión">Cerrar sesión</a>
                 </div>
             </div>
         </div>

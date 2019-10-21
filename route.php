@@ -25,9 +25,12 @@ if($action == ''){
             $bandasController->getNoticias();
         }elseif($partesURL[0] == "login") {
             $loginController->getLogin();
-        }elseif($partesURL[0] == "registro") {
-            $loginController->getRegistro();
+        }elseif($partesURL[0] == "NuevoUsuario") {
+            $loginController->MostrarRegistro();
+        }elseif($partesURL[0] == "guardaUsuario") {
+            $loginController->guardaUsuario();
         }
+
     }
 }
 
