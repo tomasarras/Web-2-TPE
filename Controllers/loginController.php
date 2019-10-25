@@ -51,6 +51,8 @@ class loginController {
              // ya existe (mensaje);
             }else{    
             $this->model->registrarse($user,$pass);
+            session_start();
+            $_SESSION["User"] = $user;
         } 
     }
 function MostrarRegistro(){

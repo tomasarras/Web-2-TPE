@@ -2,13 +2,17 @@
 
 require_once "Controllers/bandascontroller.php";
 require_once "Controllers/loginController.php";
+require_once "Controllers/eventoscontroller.php";
+require_once "Controllers/homecontroller.php";
 
 $action = $_GET["action"];
+
 $bandasController = new BandasController();
 $loginController = new loginController();
-
+$eventoscontroller = new eventoscontroller();
+$homecontroller = new homecontroller();
 if($action == ''){
-    $bandasController->Home(); 
+    $homecontroller->Home();
 }else{
     if (isset($action)){
         $partesURL = explode("/", $action);
