@@ -3,23 +3,27 @@ require_once('libs/Smarty.class.php');
 
 class loginView {
 
-    function getLogin($titulo){
+    function getLogin($titulo,$logueado){
         $smarty = new Smarty();
         $smarty->assign('titulo',$titulo);
+        $smarty->assign('logueado',$logueado);
         $smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
         $smarty->display('templates/login.tpl');
     }
   
-    function getRegistro($mensaje = ''){
+    function getRegistro($logueado,$mensaje = ''){
         $smarty = new Smarty();
         $smarty->assign('mensaje',$mensaje);
+        $smarty->assign('titulo',"insert titulo here");
+        $smarty->assign('logueado',$logueado);
         $smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
         $smarty->display('templates/registro.tpl');
     }
 
-    function mostrarRegistro($mensaje=''){
+    function mostrarRegistro($logueado,$mensaje=''){
         $smarty = new Smarty();
-        $smarty->assign('Titulo',"Formulario de registro"); // El 'Titulo' del assign puede ser cualquier valor
+        $smarty->assign('logueado',$logueado); // El 'Titulo' del assign puede ser cualquier valor
+        $smarty->assign('titulo',"Formulario de registro"); // El 'Titulo' del assign puede ser cualquier valor
         $smarty->assign('mensaje',$mensaje); // El 'Titulo' del assign puede ser cualquier valor
         $smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
         $smarty->display('templates/registro.tpl');

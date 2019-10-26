@@ -17,18 +17,12 @@ class loginModel {
         $sql = "INSERT INTO usuarios (nombre,contraseña) VALUES ('$user', '$hash')";
         $sentencia = $this->db->prepare($sql);
         $sentencia->execute();
+        return $this->db->lastInsertId();
      }
  
-     function getUsuario($email,$password){
-         $sql = "SELECT * FROM usuarios WHERE nombre = '$email'";
- 
-         $sentencia = $this->db->prepare($sql);
-         $sentencia->execute();
-         return $sentencia->fetch(PDO::FETCH_OBJ);
-     }
-     function GetUser($user){
-        $sentencia = $this->db->prepare( "select * from usuarios where nombre=?");
+     function getUser($user){
+        $sentencia = $this->db->prepare( "SELECT * FROM usuarios WHERE nombre = ?");
         $sentencia->execute(array($user));
-        return $sentencia->fetch(PDO::FETCH_ASSOC);
+        return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 }

@@ -20,10 +20,12 @@
                     <img src="images/newuser.png">
                     <a class="white btn-login" href="NuevoUsuario">Registro</a>
                 </div>
-                <div class="log nav-item btn btn-danger">
-                    <img src="images/newuser.png">
-                    <a class="white btn-login" href="Cerrar sesión">Cerrar sesión</a>
-                </div>
+                {if $logueado}
+                    <div class="log nav-item btn btn-danger">
+                        <img src="images/newuser.png">
+                        <a class="white btn-login" href="logout">Cerrar sesión</a>
+                    </div>
+                {/if}
             </div>
         </div>
     </nav>

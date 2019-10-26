@@ -4,6 +4,7 @@ require_once "Controllers/bandascontroller.php";
 require_once "Controllers/loginController.php";
 require_once "Controllers/eventoscontroller.php";
 require_once "Controllers/homecontroller.php";
+define("HOME","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"]."/"));
 
 $action = $_GET["action"];
 
@@ -28,11 +29,20 @@ if($action == ''){
         }elseif($partesURL[0] == "noticias") {
             $bandasController->getNoticias();
         }elseif($partesURL[0] == "login") {
-            $loginController->getLogin();
+            if( isset( $_POST['email']) && isset( $_POST['password'] ) ){
+                $user = $_POST['email'];
+                $pass = $_POST['password'];
+                $loginController->verificarUser($user,$pass);
+            } else {
+                $loginController->getLogin();
+            }
+            
         }elseif($partesURL[0] == "NuevoUsuario") {
             $loginController->MostrarRegistro();
         }elseif($partesURL[0] == "guardaUsuario") {
             $loginController->guardaUsuario();
+        }elseif($partesURL[0] == "logout") {
+            $loginController->logout();
         }
 
     }

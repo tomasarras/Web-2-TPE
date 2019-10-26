@@ -14,31 +14,39 @@ class loginController {
         $this->titulo = "La maquina del Metal";
     }
 
-    function getLogin(){
-        $this->view->getLogin($this->titulo);
+    function verificarUser($user,$pass) {
+    
+        $usuario = $this->model->getUser($user);
 
-        if( isset( $_POST['email']) && isset($_POST['password']) ){ 
-            $email = $_POST['email']; 
-            $password = $_POST['password'];
-            
-            $usuario = $this->model->getUsuario($email,$password);
+        if ($usuario) {
             $hash = $usuario->contraseña;
             
-            if ( password_verify($password, $hash) ){
-                //datos correctos
-                echo "<h1>logueado</h1>";
+            if ( password_verify($pass, $hash) ){
+                session_start();
+                $_SESSION["id_usuario"] = $usuario->id_usuario;
+                header("Location: ". HOME);
+                die();
             } else {
-                //datos incorrectos
-                echo "<h1>datos incorrectos</h1>";
+            //datos incorrectos
+            //echo "<h1>datos incorrectos</h1>";
             }
-        } 
+        } else {
+            //usuario no existe
+        }
+    
     }
+
+    function getLogin(){
+        $logueado = $this->isLoged();
+        $this->view->getLogin($this->titulo, $logueado);
+    }
+
     function guardaUsuario(){
         //$this->view->getRegistro($this->titulo);
         $user = $_POST["user"];
         $pass = $_POST["password"];
         $existe = $this->model->getUser($user);
-
+        $saf = empty($user);
         if (empty($user)){
             $this->view->getRegistro("El campo Usuario esta vacio");
         }
@@ -46,17 +54,32 @@ class loginController {
             $this->view->getRegistro("El campo contraseña esta vacio");
         }
         // buscamos si existe el usuario en la db y llamamos al model para comprobar
-        elseif(isset($existe['nombre'])) { // si existe ..
-                $this->view->getRegistro("Este nombre ya existe");
+        elseif(isset($existe->nombre)) { // si existe ..
+                $this->view->getRegistro(false,"Este nombre ya existe");
              // ya existe (mensaje);
-            }else{    
-            $this->model->registrarse($user,$pass);
+        }else{    
+            $id = $this->model->registrarse($user,$pass);
             session_start();
-            $_SESSION["User"] = $user;
+            $_SESSION["id_usuario"] = $id;
         } 
     }
-function MostrarRegistro(){
-    $this->view->MostrarRegistro();
+
+    private function isLoged(){
+        session_start();
+        return isset($_SESSION["id_usuario"]);
+    }
+
+    function logout() {
+        session_start();
+        session_destroy();
+        header("Location: ". HOME);
+        die();
+    }
+
+
+    function MostrarRegistro(){
+        $logueado = $this->isLoged();
+        $this->view->MostrarRegistro($logueado);
    }
 }
 ?>

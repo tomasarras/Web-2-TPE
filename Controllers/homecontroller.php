@@ -22,9 +22,17 @@ class homeController
     $this->bandasmodel = new bandasmodel();
     $this->Titulo = "Inicio";
 }
-function Home(){
+  function Home() {
+    session_start();
+    $logueado = isset($_SESSION["id_usuario"]);
+    
     $eventos = $this->eventosmodel->getEventos();
     $bandas = $this->bandasmodel->GetBandas();
-    $this->view->Mostrar($this->Titulo, $bandas, $eventos);
-}
+    $this->view->Mostrar($this->Titulo, $bandas, $eventos,$logueado);
+  }
+
+  function logout(){
+    session_start();
+    session_destroy();
+  }
 }
