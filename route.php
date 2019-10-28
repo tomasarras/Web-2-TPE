@@ -13,9 +13,9 @@ $action = $_GET["action"];
 
 $bandasController = new BandasController();
 $loginController = new loginController();
-$adminController = new AdminController();
 $eventoscontroller = new eventoscontroller();
 $homecontroller = new homecontroller();
+$adminController = new AdminController();
 
 if($action == ''){
     $homecontroller->Home();
@@ -34,7 +34,6 @@ if($action == ''){
         }elseif($partesURL[0] == "noticias") {
             $bandasController->getNoticias();
         }elseif($partesURL[0] == "login") {
-
             if( isset( $_POST['usuario']) && isset( $_POST['password'] ) ){
                 $user = $_POST['usuario'];
                 $pass = $_POST['password'];

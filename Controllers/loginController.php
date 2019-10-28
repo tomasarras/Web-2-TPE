@@ -1,19 +1,16 @@
 <?php
 require_once "./Views/loginView.php";
 require_once "./Model/loginModel.php";
-require_once "AuthHelper.php";
 
 class loginController {
 
     private $view;
     private $model;
     private $titulo;
-    private $AuthHelper;
 
     function __construct(){
         $this->view = new loginView();
         $this->model = new loginModel();
-        $this->AuthHelper = new AuthHelper();
         $this->titulo = "La maquina del Metal";
     }
 
@@ -38,7 +35,7 @@ class loginController {
     }
 
     function getLogin(){
-        $logueado = $this->AuthHelper->isLoged();
+        $logueado = $this->isLoged();
         if ( !$logueado ) {
             $this->view->getLogin($this->titulo, $logueado);
         } else {
@@ -58,7 +55,7 @@ class loginController {
         if (isset($existe->nombre)) { // si existe ..
                 $this->view->getRegistro(false,"Este nombre ya existe");
              // ya existe (mensaje);
-        } else {    
+        }else{    
             $id = $this->model->registrarse($user,$pass);
             session_start();
             $_SESSION["id_usuario"] = $id;
@@ -67,26 +64,29 @@ class loginController {
         } 
     }
 
+    private function isLoged(){
+        session_start();
+        return isset($_SESSION["id_usuario"]);
+    }
+
+    function logout() {
+        session_start();
+        session_destroy();
+        header("Location: ". HOME);
+        die();
+    }
+
 
     function MostrarRegistro(){
 
-        $logueado = $this->AuthHelper->isLoged();
+        $logueado = $this->isLoged();
 
         if ( !$logueado ) {
             $this->view->MostrarRegistro($logueado);
         } else {
             header("Location: ". HOME);
-            die();
-        }
-   }
-
-   function logout() {
-       session_start();
-       session_destroy();
-       header("Location: ". HOME);
-       die();  
+        die();
     }
-
-   
+   }
 }
 ?>
