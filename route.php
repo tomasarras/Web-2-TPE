@@ -4,19 +4,14 @@ require_once "Controllers/bandascontroller.php";
 require_once "Controllers/loginController.php";
 require_once "Controllers/eventoscontroller.php";
 require_once "Controllers/homecontroller.php";
-require_once "Controllers/adminController.php";
-
 define("HOME","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"]."/"));
-define("LOGIN","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/login");
 
 $action = $_GET["action"];
 
 $bandasController = new BandasController();
 $loginController = new loginController();
-$adminController = new AdminController();
 $eventoscontroller = new eventoscontroller();
 $homecontroller = new homecontroller();
-
 if($action == ''){
     $homecontroller->Home();
 }else{
@@ -34,7 +29,6 @@ if($action == ''){
         }elseif($partesURL[0] == "noticias") {
             $bandasController->getNoticias();
         }elseif($partesURL[0] == "login") {
-
             if( isset( $_POST['usuario']) && isset( $_POST['password'] ) ){
                 $user = $_POST['usuario'];
                 $pass = $_POST['password'];
@@ -49,18 +43,8 @@ if($action == ''){
             $loginController->guardaUsuario();
         }elseif($partesURL[0] == "logout") {
             $loginController->logout();
-        } elseif($partesURL[0] == "admin") {
-
-            if ( isset($partesURL[1]) ){
-                if ($partesURL[1] == "bandas") {
-                    $adminController->getBandas();
-                } else if ($partesURL[1] == "eventos"){
-                    $adminController->getEventos();
-                }
-            } else {
-                $adminController->getAdmin();
-            }
-
+        }elseif ($partesURL[0] == "filtrarEventos") {
+            $homecontroller->filtrarPorEvento();
         }
 
     }

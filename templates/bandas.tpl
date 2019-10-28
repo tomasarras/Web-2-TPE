@@ -1,3 +1,4 @@
+<h2>Bandas(Categorias)</h2>
 <table class="tabla-noticias">
     <thead>
         <tr>

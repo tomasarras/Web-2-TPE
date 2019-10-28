@@ -4,34 +4,43 @@ require_once  "./Views/eventosview.php";
 require_once  "./Views/bandasviews.php";
 require_once  "./Model/bandasmodel.php";
 require_once  "./Model/eventosmodel.php";
-require_once "AuthHelper.php";
 
 class homeController
 {
-  private $homeView;
+  private $view;
   private $eventosview;
   private $bandasviews;
   private $bandasmodel;
   private $eventosmodel;
-  private $titulo;
-  private $authHelper;
-
+  private $Titulo;
   function __construct()
   {
-    $this->homeView = new homeview();
+    $this->view = new homeview();
     $this->eventosview = new eventosview();
     $this->BandasView = new BandasView();
     $this->eventosmodel = new eventosmodel();
     $this->bandasmodel = new bandasmodel();
-    $this->authHelper = new AuthHelper();
-    $this->titulo = "Inicio";
+    $this->Titulo = "Inicio";
 }
   function Home() {
-    $logueado = $this->authHelper->isLoged();
+    session_start();
+    $logueado = isset($_SESSION["id_usuario"]);
+    
     $eventos = $this->eventosmodel->getEventos();
     $bandas = $this->bandasmodel->GetBandas();
-    $this->homeView->Mostrar($this->titulo, $bandas, $eventos,$logueado);
+    $this->view->Mostrar($this->Titulo, $bandas, $eventos,$logueado);
+  }
+  function filtrarPorEvento(){
+    $id_banda = $_POST["banda"];
+    $bandas = $this->bandasmodel->GetBandas();
+    $EventoFiltrado = $this ->eventosmodel->getEventoFiltrado($id_banda);
+    session_start();
+    $logueado = isset($_SESSION["id_usuario"]);
+    $this->view->Mostrar($this->Titulo,$bandas,$EventoFiltrado,$logueado);
   }
 
-  
+  function logout(){
+    session_start();
+    session_destroy();
+  }
 }
