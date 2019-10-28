@@ -38,7 +38,13 @@ class loginController {
 
     function getLogin(){
         $logueado = $this->isLoged();
-        $this->view->getLogin($this->titulo, $logueado);
+        if ( !$logueado ) {
+            $this->view->getLogin($this->titulo, $logueado);
+        } else {
+            header("Location: ". HOME);
+            die();
+        }
+        
     }
 
     function guardaUsuario(){
@@ -61,6 +67,8 @@ class loginController {
             $id = $this->model->registrarse($user,$pass);
             session_start();
             $_SESSION["id_usuario"] = $id;
+            header("Location: ". HOME);
+            die();
         } 
     }
 
@@ -78,8 +86,15 @@ class loginController {
 
 
     function MostrarRegistro(){
+
         $logueado = $this->isLoged();
-        $this->view->MostrarRegistro($logueado);
+
+        if ( !$logueado ) {
+            $this->view->MostrarRegistro($logueado);
+        } else {
+            header("Location: ". HOME);
+        die();
+    }
    }
 }
 ?>

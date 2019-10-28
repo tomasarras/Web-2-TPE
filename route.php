@@ -29,8 +29,8 @@ if($action == ''){
         }elseif($partesURL[0] == "noticias") {
             $bandasController->getNoticias();
         }elseif($partesURL[0] == "login") {
-            if( isset( $_POST['email']) && isset( $_POST['password'] ) ){
-                $user = $_POST['email'];
+            if( isset( $_POST['usuario']) && isset( $_POST['password'] ) ){
+                $user = $_POST['usuario'];
                 $pass = $_POST['password'];
                 $loginController->verificarUser($user,$pass);
             } else {

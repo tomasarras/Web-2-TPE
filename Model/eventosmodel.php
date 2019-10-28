@@ -5,7 +5,7 @@
       function __construct(){
           $this->db = $this->connect();
       }
-      private function connect(){
+      private function connect() {
         return new PDO('mysql:host=localhost;'.'dbname=bandas;charset=utf8','root', '');
       }
       function getEventos(){
