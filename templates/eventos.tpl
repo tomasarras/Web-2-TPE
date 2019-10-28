@@ -1,3 +1,20 @@
+{if $logueado}
+<div class="container">
+  <div class="row">
+  <div class="col-12">
+<form class="" action="filtrarEventos" method="post">
+      <h4>Buscar evento por banda</h4> <select name = "banda" >
+      {foreach from=$bandas item=banda}
+        <option value="{$banda->id_banda}">{$banda->banda}</option>
+      {/foreach}
+    </select>
+    <button type="submit" name="button">Filter</button>
+    </div>
+  </div>
+</form>
+</div>
+{/if}
+<h2>Proximos Eventos (item)</h2>
 <table class="tabla-noticias">
     <thead>
         <tr>

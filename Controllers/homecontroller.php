@@ -25,12 +25,21 @@ class homeController
     $this->bandasmodel = new bandasmodel();
     $this->authHelper = new AuthHelper();
     $this->titulo = "Inicio";
-}
+  }
   function Home() {
     $logueado = $this->authHelper->isLoged();
     $eventos = $this->eventosmodel->getEventos();
     $bandas = $this->bandasmodel->GetBandas();
     $this->homeView->Mostrar($this->titulo, $bandas, $eventos,$logueado);
+  }
+
+  function filtrarPorEvento(){
+    $id_banda = $_POST["banda"];
+    $bandas = $this->bandasmodel->GetBandas();
+    $EventoFiltrado = $this ->eventosmodel->getEventoFiltrado($id_banda);
+    session_start();
+    $logueado = isset($_SESSION["id_usuario"]);
+    $this->homeView->Mostrar($this->titulo,$bandas,$EventoFiltrado,$logueado);
   }
 
   

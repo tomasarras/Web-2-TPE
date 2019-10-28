@@ -50,17 +50,9 @@ if($action == ''){
         }elseif($partesURL[0] == "logout") {
             $loginController->logout();
         } elseif($partesURL[0] == "admin") {
-
-            if ( isset($partesURL[1]) ){
-                if ($partesURL[1] == "bandas") {
-                    $adminController->getBandas();
-                } else if ($partesURL[1] == "eventos"){
-                    $adminController->getEventos();
-                }
-            } else {
-                $adminController->getAdmin();
-            }
-
+            $adminController->getAdmin();
+        }elseif ($partesURL[0] == "filtrarEventos") {
+            $homecontroller->filtrarPorEvento();
         }
 
     }
