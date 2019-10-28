@@ -3,9 +3,10 @@ require_once('libs/Smarty.class.php');
 
 class loginView {
 
-    function getLogin($titulo,$logueado){
+    function getLogin($titulo,$logueado,$mensaje=""){
         $smarty = new Smarty();
         $smarty->assign('titulo',$titulo);
+        $smarty->assign('mensaje',$mensaje);
         $smarty->assign('logueado',$logueado);
         $smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
         $smarty->display('templates/login.tpl');

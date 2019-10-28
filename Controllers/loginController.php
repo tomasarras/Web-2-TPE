@@ -26,13 +26,11 @@ class loginController {
                 $_SESSION["id_usuario"] = $usuario->id_usuario;
                 header("Location: ". HOME);
                 die();
-            } else {
-            //datos incorrectos
-            //echo "<h1>datos incorrectos</h1>";
             }
-        } else {
-            //usuario no existe
+
         }
+
+        $this->view->getLogin($this->titulo,false,"Usario o contraseña incorrectos");
     
     }
 
@@ -52,15 +50,9 @@ class loginController {
         $user = $_POST["user"];
         $pass = $_POST["password"];
         $existe = $this->model->getUser($user);
-        $saf = empty($user);
-        if (empty($user)){
-            $this->view->getRegistro("El campo Usuario esta vacio");
-        }
-        if (empty($pass)){
-            $this->view->getRegistro("El campo contraseña esta vacio");
-        }
+
         // buscamos si existe el usuario en la db y llamamos al model para comprobar
-        elseif(isset($existe->nombre)) { // si existe ..
+        if (isset($existe->nombre)) { // si existe ..
                 $this->view->getRegistro(false,"Este nombre ya existe");
              // ya existe (mensaje);
         }else{    

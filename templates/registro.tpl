@@ -13,7 +13,7 @@
             <div class="form-group">
                 <label for="password" class="blanco">Password</label>
                 <input type="password" name="password" class="form-control largo" id="password" placeholder="Password">
-                <div id="error-password" class="rojo"></div>
+                <div id="error-password" class="rojo">{$mensaje}</div>
             </div>
             
             <div class="centrado">
