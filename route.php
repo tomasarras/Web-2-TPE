@@ -5,6 +5,7 @@ require_once "Controllers/loginController.php";
 require_once "Controllers/eventoscontroller.php";
 require_once "Controllers/homecontroller.php";
 define("HOME","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"]."/"));
+define("LOGIN","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/login");
 
 $action = $_GET["action"];
 

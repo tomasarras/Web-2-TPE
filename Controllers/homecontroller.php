@@ -4,6 +4,7 @@ require_once  "./Views/eventosview.php";
 require_once  "./Views/bandasviews.php";
 require_once  "./Model/bandasmodel.php";
 require_once  "./Model/eventosmodel.php";
+require_once "AuthHelper.php";
 
 class homeController
 {
@@ -13,6 +14,8 @@ class homeController
   private $bandasmodel;
   private $eventosmodel;
   private $Titulo;
+  private $AuthHelper;
+
   function __construct()
   {
     $this->view = new homeview();
@@ -21,18 +24,12 @@ class homeController
     $this->eventosmodel = new eventosmodel();
     $this->bandasmodel = new bandasmodel();
     $this->Titulo = "Inicio";
+    $this->AuthHelper = new AuthHelper();
 }
   function Home() {
-    session_start();
-    $logueado = isset($_SESSION["id_usuario"]);
-    
+    $logueado = $this->AuthHelper->isLoged();
     $eventos = $this->eventosmodel->getEventos();
     $bandas = $this->bandasmodel->GetBandas();
     $this->view->Mostrar($this->Titulo, $bandas, $eventos,$logueado);
-  }
-
-  function logout(){
-    session_start();
-    session_destroy();
   }
 }
