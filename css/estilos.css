@@ -1,3 +1,11 @@
+html {
+  margin: 10vh 0 0 0;
+}
+
+header {
+  height: 10vh;
+}
+
 th {
   background-color: #4CAF50;
   color: white;
@@ -86,13 +94,22 @@ a.btn-login {
 }
 
 .login {
-  margin: 200px 0 100px 0;
+  margin: 8% 0 8% 0;
 }
 
-div.centrado{
+.centrar-contenido {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.direccion-columna {
+  flex-direction: column;
+}
+
+.alinear-derecha {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .gris {
@@ -108,13 +125,11 @@ div.centrado{
 
 section.grande {
   width: 420px;
-  height: 300px;
   padding: 2%;
-  /*
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  */
+}
+
+.agregar-tabla {
+  display: block;
 }
 
 .blanco {
@@ -127,4 +142,16 @@ input.largo {
 
 .rojo {
   color: red;
+}
+
+div.admin {
+  margin: 5% 0 8% 0;
+}
+
+.oculto {
+  visibility: hidden;
+}
+
+.none {
+  display: none;
 }

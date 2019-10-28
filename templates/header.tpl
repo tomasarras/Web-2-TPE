@@ -1,4 +1,4 @@
-<div class="container-fluid bg-inverse fixed-top bg-dark text-center">
+<header class="container-fluid bg-inverse fixed-top bg-dark text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark container">
         <a class="navbar-brand" href="#">La Maquina del Metal</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -12,8 +12,9 @@
                 <a class="nav-item nav-link active" href="#">Inicio <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link active" href="registro.html">Contacto</a>
                 <a class="nav-item nav-link active" href="#">Bandas</a>
-                
                 {if $logueado}
+                <a class="nav-item nav-link active" href="admin">Administrar</a>
+                
                     <div class="log nav-item btn btn-danger">
                         <img src="images/newuser.png">
                         <a class="white btn-login" href="logout">Cerrar sesión</a>
@@ -31,4 +32,4 @@
             </div>
         </div>
     </nav>
-</div>
+</header>

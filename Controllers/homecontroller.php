@@ -8,28 +8,30 @@ require_once "AuthHelper.php";
 
 class homeController
 {
-  private $view;
+  private $homeView;
   private $eventosview;
   private $bandasviews;
   private $bandasmodel;
   private $eventosmodel;
-  private $Titulo;
-  private $AuthHelper;
+  private $titulo;
+  private $authHelper;
 
   function __construct()
   {
-    $this->view = new homeview();
+    $this->homeView = new homeview();
     $this->eventosview = new eventosview();
     $this->BandasView = new BandasView();
     $this->eventosmodel = new eventosmodel();
     $this->bandasmodel = new bandasmodel();
-    $this->Titulo = "Inicio";
-    $this->AuthHelper = new AuthHelper();
+    $this->authHelper = new AuthHelper();
+    $this->titulo = "Inicio";
 }
   function Home() {
-    $logueado = $this->AuthHelper->isLoged();
+    $logueado = $this->authHelper->isLoged();
     $eventos = $this->eventosmodel->getEventos();
     $bandas = $this->bandasmodel->GetBandas();
-    $this->view->Mostrar($this->Titulo, $bandas, $eventos,$logueado);
+    $this->homeView->Mostrar($this->titulo, $bandas, $eventos,$logueado);
   }
+
+  
 }
