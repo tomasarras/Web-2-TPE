@@ -107,11 +107,14 @@ div.centrado{
 }
 
 section.grande {
-  width: 400px;
+  width: 420px;
   height: 300px;
+  padding: 2%;
+  /*
   display: flex;
   justify-content: center;
   align-items: center;
+  */
 }
 
 .blanco {
@@ -119,5 +122,9 @@ section.grande {
 }
 
 input.largo {
-  width: 300px;
+  width: 100%;
+}
+
+.rojo {
+  color: red;
 }

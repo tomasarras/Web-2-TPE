@@ -12,18 +12,20 @@
                 <a class="nav-item nav-link active" href="#">Inicio <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link active" href="registro.html">Contacto</a>
                 <a class="nav-item nav-link active" href="#">Bandas</a>
-                <div class="log nav-item btn btn-danger">
-                    <img src="images/newuser.png">
-                    <a class="white btn-login" href="login">Login</a>
-                </div>
-                <div class="log nav-item btn btn-danger">
-                    <img src="images/newuser.png">
-                    <a class="white btn-login" href="NuevoUsuario">Registro</a>
-                </div>
+                
                 {if $logueado}
                     <div class="log nav-item btn btn-danger">
                         <img src="images/newuser.png">
                         <a class="white btn-login" href="logout">Cerrar sesión</a>
+                    </div>
+                {else}
+                    <div class="log nav-item btn btn-danger">
+                        <img src="images/newuser.png">
+                        <a class="white btn-login" href="login">Login</a>
+                    </div>
+                    <div class="log nav-item btn btn-danger">
+                        <img src="images/newuser.png">
+                        <a class="white btn-login" href="NuevoUsuario">Registro</a>
                     </div>
                 {/if}
             </div>

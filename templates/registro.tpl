@@ -5,18 +5,19 @@
         <form action="guardaUsuario" method="post">
             
             <div class="form-group">
-                <label for="email" class="blanco">Email</label>
-                <input type="text" name="user" class="form-control largo" id="email" aria-describedby="emailHelp" placeholder="Ingresa tu email">
-                <small id="emailHelp" class="form-text text-muted">No compartiremos tu email con nadie mas</small>
-            <small id="emailHelp" class="text-danger">{$mensaje}</small>
-                       </div>
+                <label for="user" class="blanco">Email</label>
+                <input type="text" name="user" class="form-control largo" id="usuario" aria-describedby="emailHelp" placeholder="Ingresa tu email">
+                <div id="error-usuario" class="rojo"></div>
+            </div>
+
             <div class="form-group">
                 <label for="password" class="blanco">Password</label>
                 <input type="password" name="password" class="form-control largo" id="password" placeholder="Password">
+                <div id="error-password" class="rojo"></div>
             </div>
             
             <div class="centrado">
-                <button type="submit" class="btn btn-primary">Registrarse</button>
+                <button type="submit" class="btn btn-primary" id="btn-logueo">Registrarse</button>
             </div>
         </form>  
     </section>
