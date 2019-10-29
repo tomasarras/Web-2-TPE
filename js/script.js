@@ -97,5 +97,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         
     });
+
+    let botonesFormulario = document.querySelectorAll(".btns-formulario");
+    botonesFormulario.forEach(btn => {
+        btn.addEventListener("click",()=>{
+            let formulario = document.querySelector("#btns-formulario");
+            formulario.action = btn.getAttribute("src");
+        });
+    });
   
 });

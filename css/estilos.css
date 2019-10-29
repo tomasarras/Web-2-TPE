@@ -171,3 +171,7 @@ div.admin {
 #btn-eliminar {
   margin-top: 2%;
 }
+
+.botonera-admin a {
+  margin: 3% 0;
+}

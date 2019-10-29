@@ -36,7 +36,7 @@
     
     <section class="bg-dark borde grande">
 
-        <form action="admin/bandas/agregar-banda" method="POST">
+        <form action="admin/bandas" method="POST" id="btns-formulario">
             <div class="centrar-contenido">
                 <h3 class="blanco" id="nombre-banda">Agregar</h3>
             </div>
@@ -63,11 +63,11 @@
             
             <div id="botonera">
                 <div>
-                    <button type="submit" class="btn btn-primary campos-vacios ancho margen-der" name="btn-agregar">Agregar</button>
-                    <button type="submit" class="btn btn-primary campos-vacios ancho margen-izq none" name="btn-editar" id="btn-editar">Editar</button>
+                    <input type="submit" src="admin/bandas/agregar" class="btn btn-primary campos-vacios ancho margen-der btns-formulario" value="Agregar">
+                    <input type="submit" src="admin/bandas/editar" class="btn btn-primary campos-vacios ancho margen-izq none btns-formulario" id="btn-editar" value="Editar">
                 </div>
                 <div class="blanco none">Esta banda no se puede eliminar porque pertenece al evento: <span id="nombre-evento"></span></div>
-                <button type="submit" class="btn btn-danger ancho  none" name="btn-eliminar" id="btn-eliminar">Eliminar</button>
+                <input type="submit" src="admin/bandas/eliminar" class="btn btn-danger ancho  none btns-formulario" id="btn-eliminar" value="Eliminar">
             </div>
         </form>  
         

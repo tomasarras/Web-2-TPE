@@ -55,35 +55,40 @@ if($action == ''){
             if ( isset($partesURL[1]) ) {
 
                 if ($partesURL[1] == "bandas") {
-                    if ( isset($_POST['btn-agregar']) ) {
-                        $adminController->agregarBanda();
-                    }
 
-                    if ( isset($_POST['btn-editar']) ) {
-                        $adminController->editarBanda();
-                    }
+                    if ( isset($partesURL[2]) ) {
 
-                    if ( isset($_POST['btn-eliminar']) ) {
-                        $adminController->eliminarBanda();
+                        if ($partesURL[2] == "agregar") {
+                            $adminController->agregarBanda();
+                        }
+                        
+                        if ($partesURL[2] == "editar") {
+                            $adminController->editarBanda();
+                            
+                        }
+                        
+                        if ($partesURL[2] == "eliminar") {
+                            $adminController->eliminarBanda();
+                        }
                     }
 
                     $adminController->getBandas();
 
                 } else if ($partesURL[1] == "eventos"){
 
-                    
-                    if ( isset($_POST['btn-agregar']) ) {
-                        $adminController->agregarEvento();
-                    }
-
-                    
-                    if ( isset($_POST['btn-editar']) ) {
-                        $adminController->editarEvento();
-                    }
-                    
-                    
-                    if ( isset($_POST['btn-eliminar']) ) {
-                        $adminController->eliminarEvento();
+                    if ( isset($partesURL[2]) ) {
+                        if ($partesURL[2] == "agregar") {
+                            $adminController->agregarEvento();
+                        }
+                        
+                        if ($partesURL[2] == "editar") {
+                            $adminController->editarEvento();
+                            
+                        }
+                        
+                        if ($partesURL[2] == "eliminar") {
+                            $adminController->eliminarEvento();
+                        }
                     }
                     
                     $adminController->getEventos();
