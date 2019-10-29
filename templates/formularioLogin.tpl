@@ -15,7 +15,7 @@
             </div>
             
             <div class="centrar-contenido">
-                <button type="submit" class="btn btn-primary" id="campos-vacios">Login</button>
+                <button type="submit" class="btn btn-primary campos-vacios">Login</button>
             </div>
 
             <div id="error" class="rojo centrar-contenido">{$mensaje}</div>

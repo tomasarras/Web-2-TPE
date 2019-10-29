@@ -9,13 +9,13 @@ require_once "./Views/eventosview.php";
 
 
         function __construct(){
-        $this->view = new eventosview();
-        $this->model = new eventosmodel();
+              $this->view = new eventosview();
+              $this->model = new eventosmodel();
         }
 
         function mostrar(){
-        $eventos = $this->model->getEventos();
-        $this->view->ver($eventos);
+              $eventos = $this->model->getEventos();
+              $this->view->ver($eventos);
         }
   
 

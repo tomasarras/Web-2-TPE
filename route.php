@@ -8,6 +8,7 @@ require_once "Controllers/adminController.php";
 
 define("HOME","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"]."/"));
 define("LOGIN","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/login");
+define("ADMINISTRAR_BANDAS","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/admin/bandas");
 
 $action = $_GET["action"];
 
@@ -49,7 +50,33 @@ if($action == ''){
         }elseif($partesURL[0] == "logout") {
             $loginController->logout();
         } elseif($partesURL[0] == "admin") {
-            $adminController->getAdmin();
+
+            if ( isset($partesURL[1]) ) {
+
+                if ($partesURL[1] == "bandas") {
+                    if ( isset($_POST['btn-agregar']) ) {
+                        $adminController->agregarBanda();
+                    }
+
+                    if ( isset($_POST['btn-editar']) ) {
+                        $adminController->editarBanda();
+                    }
+
+                    if ( isset($_POST['btn-eliminar']) ) {
+                        $adminController->eliminarBanda();
+                    }
+
+                    $adminController->getBandas();
+
+
+
+                } else if ($partesURL[1] == "eventos"){
+                    $adminController->getEventos();
+                }
+            } else {
+                $adminController->getAdmin();
+            }
+
         }elseif ($partesURL[0] == "filtrarEventos") {
             $homecontroller->filtrarPorEvento();
         }

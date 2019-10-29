@@ -24,8 +24,7 @@ class homeController
     $this->titulo = "Inicio";
   }
   function Home() {
-    session_start();
-    $logueado = isset($_SESSION["id_usuario"]);
+    $logueado = $this->authHelper->isLoged();
     
     $eventos = $this->eventosmodel->getEventos();
     $bandas = $this->bandasmodel->GetBandas();

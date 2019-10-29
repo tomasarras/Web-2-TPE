@@ -10,16 +10,16 @@ class AdminView {
         $this->smarty = new Smarty();
     }
     
-    function mostrarAdmin($titulo,$logueado) {
+    function mostrarAdmin($titulo) {
         $this->smarty->assign("titulo",$titulo);
-        $this->smarty->assign("logueado",$logueado);
+        $this->smarty->assign("logueado",true);
         $this->smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
         $this->smarty->display('templates/admin.tpl');
     }
 
-    function mostrarBandas($titulo,$logueado,$bandas) {
+    function mostrarBandas($titulo,$bandas) {
         $this->smarty->assign("titulo",$titulo);
-        $this->smarty->assign("logueado",$logueado);
+        $this->smarty->assign("logueado",true);
         $this->smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
         $this->smarty->assign("bandas",$bandas);
         $this->smarty->display('templates/adminBandas.tpl');
