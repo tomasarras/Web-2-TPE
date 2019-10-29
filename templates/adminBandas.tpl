@@ -24,7 +24,7 @@
                 {else}
                     <td>{$banda->evento}</td>
                 {/if}
-                <td><button class="btn btn-primary btn-seleccionar" name="{$banda->id_banda}">Seleccionar</button></td>
+                <td><button class="btn btn-primary btn-seleccionar-banda" name="{$banda->id_banda}">Seleccionar</button></td>
             </tr>
             {/foreach}
         </tbody>

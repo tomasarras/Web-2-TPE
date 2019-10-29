@@ -13,6 +13,12 @@ class BandasModel
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
+    function getNombreBandas() {
+        $sentencia = $this->db->prepare("SELECT banda.banda,banda.id_banda FROM banda");
+        $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
     function getBandasyEventos() {
         $sql = "SELECT banda.*,evento.nombre AS evento from banda 
         LEFT JOIN evento ON banda.id_banda = evento.id_banda 

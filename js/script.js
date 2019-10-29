@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
         
-    let btnsSeleccionar = document.querySelectorAll(".btn-seleccionar");
-
-    btnsSeleccionar.forEach(btn => {
+    let btnsSeleccionarBanda = document.querySelectorAll(".btn-seleccionar-banda");
+    
+    btnsSeleccionarBanda.forEach(btn => {
         btn.addEventListener("click",()=>{
             //elementos de la tabla
             let evento = btn.parentNode.previousElementSibling;
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let btnEliminar = document.querySelector("#btn-eliminar");
             let divMensaje = btnEliminar.previousElementSibling;
             let nombreEvento = document.querySelector("#nombre-evento");
-
+            
             //asignacion de elementos de la tabla a los del formulario
             tituloFormulario.innerHTML = banda.innerHTML;
             inputBanda.value = banda.innerHTML;
@@ -59,6 +59,40 @@ document.addEventListener("DOMContentLoaded", function () {
                 divMensaje.classList.remove("none");
                 nombreEvento.innerHTML = evento.innerHTML;
             }
+
+        });
+        
+    });
+    
+    let btnsSeleccionarEvento = document.querySelectorAll(".btn-seleccionar-evento");
+    btnsSeleccionarEvento.forEach(btn => {
+        btn.addEventListener("click",()=>{
+            //elementos de la tabla
+            let tdBandaAsociada = btn.parentNode.previousElementSibling;
+            let tdDetalle = tdBandaAsociada.previousElementSibling;
+            let tdEvento = tdDetalle.previousElementSibling;
+            let idEvento = tdEvento.getAttribute("name");
+            let idBanda = tdBandaAsociada.getAttribute("name");
+            
+            //elementos del formulario
+            let titulo = document.querySelector("#nombre-evento");
+            let inputEvento = document.querySelector("#input-evento");
+            let inputDetalle = document.querySelector("#input-detalle");
+            let selectBandaAsociada = document.querySelector("#banda-asociada");
+            let inputIdEvento = document.querySelector("#id_evento");
+
+            titulo.innerHTML = tdEvento.innerHTML;
+            inputEvento.value = tdEvento.innerHTML;
+            inputDetalle.value = tdDetalle.innerHTML;
+            inputIdEvento.value = idEvento;
+            selectBandaAsociada.value = idBanda;
+
+            let btnEditar = document.querySelector("#btn-editar");
+            btnEditar.classList.remove("none");
+            let btnEliminar = document.querySelector("#btn-eliminar");
+            btnEliminar.classList.remove("none");
+            let botonera = btnEditar.parentNode;
+            botonera.classList.add("centrar-contenido");
 
         });
         
