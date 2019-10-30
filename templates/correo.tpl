@@ -7,7 +7,7 @@
     <form action="" class="justify-content-center  form-inline">
 
         <div class="form-group mr-2">
-            <input type="text" placeholder="Ingrese su email">
+            <input type="text" class="form-control" placeholder="Ingrese su email">
 
         </div>
         <div class="form-group">

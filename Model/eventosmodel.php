@@ -67,6 +67,11 @@
       $sentencia = $this->db->prepare($sql);
       $sentencia->execute( array($id) );
     }
+    function GetDetalleEvento($id){
+      $sentencia = $this->db->prepare( "select evento.*, banda.banda as banda from evento inner join banda on evento.id_banda = banda.id_banda where evento.id=?");
+      $sentencia->execute(array($id));
+      return $sentencia->fetchAll(PDO::FETCH_OBJ);
+  }
 
   }
 

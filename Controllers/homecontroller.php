@@ -25,7 +25,7 @@ class homeController
   }
   function Home() {
     $logueado = $this->authHelper->isLoged();
-    
+    //$nombre = $_SESSION["nombre"];
     $eventos = $this->eventosmodel->getEventos();
     $bandas = $this->bandasmodel->GetBandas();
     $this->view->Mostrar($this->Titulo, $bandas, $eventos,$logueado);
@@ -37,6 +37,21 @@ class homeController
     session_start();
     $logueado = isset($_SESSION["id_usuario"]);
     $this->view->Mostrar($this->Titulo,$bandas,$EventoFiltrado,$logueado);
+  }
+  function VerDetallesEvento($id){
+    $eventos = $this->eventosmodel->GetDetalleEvento($id);
+    $bandas = $this->bandasmodel->GetBandas();
+    session_start();
+    $logueado = isset($_SESSION["id_usuario"]);
+    $this->eventosview->MostrarDetallesEventos("Ver Evento detallado", $eventos,$logueado);
+
+  }
+  function VerDetallesBandas($id){
+    $bandas = $this->bandasmodel->GetDetalleBanda($id);
+    session_start();
+    $logueado = isset($_SESSION["id_usuario"]);
+    $this->BandasView->MostrarDetalleBanda("Ver Banda detallada", $bandas,$logueado);
+
   }
   
 }

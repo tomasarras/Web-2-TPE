@@ -30,7 +30,7 @@
             <td>{$evento->nombre}</td>
             <td>{$evento->detalle}</td>
             <td>{$evento->banda}</td>
-            <td><a href="masdetalles">Mas Detalles</a></td>
+            <td><a href="VerEvento/{$evento->id}">Mas Detalles</a></td>
         </tr>
         {/foreach}
     </tbody>

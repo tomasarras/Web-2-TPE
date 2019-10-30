@@ -1,5 +1,6 @@
 <?php
 require_once "./Views/loginView.php";
+require_once "AuthHelper.php";
 require_once "./Model/loginModel.php";
 
 class loginController {
@@ -7,9 +8,10 @@ class loginController {
     private $view;
     private $model;
     private $titulo;
-
+    private $authHelper;
     function __construct(){
         $this->view = new loginView();
+        $this->authHelper = new AuthHelper();
         $this->model = new loginModel();
         $this->titulo = "La maquina del Metal";
     }
@@ -24,6 +26,7 @@ class loginController {
             if ( password_verify($pass, $hash) ){
                 session_start();
                 $_SESSION["id_usuario"] = $usuario->id_usuario;
+                $_SESSION["nombre"] = $usuario->nombre;
                 header("Location: ". HOME);
                 die();
             }
@@ -50,18 +53,22 @@ class loginController {
         $user = $_POST["user"];
         $pass = $_POST["password"];
         $existe = $this->model->getUser($user);
-
-        // buscamos si existe el usuario en la db y llamamos al model para comprobar
-        if (isset($existe->nombre)) { // si existe ..
+        $logeado = $this->authHelper->isLoged();
+        if (empty($user) || empty($pass)){
+            $this->view->getRegistro($logeado,"Que te haces el hacker la concha de tu madre");
+        } else {
+            // buscamos si existe el usuario en la db y llamamos al model para comprobar
+            if ($existe) { // si existe ..
                 $this->view->getRegistro(false,"Este nombre ya existe");
-             // ya existe (mensaje);
-        }else{    
-            $id = $this->model->registrarse($user,$pass);
-            session_start();
-            $_SESSION["id_usuario"] = $id;
-            header("Location: ". HOME);
-            die();
-        } 
+                // ya existe (mensaje);
+            }else{    
+                $id = $this->model->registrarse($user,$pass);
+                session_start();
+                $_SESSION["id_usuario"] = $id;
+                header("Location: ". HOME);
+                die();
+            } 
+        }
     }
 
     private function isLoged(){

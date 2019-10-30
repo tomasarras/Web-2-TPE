@@ -1,5 +1,5 @@
    <footer class="container-fluid bg-dark text-white py-3 text-center">
-            <p>Echo por el pibe boostramp</p>
+            <p>© 2015-2019 La maquina del metal | Design by Bolivar SA</p>
         </footer>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->

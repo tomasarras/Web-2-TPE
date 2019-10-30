@@ -14,7 +14,7 @@
             <td>{$banda->banda}</td>
             <td>{$banda->anio}</td>
             <td>{$banda->cantidadCanciones}</td>
-            <td><a href="masinfo">Mas Detalles</a></td>
+            <td><a href="MasDetallesBanda/{$banda->id_banda}">Mas Detalles</a></td>
         </tr>
         {/foreach}
     </tbody>

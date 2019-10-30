@@ -10,6 +10,7 @@ class HomeView
 
   function Mostrar($titulo, $bandas, $eventos,$logueado){
     $this->Smarty->assign('titulo',$titulo);
+    //$this->Smarty->assign('nombre',$nombre);
     $this->Smarty->assign('bandas',$bandas);
     $this->Smarty->assign('logueado',$logueado);
     $this->Smarty->assign('eventos',$eventos);

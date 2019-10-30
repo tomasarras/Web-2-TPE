@@ -10,8 +10,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link active" href="#">Inicio <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link active" href="registro.html">Contacto</a>
-                <a class="nav-item nav-link active" href="#">Bandas</a>
                 {if $logueado}
                 <a class="nav-item nav-link active" href="admin">Administrar</a>
                 
@@ -21,7 +19,7 @@
                     </div>
                 {else}
                     <div class="log nav-item btn btn-danger">
-                        <img src="images/newuser.png">
+                        <img src="images/lock.png">
                         <a class="white btn-login" href="login">Login</a>
                     </div>
                     <div class="log nav-item btn btn-danger">

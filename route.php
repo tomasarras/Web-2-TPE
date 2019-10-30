@@ -99,6 +99,10 @@ if($action == ''){
 
         }elseif ($partesURL[0] == "filtrarEventos") {
             $homecontroller->filtrarPorEvento();
+        }   elseif($partesURL[0]== "VerEvento"){
+            $homecontroller->VerDetallesEvento($partesURL[1]);
+        } elseif($partesURL[0]== "MasDetallesBanda"){
+            $homecontroller->VerDetallesBandas($partesURL[1]);
         }
 
     }
