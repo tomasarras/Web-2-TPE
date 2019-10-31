@@ -1,6 +1,6 @@
 <?php
 require_once "./Views/loginView.php";
-require_once "AuthHelper.php";
+require_once "./Helpers/AuthHelper.php";
 require_once "./Model/loginModel.php";
 
 class loginController {

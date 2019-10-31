@@ -1,6 +1,6 @@
 <?php 
 require_once "./Views/adminView.php";
-require_once "AuthHelper.php";
+require_once "./Helpers/AuthHelper.php";
 require_once "./Model/bandasmodel.php";
 require_once "./Model/eventosmodel.php";
 
@@ -68,36 +68,41 @@ class AdminController {
         die();
     }
 
-    function editarBanda() {
+    function editarBanda($id) {
         $this->authHelper->verificarPermiso();
 
-        if ( isset($_POST['banda']) && isset($_POST['cant-canciones']) && isset($_POST['anio']) && isset($_POST['id']) ) {
+        if ( isset($_POST['banda']) && isset($_POST['cant-canciones']) && isset($_POST['anio']) ) {
             $banda = $_POST['banda'];
             $cantidad = $_POST['cant-canciones'];
             $anio = $_POST['anio'];
-            $id = $_POST["id"];
 
             $this->bandasModel->editarBanda($banda,$cantidad,$anio,$id);
+            header("Location: ". ADMINISTRAR_BANDAS);
+            die();
         }
-        header("Location: ".ADMINISTRAR_BANDAS);
-        die();
+
+        $banda = $this->bandasModel->getBanda($id);
+        $this->adminView->mostrarEditarBanda("Editar banda",$banda);
     }
 
-    function editarEvento() {
+    function editarEvento($id) {
 
         $this->authHelper->verificarPermiso();
 
-        if ( isset($_POST['evento']) && isset($_POST['detalle']) && isset($_POST['id_evento']) && isset($_POST['id_banda']) ) {
+        $evento = $this->eventosModel->getEvento($id);
+        $bandas = $this->bandasModel->getBandasNombre();
+
+        if ( isset($_POST['evento']) && isset($_POST['detalle']) && isset($_POST['id_banda']) ) {
             $evento = $_POST['evento'];
             $detalle = $_POST['detalle'];
-            $idEvento = $_POST['id_evento'];
             $idBanda = $_POST["id_banda"];
 
-            $this->eventosModel->editarEvento($evento,$detalle,$idEvento,$idBanda);
+            $this->eventosModel->editarEvento($evento,$detalle,$id,$idBanda);
+            header("Location: ".ADMINISTRAR_EVENTOS);
+            die();
         }
 
-        header("Location: ".ADMINISTRAR_EVENTOS);
-        die();
+        $this->adminView->mostrarEditarEvento("Editar evento",$evento,$bandas);
     }
     
     function eliminarBanda() {

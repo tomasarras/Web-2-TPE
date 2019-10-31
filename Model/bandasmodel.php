@@ -6,7 +6,15 @@ class BandasModel
     }
     private function connect(){
         return new PDO('mysql:host=localhost;'.'dbname=bandas;charset=utf8','root', '');
-     }
+    }
+
+    function getBandasNombre(){
+        $sql = "SELECT banda.id_banda, banda.banda FROM banda";
+        $sentencia = $this->db->prepare($sql);
+        $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
     function GetBandas(){
         $sentencia = $this->db->prepare( "select * from banda");
         $sentencia->execute();
@@ -68,6 +76,13 @@ class BandasModel
         $sentencia = $this->db->prepare( "select * from banda where id_banda=?");
         $sentencia->execute(array($id));
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function getBanda($id) {
+        $sql = "SELECT * FROM banda WHERE id_banda = ?";
+        $sentencia = $this->db->prepare($sql);
+        $sentencia->execute( array($id) );
+        return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 }
 ?>

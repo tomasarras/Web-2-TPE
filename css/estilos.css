@@ -1,9 +1,5 @@
 html {
-  margin: 10vh 0 0 0;
-}
-
-header {
-  height: 10vh;
+  margin: 9.6vh 0 0 0;
 }
 
 th {
@@ -152,6 +148,10 @@ div.admin {
   visibility: hidden;
 }
 
+button.btn-seleccionar-banda, button.btn-seleccionar-evento{
+  width: 100%;
+}
+
 .none {
   display: none;
 }
@@ -174,4 +174,47 @@ div.admin {
 
 .botonera-admin a {
   margin: 3% 0;
+}
+
+.tablas {
+  margin : 0 5% 0 5%;
+}
+
+.margen-abajo {
+  margin: 0 0 5% 0;
+}
+
+.margen-tabla-admin {
+  margin: 5% 5% 0 5%;
+}
+
+.botonera {
+  display: flex;
+  flex-direction: row;
+}
+
+div.botonera input {
+  width: 100%;
+}
+
+@media only screen and (max-width:800px) {
+  .tabla-noticias th,.tabla-noticias td {
+    padding: 13px;
+  }
+
+}
+
+@media only screen and (max-width:500px) {
+  button.btn-seleccionar-banda, button.btn-seleccionar-evento{
+    font-size: 0.7em;
+  }
+
+  nav a.titulo {
+    font-size: 0.8em;
+  }
+
+  .tabla-noticias th,.tabla-noticias td {
+    font-size: 0.8em;
+    padding: 7px;
+  }
 }

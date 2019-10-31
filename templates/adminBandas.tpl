@@ -2,8 +2,8 @@
 {include file="header.tpl" }
 
 
-<div class="centrar-contenido admin">
-    <table class="tabla-noticias">
+<div class="centrar-contenido margen-tabla-admin">
+    <table class="tabla-noticias ancho">
         <thead>
             <tr>
                 <td>Banda</td>
@@ -24,7 +24,9 @@
                 {else}
                     <td>{$banda->evento}</td>
                 {/if}
-                <td><button class="btn btn-primary btn-seleccionar-banda" name="{$banda->id_banda}">Seleccionar</button></td>
+                <td>
+                    <a href="admin/bandas/editar/{$banda->id_banda}" class="btn btn-primary btn-seleccionar-banda ancho">Editar</a>
+                </td>
             </tr>
             {/foreach}
         </tbody>

@@ -1,21 +1,25 @@
-{if $logueado}
-<div class="container">
-  <div class="row">
-  <div class="col-12">
-<form class="" action="filtrarEventos" method="post">
-      <h4>Buscar evento por banda</h4> <select name = "banda" >
+<form class="margen-abajo" action="filtrarEventos" method="POST">
+  <div class="centrar-contenido">
+    <h4>Buscar evento por banda</h4> 
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <button class="btn btn-outline-primary" type="submit" name="button">Filtrar</button>
+    </div>
+    <select name = "banda" class="custom-select" >
       {foreach from=$bandas item=banda}
         <option value="{$banda->id_banda}">{$banda->banda}</option>
       {/foreach}
     </select>
-    <button type="submit" name="button">Filter</button>
-    </div>
   </div>
 </form>
+
+<div class="centrar-contenido">
+  <h2>Proximos Eventos (item)</h2>
 </div>
-{/if}
-<h2>Proximos Eventos (item)</h2>
-<table class="tabla-noticias">
+
+<table class="tabla-noticias ancho margen-abajo">
     <thead>
         <tr>
             <td>Nombre del evento</td>

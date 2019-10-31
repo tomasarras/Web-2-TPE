@@ -4,6 +4,7 @@ require_once  "./Views/eventosview.php";
 require_once  "./Views/bandasviews.php";
 require_once  "./Model/bandasmodel.php";
 require_once  "./Model/eventosmodel.php";
+require_once "./Helpers/AuthHelper.php";
 
 class homeController
 {
@@ -21,7 +22,7 @@ class homeController
     $this->eventosmodel = new eventosmodel();
     $this->bandasmodel = new bandasmodel();
     $this->authHelper = new AuthHelper();
-    $this->titulo = "Inicio";
+    $this->Titulo = "Inicio";
   }
   function Home() {
     $logueado = $this->authHelper->isLoged();

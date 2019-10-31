@@ -18,6 +18,13 @@
       return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
+    function getEvento($id) {
+      $sql = "SELECT * FROM evento WHERE id = ?";
+      $sentencia = $this->db->prepare($sql);
+      $sentencia->execute( array($id) );
+      return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
+
     function getEventoFiltrado ($id){
       $sentencia = $this->db->prepare( "select evento.*, banda.banda as banda from evento inner join banda on evento.id_banda = banda.id_banda where evento.id_banda=? order by banda");
       $sentencia->execute(array($id));
