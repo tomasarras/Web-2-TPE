@@ -1,7 +1,7 @@
 {include file="html.tpl" }
 {include file="header.tpl" }
 
-<div class="centrar-contenido admin">
+<div class="centrar-contenido view">
     <section class="bg-dark borde grande botonera-admin">
         <form action="admin/eventos/editar/{$evento->id}" method="POST" id="btns-formulario">
             <div class="centrar-contenido">
@@ -11,13 +11,13 @@
             <div class="form-group">
                 <label for="evento" class="blanco">Evento</label>
                 <input type="text" name="evento" class="form-control largo campo-vacio" id="input-evento" placeholder="Nombre del evento">
-                <div class="rojo oculto">Ingresa un evento</div>
+                <div class="invalid-feedback">Ingresa un evento</div>
             </div>
 
             <div class="form-group">
                 <label for="detalle" class="blanco">Detalle del evento</label>
                 <input type="text" name="detalle" class="form-control largo campo-vacio" id="input-detalle" placeholder="Detalle del evento">
-                <div id="error-cantidad" class="rojo oculto">Ingresa un detalle del evento</div>
+                <div id="error-cantidad" class="invalid-feedback">Ingresa un detalle del evento</div>
             </div>
 
             <div class="form-group">

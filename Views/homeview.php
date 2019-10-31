@@ -17,5 +17,12 @@ class HomeView
     $this->Smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
     $this->Smarty->display('templates/home.tpl');
   }
+
+  function noExiste($mensaje=""){
+    $this->Smarty->assign('titulo',"Pagina no disponible");
+    $this->Smarty->assign('mensaje',$mensaje);
+    $this->Smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
+    $this->Smarty->display('templates/error.tpl');
+  }
 }
   ?>

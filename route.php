@@ -25,17 +25,7 @@ if($action == ''){
     if (isset($action)){
         $partesURL = explode("/", $action);
 
-        if($partesURL[0] == "tareas"){
-            $bandasController->GetTareas();
-        }elseif($partesURL[0] == "insertar") {
-            $bandasController->InsertarTarea();
-        }elseif($partesURL[0] == "finalizar") {
-            $bandasController->FinalizarTarea($partesURL[1]);
-        }elseif($partesURL[0] == "borrar") {
-            $bandasController->BorrarTarea($partesURL[1]);
-        }elseif($partesURL[0] == "noticias") {
-            $bandasController->getNoticias();
-        }elseif($partesURL[0] == "login") {
+        if($partesURL[0] == "login") {
             if( isset( $_POST['usuario']) && isset( $_POST['password'] ) ){
                 $user = $_POST['usuario'];
                 $pass = $_POST['password'];
@@ -67,9 +57,15 @@ if($action == ''){
                             } else {
                                 $adminController->getBandas();
                             }
-
+                            
                         } else if ($partesURL[2] == "eliminar") {
-                            $adminController->eliminarBanda();
+                            if ( isset($partesURL[3]) ) {
+                                $adminController->eliminarBanda($partesURL[3]);
+                            } else {
+                                $adminController->getBandas();
+                            }
+                        } else {
+                            $homecontroller->noExiste();
                         }
 
                     } else {
@@ -89,12 +85,20 @@ if($action == ''){
                                 $adminController->getEventos();
                             }
                         } else if ($partesURL[2] == "eliminar") {
-                            $adminController->eliminarEvento();
+                            if ( isset($partesURL[3]) ) {
+                                $adminController->eliminarEvento($partesURL[3]);
+                            } else {
+                                $adminController->getEventos();
+                            }
+                        } else {
+                            $homecontroller->noExiste();
                         }
 
                     } else {
                         $adminController->getEventos();
                     }
+                } else {
+                    $homecontroller->noExiste();
                 }
 
             } else {
@@ -107,6 +111,8 @@ if($action == ''){
             $homecontroller->VerDetallesEvento($partesURL[1]);
         } elseif($partesURL[0]== "MasDetallesBanda"){
             $homecontroller->VerDetallesBandas($partesURL[1]);
+        }else{
+            $homecontroller->noExiste();
         }
 
     }

@@ -52,7 +52,11 @@ class homeController
     session_start();
     $logueado = isset($_SESSION["id_usuario"]);
     $this->BandasView->MostrarDetalleBanda("Ver Banda detallada", $bandas,$logueado);
+  }
 
+  function noExiste() {
+    $logueado = $this->authHelper->isLoged();
+    $this->view->noExiste();
   }
   
 }

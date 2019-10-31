@@ -10,7 +10,8 @@
                 <td>Año</td>
                 <td>Cantidad de canciones</td>
                 <td>Evento</td>
-                <td>Editar banda</td>
+                <td>Editar</td>
+                <td>Eliminar</td>
             </tr>
         </thead>
         <tbody>
@@ -25,8 +26,15 @@
                     <td>{$banda->evento}</td>
                 {/if}
                 <td>
-                    <a href="admin/bandas/editar/{$banda->id_banda}" class="btn btn-primary btn-seleccionar-banda ancho">Editar</a>
+                    <a href="admin/bandas/editar/{$banda->id_banda}" class="btn btn-primary ancho">Editar</a>
                 </td>
+                {if $banda->evento eq null}
+                    <td>
+                        <a href="admin/bandas/eliminar/{$banda->id_banda}" class="btn btn-danger ancho">Eliminar</a>
+                    </td>
+                {else}
+                    <td>No disponible</td>
+                {/if}
             </tr>
             {/foreach}
         </tbody>
@@ -34,9 +42,9 @@
 </div>
 
 
-<div class="centrar-contenido admin">
+<div class="centrar-contenido admin margen-abajo">
     
-    <section class="bg-dark borde grande">
+    <section class="bg-dark borde grande margen-abajo">
 
         <form action="admin/bandas" method="POST" id="btns-formulario">
             <div class="centrar-contenido">
@@ -46,31 +54,22 @@
             <div class="form-group">
                 <label for="banda" class="blanco">Banda</label>
                 <input type="text" name="banda" class="form-control largo campo-vacio" id="input-banda" placeholder="Nombre de la banda">
-                <div class="rojo oculto">Ingresa una banda</div>
+                <div class="invalid-feedback">Ingresa una banda</div>
             </div>
 
             <div class="form-group">
                 <label for="cant-canciones" class="blanco">Cantidad de canciones</label>
                 <input type="number" name="cant-canciones" class="form-control largo campo-vacio" id="input-cantidad" placeholder="Cantidad de canciones de la banda">
-                <div id="error-cantidad" class="rojo oculto">Ingresa la cantidad de canciones</div>
+                <div id="error-cantidad" class="invalid-feedback">Ingresa la cantidad de canciones</div>
             </div>
 
             <div class="form-group">
                 <label for="anio" class="blanco">Año</label>
                 <input type="number" name="anio" class="form-control largo campo-vacio" id="input-anio" placeholder="Año de la banda">
-                <div class="rojo oculto">Ingresa un año</div>
+                <div class="invalid-feedback">Ingresa un año</div>
             </div>
 
-            <input class="none" name="id" id="id_banda">
-            
-            <div id="botonera">
-                <div>
-                    <input type="submit" src="admin/bandas/agregar" class="btn btn-primary campos-vacios ancho margen-der btns-formulario" value="Agregar">
-                    <input type="submit" src="admin/bandas/editar" class="btn btn-primary campos-vacios ancho margen-izq none btns-formulario" id="btn-editar" value="Editar">
-                </div>
-                <div class="blanco none">Esta banda no se puede eliminar porque pertenece al evento: <span id="nombre-evento"></span></div>
-                <input type="submit" src="admin/bandas/eliminar" class="btn btn-danger ancho  none btns-formulario" id="btn-eliminar" value="Eliminar">
-            </div>
+            <input type="submit" src="admin/bandas/agregar" class="btn btn-primary campos-vacios ancho margen-der btns-formulario" value="Agregar">
         </form>  
         
     </section>
