@@ -1,20 +1,3 @@
-<form class="margen-abajo" action="filtrarEventos" method="POST">
-  <div class="centrar-contenido">
-    <h4>Buscar evento por banda</h4> 
-  </div>
-
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <button class="btn btn-outline-primary" type="submit" name="button">Filtrar</button>
-    </div>
-    <select name = "banda" class="custom-select" >
-      {foreach from=$bandas item=banda}
-        <option value="{$banda->id_banda}">{$banda->banda}</option>
-      {/foreach}
-    </select>
-  </div>
-</form>
-
 <div class="centrar-contenido">
   <h2>Proximos Eventos (item)</h2>
 </div>

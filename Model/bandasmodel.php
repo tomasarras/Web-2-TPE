@@ -32,10 +32,12 @@ class BandasModel
             case "banda": $ordenamiento = "banda"; break;
             case "anio": $ordenamiento = "anio"; break;
             case "cantidadCanciones": $ordenamiento = "cantidadCanciones"; break;
+            default: $ordenamiento = "banda"; break;
         }
         $sql = "SELECT * FROM banda ORDER BY $ordenamiento;";
         $sentencia = $this->db->prepare($sql);
-        $sentencia->execute(array($orden));
+        //$sentencia->execute( array($orden) );
+        $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 

@@ -23,11 +23,13 @@
         case "nombre": $oredenamiento = "nombre"; break;
         case "detalle": $oredenamiento = "detalle"; break;
         case "banda": $oredenamiento = "banda"; break;
+        default: $oredenamiento = "nombre"; break;
       }
 
       $sql = "SELECT evento.*, banda.banda AS banda FROM evento
       INNER JOIN banda ON evento.id_banda = banda.id_banda
       ORDER BY $oredenamiento;";
+
       $sentencia = $this->db->prepare($sql);
       $sentencia->execute();
       //$sentencia->execute( array($orden) );
