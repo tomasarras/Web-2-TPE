@@ -27,9 +27,22 @@ class homeController
   function Home() {
     $logueado = $this->authHelper->isLoged();
     //$nombre = $_SESSION["nombre"];
-    $eventos = $this->eventosmodel->getEventos();
-    $bandas = $this->bandasmodel->GetBandas();
-    $this->view->Mostrar($this->Titulo, $bandas, $eventos,$logueado);
+    $ordenBandas = false;
+    $ordenEventos = false;
+    if ( isset($_GET['eventos']) ) {
+      $ordenEventos = $_GET['eventos'];
+      $eventos = $this->eventosmodel->getEventosOrdenado($ordenEventos);
+    } else {
+      $eventos = $this->eventosmodel->getEventos();
+    }
+
+    if ( isset($_GET['bandas']) ) {
+      $ordenBandas = $_GET['bandas'];
+      $bandas = $this->bandasmodel->getBandasOrdenadas($ordenBandas);
+    } else {
+      $bandas = $this->bandasmodel->GetBandas();
+    }
+    $this->view->Mostrar($this->Titulo, $bandas, $eventos,$logueado,$ordenEventos,$ordenBandas);
   }
   function filtrarPorEvento(){
     $id_banda = $_POST["banda"];

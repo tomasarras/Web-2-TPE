@@ -33,5 +33,30 @@ document.addEventListener("DOMContentLoaded", function () {
             input.classList.remove("is-invalid");
         });
     });
+
+    let tdsOrdenamiento = document.querySelectorAll(".js-orden");
+    tdsOrdenamiento.forEach(td => {
+        td.addEventListener("click",()=>{
+            let formulario = document.querySelector("#js-form-tablas");
+            let tipo = td.getAttribute("value");
+            let inputEventos = formulario.firstElementChild;
+            let inputBandas = inputEventos.nextElementSibling;
+            let input;
+            if ( tipo == "bandas" ) {
+                input = inputBandas;
+            } else {
+                input = inputEventos
+            }
+            
+            input.value = td.getAttribute("src");
+            formulario.submit();
+        });
+        
+    });
+
+    let p = document.querySelector("#p");
+    p.addEventListener("click",function (event){
+        event.preventDefault();
+    });
   
 });

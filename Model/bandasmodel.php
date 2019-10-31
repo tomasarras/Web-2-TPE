@@ -27,6 +27,18 @@ class BandasModel
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
+    function getBandasOrdenadas($orden) {
+        switch ( $orden ) {
+            case "banda": $ordenamiento = "banda"; break;
+            case "anio": $ordenamiento = "anio"; break;
+            case "cantidadCanciones": $ordenamiento = "cantidadCanciones"; break;
+        }
+        $sql = "SELECT * FROM banda ORDER BY $ordenamiento;";
+        $sentencia = $this->db->prepare($sql);
+        $sentencia->execute(array($orden));
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
     function getBandasyEventos() {
         $sql = "SELECT banda.*,evento.nombre AS evento from banda 
         LEFT JOIN evento ON banda.id_banda = evento.id_banda 

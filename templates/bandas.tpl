@@ -1,12 +1,13 @@
 <div class="centrar-contenido">
     <h2>Bandas(Categorias)</h2>
 </div>
+
 <table class="tabla-noticias ancho margen-abajo">
     <thead>
         <tr>
-            <td>Banda</td>
-            <td>Año</td>
-            <td>Cantidad de canciones</td>
+            <td src="banda" class="js-orden link" value="bandas">Banda</td>
+            <td src="anio" class="js-orden link" value="bandas">Año</td>
+            <td src="cantidadCanciones" class="js-orden link" value="bandas">Cantidad de canciones</td>
             <td>Mas Info</td>
         </tr>
     </thead>

@@ -22,9 +22,9 @@
 <table class="tabla-noticias ancho margen-abajo">
     <thead>
         <tr>
-            <td>Nombre del evento</td>
-            <td>Ciudad</td>
-            <td>Banda Asociada</td>
+            <td src="nombre" class="js-orden link" value="eventos"><a href="#">Nombre del evento</a></td>
+            <td src="detalle" class="js-orden link" value="eventos">Ciudad</td>
+            <td src="banda" class="js-orden link" value="eventos">Banda Asociada</td>
             <td>Mas Info</td>
         </tr>
     </thead>

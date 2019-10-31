@@ -18,6 +18,22 @@
       return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
+    function getEventosOrdenado($orden) {
+      switch ( $orden ) {
+        case "nombre": $oredenamiento = "nombre"; break;
+        case "detalle": $oredenamiento = "detalle"; break;
+        case "banda": $oredenamiento = "banda"; break;
+      }
+
+      $sql = "SELECT evento.*, banda.banda AS banda FROM evento
+      INNER JOIN banda ON evento.id_banda = banda.id_banda
+      ORDER BY $oredenamiento;";
+      $sentencia = $this->db->prepare($sql);
+      $sentencia->execute();
+      //$sentencia->execute( array($orden) );
+      return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
     function getEvento($id) {
       $sql = "SELECT * FROM evento WHERE id = ?";
       $sentencia = $this->db->prepare($sql);

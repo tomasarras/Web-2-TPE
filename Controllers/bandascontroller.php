@@ -17,12 +17,6 @@ class BandasController
         $this->view->Mostrar($bandas);
     }
 
-    function getNoticias(){
-        //$bandas = $this->model->GetBandas();
-        //$eventos = $this->model->getEventos();
-        //$this->view->getNoticias($this->titulo, $bandas);
-    }
-
 }
 
 
