@@ -439,3 +439,13 @@ svg {
   color: white;
   fill: white;
 }
+
+
+td.link {
+  cursor: pointer;
+  color: #007bff;
+}
+
+td.link:hover {
+  text-decoration: underline;
+}
