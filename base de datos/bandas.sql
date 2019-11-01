@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2019 a las 18:42:43
+-- Tiempo de generación: 01-11-2019 a las 03:44:38
 -- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.1.31
+-- Versión de PHP: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,6 +35,16 @@ CREATE TABLE `banda` (
   `cantidadCanciones` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `banda`
+--
+
+INSERT INTO `banda` (`id_banda`, `banda`, `anio`, `cantidadCanciones`) VALUES
+(1, 'Iron Maiden', 1978, 133),
+(2, 'AC/DC', 1976, 232),
+(3, 'Metallica', 1972, 523),
+(4, 'Three day grace', 1983, 142);
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +57,15 @@ CREATE TABLE `evento` (
   `nombre` text NOT NULL,
   `detalle` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `evento`
+--
+
+INSERT INTO `evento` (`id`, `id_banda`, `nombre`, `detalle`) VALUES
+(1, 1, 'Rock in Rio', 'Rio de janeiro.'),
+(2, 2, 'Rock n\' roll San Diego.', 'San Diego USA.'),
+(3, 3, 'OzzFest', 'New York Usa');
 
 -- --------------------------------------------------------
 
