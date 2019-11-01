@@ -1,5 +1,5 @@
 <?php
-require('libs/Smarty.class.php');
+require_once('libs/Smarty.class.php');
 
  class BandasView
 {
@@ -22,12 +22,5 @@ require('libs/Smarty.class.php');
       $smarty->display('templates/MostrarDetallesBandas.tpl');
   
     }
-    /*function getNoticias($bandas){
-      $smarty = new Smarty();
-      $smarty->assign('Titulo',"Inicio");
-      $smarty->assign('bandas',$bandas);
-      $smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
-      $smarty->display('templates/noticias.tpl');
-    } */
-    }
+}
 ?>

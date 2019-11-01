@@ -1,30 +1,31 @@
 <?php
+require_once('libs/Smarty.class.php');
 
 class HomeView
 {
-  private $Smarty;
+  private $smarty;
   function __construct()
   {
-    $this->Smarty = new Smarty();
+    $this->smarty = new Smarty();
   }
 
   function Mostrar($titulo, $bandas, $eventos,$logueado,$ordenEvento=false,$ordenBanda=false){
-    $this->Smarty->assign('titulo',$titulo);
+    $this->smarty->assign('titulo',$titulo);
     //$this->Smarty->assign('nombre',$nombre);
-    $this->Smarty->assign('bandas',$bandas);
-    $this->Smarty->assign('ordenBanda',$ordenBanda);
-    $this->Smarty->assign('ordenEvento',$ordenEvento);
-    $this->Smarty->assign('logueado',$logueado);
-    $this->Smarty->assign('eventos',$eventos);
-    $this->Smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
-    $this->Smarty->display('templates/home.tpl');
+    $this->smarty->assign('bandas',$bandas);
+    $this->smarty->assign('ordenBanda',$ordenBanda);
+    $this->smarty->assign('ordenEvento',$ordenEvento);
+    $this->smarty->assign('logueado',$logueado);
+    $this->smarty->assign('eventos',$eventos);
+    $this->smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
+    $this->smarty->display('templates/home.tpl');
   }
 
   function noExiste($mensaje=""){
-    $this->Smarty->assign('titulo',"Pagina no disponible");
-    $this->Smarty->assign('mensaje',$mensaje);
-    $this->Smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
-    $this->Smarty->display('templates/error.tpl');
+    $this->smarty->assign('titulo',"Pagina no disponible");
+    $this->smarty->assign('mensaje',$mensaje);
+    $this->smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
+    $this->smarty->display('templates/error.tpl');
   }
 }
   ?>

@@ -1,20 +1,20 @@
 <?php
-require_once "./Views/bandasviews.php";
-require_once "./Model/bandasmodel.php";
+require_once("./Views/bandasviews.php");
+require_once("./Model/bandasmodel.php");
 
 class BandasController
 {
-    private $view;
-    private $model;
+    private $bandasView;
+    private $bandasModel;
 
     
     function __construct(){
-        $this->view = new BandasView();
-        $this->model = new BandasModel();
+        $this->bandasView = new BandasView();
+        $this->bandasModel = new BandasModel();
     }
     function Home(){
-        $bandas = $this->model->GetBandas();
-        $this->view->Mostrar($bandas);
+        $bandas = $this->bandasModel->GetBandas();
+        $this->bandasView->Mostrar($bandas);
     }
 
 }

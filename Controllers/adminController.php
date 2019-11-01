@@ -1,9 +1,9 @@
 <?php 
-require_once "./Views/adminView.php";
-require_once "./Views/homeview.php";
-require_once "./Helpers/AuthHelper.php";
-require_once "./Model/bandasmodel.php";
-require_once "./Model/eventosmodel.php";
+require_once("./Views/adminView.php");
+require_once("./Views/homeview.php");
+require_once("./Helpers/AuthHelper.php");
+require_once("./Model/bandasmodel.php");
+require_once("./Model/eventosmodel.php");
 
 class AdminController {
 
@@ -46,13 +46,11 @@ class AdminController {
     function agregarBanda() {
         $this->authHelper->verificarPermiso();
 
-        if ( isset($_POST['banda']) && isset($_POST['cant-canciones']) && isset($_POST['anio']) ) {
-            $banda = $_POST['banda'];
-            $cantidad = $_POST['cant-canciones'];
-            $anio = $_POST['anio'];
+        $banda = $_POST['banda'];
+        $cantidad = $_POST['cant-canciones'];
+        $anio = $_POST['anio'];
 
-            $this->bandasModel->agregarBanda($banda,$cantidad,$anio);
-        }
+        $this->bandasModel->agregarBanda($banda,$cantidad,$anio);
         header("Location: ".ADMINISTRAR_BANDAS);
         die();
     }
@@ -60,65 +58,68 @@ class AdminController {
     function agregarEvento() {
         $this->authHelper->verificarPermiso();
 
-        if ( isset($_POST['evento']) && isset($_POST['detalle']) && isset($_POST['id_banda']) ) {
-            $evento = $_POST['evento'];
-            $detalle = $_POST['detalle'];
-            $id_banda = $_POST['id_banda'];
+        $evento = $_POST['evento'];
+        $detalle = $_POST['detalle'];
+        $id_banda = $_POST['id_banda'];
 
-            $this->eventosModel->agregarEvento($evento,$detalle,$id_banda);
-        }
+        $this->eventosModel->agregarEvento($evento,$detalle,$id_banda);
         header("Location: ".ADMINISTRAR_EVENTOS);
         die();
     }
 
-    function editarBanda($id) {
+    function editarBanda($params = null) {
+        $id = $params[':ID'];
+        if ( isset($_POST['banda']) && isset($_POST['cant-canciones']) && isset($_POST['anio']) ) {
+            $banda = $_POST['banda'];
+            $cantidad = $_POST['cant-canciones'];
+            $anio = $_POST['anio'];
+    
+            $this->bandasModel->editarBanda($banda,$cantidad,$anio,$id);
+            header("Location: ". ADMINISTRAR_BANDAS);
+            die();
+        }
+    }
+
+    function getBanda($params = null) {
         $this->authHelper->verificarPermiso();
+        $id = $params[':ID'];
         $banda = $this->bandasModel->getBanda($id);
 
         if ($banda) {
-
-            if ( isset($_POST['banda']) && isset($_POST['cant-canciones']) && isset($_POST['anio']) ) {
-                $banda = $_POST['banda'];
-                $cantidad = $_POST['cant-canciones'];
-                $anio = $_POST['anio'];
-
-                $this->bandasModel->editarBanda($banda,$cantidad,$anio,$id);
-                header("Location: ". ADMINISTRAR_BANDAS);
-                die();
-            }
-
             $this->adminView->mostrarEditarBanda("Editar banda",$banda);
         } else {
             $this->homeView->noExiste("Esta banda no existe");
         }
     }
 
-    function editarEvento($id) {
+    function editarEvento($params = null) {
+        $id = $params[':ID'];
+        if ( isset($_POST['evento']) && isset($_POST['detalle']) && isset($_POST['id_banda']) ) {
+            $evento = $_POST['evento'];
+            $detalle = $_POST['detalle'];
+            $idBanda = $_POST["id_banda"];
+            
+            $this->eventosModel->editarEvento($evento,$detalle,$id,$idBanda);
+            header("Location: ".ADMINISTRAR_EVENTOS);
+            die();
+        }
+    }
 
+    function getEvento($params = null) {
+        $id = $params[':ID'];
         $this->authHelper->verificarPermiso();
 
         $evento = $this->eventosModel->getEvento($id);
         if ($evento) {
-
             $bandas = $this->bandasModel->getBandasNombre();
-            
-            if ( isset($_POST['evento']) && isset($_POST['detalle']) && isset($_POST['id_banda']) ) {
-                $evento = $_POST['evento'];
-                $detalle = $_POST['detalle'];
-                $idBanda = $_POST["id_banda"];
-                
-                $this->eventosModel->editarEvento($evento,$detalle,$id,$idBanda);
-                header("Location: ".ADMINISTRAR_EVENTOS);
-                die();
-            }
-            
             $this->adminView->mostrarEditarEvento("Editar evento",$evento,$bandas);
         } else {
             $this->homeView->noExiste("Este evento no existe");
         }
     }
     
-    function eliminarBanda($id) {
+    function eliminarBanda($params = null) {
+        $id = $params[':ID'];
         $this->authHelper->verificarPermiso();
 
         $this->bandasModel->eliminarBanda($id);
@@ -126,7 +127,8 @@ class AdminController {
         die();
     }
 
-    function eliminarEvento($id) {
+    function eliminarEvento($params = null) {
+        $id = $params[':ID'];
         $this->authHelper->verificarPermiso();
 
         $this->eventosModel->eliminarEvento($id);

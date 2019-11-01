@@ -1,28 +1,22 @@
 <?php
-require_once "./Model/eventosmodel.php";
-require_once "./Views/eventosview.php";
+      require_once("./Model/eventosmodel.php");
+      require_once("./Views/eventosview.php");
  
 
-       class eventoscontroller{
-           private $view;
-           private $model;
+      class eventoscontroller{
+            private $eventosView;
+            private $eventosModel;
 
 
-        function __construct(){
-              $this->view = new eventosview();
-              $this->model = new eventosmodel();
-        }
+            function __construct(){
+                  $this->eventosView = new eventosview();
+                  $this->eventosModel = new eventosmodel();
+            }
 
-        function mostrar(){
-              $eventos = $this->model->getEventos();
-              $this->view->ver($eventos);
-        }
-  
+            function mostrar(){
+                  $eventos = $this->eventosModel->getEventos();
+                  $this->eventosView->ver($eventos);
+            }
 
-       }
-
-
-
-
-
+      }
 ?>

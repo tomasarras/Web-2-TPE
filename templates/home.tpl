@@ -30,7 +30,7 @@
 
         <input class="none" name="bandas"
         {if $ordenBanda}
-            value="{$ordenBanda}">
+            value="{$ordenBanda}"
         {/if}
         >
 

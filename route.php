@@ -1,121 +1,41 @@
 <?php
 
-require_once "Controllers/bandascontroller.php";
-require_once "Controllers/loginController.php";
-require_once "Controllers/eventoscontroller.php";
-require_once "Controllers/homecontroller.php";
-require_once "Controllers/adminController.php";
+require_once("Controllers/bandascontroller.php");
+require_once("Controllers/loginController.php");
+require_once("Controllers/eventoscontroller.php");
+require_once("Controllers/homecontroller.php");
+require_once("Controllers/adminController.php");
+require_once('Router.php');
 
 define("HOME","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"]."/"));
 define("LOGIN","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/login");
 define("ADMINISTRAR_BANDAS","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/admin/bandas");
 define("ADMINISTRAR_EVENTOS","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/admin/eventos");
 
-$action = $_GET["action"];
+$router = new Router();
 
-$bandasController = new BandasController();
-$loginController = new loginController();
-$eventoscontroller = new eventoscontroller();
-$homecontroller = new homecontroller();
-$adminController = new AdminController();
+$router->addRoute("login", "GET", "loginController", "getLogin");
+$router->addRoute("login", "POST", "loginController", "verificarUser");
+$router->addRoute("logout", "GET", "loginController", "logout");
+$router->addRoute("NuevoUsuario", "GET", "loginController", "MostrarRegistro");
+$router->addRoute("guardaUsuario", "POST", "loginController", "guardaUsuario");
+$router->addRoute("admin", "GET", "adminController", "getAdmin");
+$router->addRoute("admin/bandas", "POST", "adminController", "getBandas");
+$router->addRoute("admin/bandas", "GET", "adminController", "getBandas");
+$router->addRoute("admin/bandas/agregar", "POST", "adminController", "agregarBanda");
+$router->addRoute("admin/bandas/editar/:ID", "GET", "adminController", "getBanda");
+$router->addRoute("admin/bandas/editar/:ID", "POST", "adminController", "editarBanda");
+$router->addRoute("admin/bandas/eliminar/:ID", "GET", "adminController", "eliminarBanda");
+$router->addRoute("admin/eventos", "POST", "adminController", "getEventos");
+$router->addRoute("admin/eventos", "GET", "adminController", "getEventos");
+$router->addRoute("admin/eventos/agregar", "POST", "adminController", "agregarEvento");
+$router->addRoute("admin/eventos/editar/:ID", "GET", "adminController", "getEvento");
+$router->addRoute("admin/eventos/editar/:ID", "POST", "adminController", "editarEvento");
+$router->addRoute("admin/eventos/eliminar/:ID", "GET", "adminController", "eliminarEvento");
+$router->addRoute("filtrarEventos", "POST", "homecontroller", "filtrarPorEvento");
+$router->addRoute("#", "GET", "homecontroller", "Home");
 
-if($action == ''){
-    $homecontroller->Home();
-}else{
-    if (isset($action)){
-        $partesURL = explode("/", $action);
+$router->setDefaultRoute("homeController", "Home");
 
-        if($partesURL[0] == "login") {
-            if( isset( $_POST['usuario']) && isset( $_POST['password'] ) ){
-                $user = $_POST['usuario'];
-                $pass = $_POST['password'];
-                $loginController->verificarUser($user,$pass);
-            } else {
-                $loginController->getLogin();
-            }
-            
-        }elseif($partesURL[0] == "NuevoUsuario") {
-            $loginController->MostrarRegistro();
-        }elseif($partesURL[0] == "guardaUsuario") {
-            $loginController->guardaUsuario();
-        }elseif($partesURL[0] == "logout") {
-            $loginController->logout();
-        } elseif($partesURL[0] == "admin") {
-
-            if ( isset($partesURL[1]) ) {
-
-                if ($partesURL[1] == "bandas") {
-
-                    if ( isset($partesURL[2]) ) {
-
-                        if ($partesURL[2] == "agregar") {
-                            $adminController->agregarBanda();
-
-                        } else if ($partesURL[2] == "editar") {
-                            if ( isset($partesURL[3]) ) {
-                                $adminController->editarBanda($partesURL[3]);
-                            } else {
-                                $adminController->getBandas();
-                            }
-                            
-                        } else if ($partesURL[2] == "eliminar") {
-                            if ( isset($partesURL[3]) ) {
-                                $adminController->eliminarBanda($partesURL[3]);
-                            } else {
-                                $adminController->getBandas();
-                            }
-                        } else {
-                            $homecontroller->noExiste();
-                        }
-
-                    } else {
-                        $adminController->getBandas();
-                    }
-
-                } else if ($partesURL[1] == "eventos"){
-
-                    if ( isset($partesURL[2]) ) {
-
-                        if ($partesURL[2] == "agregar") {
-                            $adminController->agregarEvento();
-                        } else if ($partesURL[2] == "editar") {
-                            if ( isset($partesURL[3]) ) {
-                                $adminController->editarEvento($partesURL[3]);
-                            } else {
-                                $adminController->getEventos();
-                            }
-                        } else if ($partesURL[2] == "eliminar") {
-                            if ( isset($partesURL[3]) ) {
-                                $adminController->eliminarEvento($partesURL[3]);
-                            } else {
-                                $adminController->getEventos();
-                            }
-                        } else {
-                            $homecontroller->noExiste();
-                        }
-
-                    } else {
-                        $adminController->getEventos();
-                    }
-                } else {
-                    $homecontroller->noExiste();
-                }
-
-            } else {
-                $adminController->getAdmin();
-            }
-
-        }elseif ($partesURL[0] == "filtrarEventos") {
-            $homecontroller->filtrarPorEvento();
-        }   elseif($partesURL[0]== "VerEvento"){
-            $homecontroller->VerDetallesEvento($partesURL[1]);
-        } elseif($partesURL[0]== "MasDetallesBanda"){
-            $homecontroller->VerDetallesBandas($partesURL[1]);
-        }else{
-            $homecontroller->noExiste();
-        }
-
-    }
-}
-
-
+$router->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 
+?>

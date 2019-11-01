@@ -1,14 +1,14 @@
 <?php
-require_once  "./Views/homeview.php";
-require_once  "./Views/eventosview.php";
-require_once  "./Views/bandasviews.php";
-require_once  "./Model/bandasmodel.php";
-require_once  "./Model/eventosmodel.php";
-require_once "./Helpers/AuthHelper.php";
+require_once("./Views/homeview.php");
+require_once("./Views/eventosview.php");
+require_once("./Views/bandasviews.php");
+require_once("./Model/bandasmodel.php");
+require_once("./Model/eventosmodel.php");
+require_once("./Helpers/AuthHelper.php");
 
 class homeController
 {
-  private $view;
+  private $homeView;
   private $eventosview;
   private $bandasviews;
   private $bandasmodel;
@@ -16,7 +16,7 @@ class homeController
   private $Titulo;
   function __construct()
   {
-    $this->view = new homeview();
+    $this->homeView = new homeview();
     $this->eventosview = new eventosview();
     $this->BandasView = new BandasView();
     $this->eventosmodel = new eventosmodel();
@@ -42,15 +42,19 @@ class homeController
     } else {
       $bandas = $this->bandasmodel->GetBandas();
     }
-    $this->view->Mostrar($this->Titulo, $bandas, $eventos,$logueado,$ordenEventos,$ordenBandas);
+    $this->homeView->Mostrar($this->Titulo, $bandas, $eventos,$logueado,$ordenEventos,$ordenBandas);
   }
   function filtrarPorEvento(){
-    $id_banda = $_POST["banda"];
-    $bandas = $this->bandasmodel->GetBandas();
-    $EventoFiltrado = $this ->eventosmodel->getEventoFiltrado($id_banda);
-    session_start();
-    $logueado = isset($_SESSION["id_usuario"]);
-    $this->view->Mostrar($this->Titulo,$bandas,$EventoFiltrado,$logueado);
+    if (isset($_POST["banda"])){
+      $id_banda = $_POST["banda"];
+      $bandas = $this->bandasmodel->GetBandas();
+      $EventoFiltrado = $this ->eventosmodel->getEventoFiltrado($id_banda);
+      session_start();
+      $logueado = isset($_SESSION["id_usuario"]);
+      $this->homeView->Mostrar($this->Titulo,$bandas,$EventoFiltrado,$logueado);
+    } else {
+      $this->noExiste();
+    }
   }
   function VerDetallesEvento($id){
     $eventos = $this->eventosmodel->GetDetalleEvento($id);
@@ -69,7 +73,7 @@ class homeController
 
   function noExiste() {
     $logueado = $this->authHelper->isLoged();
-    $this->view->noExiste();
+    $this->homeView->noExiste();
   }
   
 }
