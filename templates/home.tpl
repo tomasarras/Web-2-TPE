@@ -21,7 +21,7 @@
     </form>
 
 
-    <form method="GET" id="js-form-tablas">
+    <form method="POST" id="js-form-tablas">
         <input class="none" name="eventos"
         {if $ordenEvento}
             value="{$ordenEvento}"

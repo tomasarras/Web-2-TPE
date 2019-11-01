@@ -46,7 +46,7 @@ table{
   height: 100px;
 }
 body{
-  background-image: url(images/fondo.jpg);
+  background-image: url(../images/fondo.jpg);
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center top;

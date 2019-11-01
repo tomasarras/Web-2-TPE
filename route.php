@@ -33,7 +33,7 @@ $router->addRoute("admin/eventos/editar/:ID", "GET", "adminController", "getEven
 $router->addRoute("admin/eventos/editar/:ID", "POST", "adminController", "editarEvento");
 $router->addRoute("admin/eventos/eliminar/:ID", "GET", "adminController", "eliminarEvento");
 $router->addRoute("filtrarEventos", "POST", "homecontroller", "filtrarPorEvento");
-$router->addRoute("#", "GET", "homecontroller", "Home");
+$router->addRoute("#", "POST", "homecontroller", "Home");
 
 $router->setDefaultRoute("homeController", "Home");
 
