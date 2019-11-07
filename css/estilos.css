@@ -132,6 +132,10 @@ section.grande {
   color: white;
 }
 
+.rojo {
+  color:red;
+}
+
 input.largo {
   width: 100%;
 }
@@ -450,6 +454,113 @@ td.link:hover {
   text-decoration: underline;
 }
 
-.rojo {
-  color:red;
+/* popup al borrar */
+
+.contenedor {
+	margin: 20px auto;
+	max-width: 1000px;
+	width: 90%;
+}
+
+.contenedor article {
+	line-height: 28px;
+}
+
+.contenedor article h1 {
+	font-size: 30px;
+	padding: 50px 0;
+	text-align: left;
+}
+
+.contenedor article p {
+	margin-bottom: 20px;
+}
+
+.contenedor article .btn-abrir-popup {
+	background-color: #5e7de3;
+	border-radius: 3px;
+	border-style: none;
+	color: #ffffff;
+	cursor: pointer;
+	font-family: 'Montserrat', sans-serif;
+	height: 40px;
+	line-height: 40px;
+	margin-bottom: 20px;
+	padding: 0 20px;
+	transition: background-color 0.3s ease;
+}
+
+.contenedor article .btn-abrir-popup:hover,
+.contenedor article .btn-abrir-popup:focus,
+.contenedor article .btn-abrir-popup:active {
+	background-color: rgba(94, 125, 227, 0.9);
+}
+
+
+/* Popup */
+.overlay {
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.3);
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	visibility: hidden;
+}
+
+.overlay.active {
+	visibility: visible;
+}
+
+.popup {
+	background-color: #f8f8f8;
+	border-radius: 3px;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+	font-family: 'Montserrat', sans-serif;
+	max-width: 90%;
+	opacity: 0;
+	padding: 20px;
+	text-align: center;
+	transform: scale(0.7);
+	transition: opacity 0.3s ease,
+							transform 0.3s ease;
+	width: 500px;
+}
+
+.popup .btn-cerrar-popup {
+	display: block;
+	color: #bbbbbb;
+	line-height: 16px;
+	text-align: right;
+	transition: color 0.3s ease;
+}
+
+.popup .btn-cerrar-popup:hover,
+.popup .btn-cerrar-popup:focus,
+.popup .btn-cerrar-popup:active {
+	color: #000000;
+}
+
+.popup form .btn-submit:hover,
+.popup form .btn-submit:focus,
+.popup form .btn-submit:active {
+	background-color: rgba(94, 125, 227, 0.9);
+}
+
+/* Animaciones */
+.popup.active {
+	opacity: 1;
+	transform: scale(1);
+}
+
+a.blanco {
+  color: white;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
 }

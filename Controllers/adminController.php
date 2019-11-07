@@ -68,6 +68,7 @@ class AdminController {
     }
 
     function editarBanda($params = null) {
+        $this->authHelper->verificarPermiso();
         $id = $params[':ID'];
         if ( isset($_POST['banda']) && isset($_POST['cant-canciones']) && isset($_POST['anio']) ) {
             $banda = $_POST['banda'];
@@ -93,6 +94,7 @@ class AdminController {
     }
 
     function editarEvento($params = null) {
+        $this->authHelper->verificarPermiso();
         $id = $params[':ID'];
         if ( isset($_POST['evento']) && isset($_POST['detalle']) && isset($_POST['id_banda']) ) {
             $evento = $_POST['evento'];

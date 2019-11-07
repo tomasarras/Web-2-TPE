@@ -10,19 +10,19 @@
                 
             <div class="form-group">
                 <label for="banda" class="blanco">Banda</label>
-                <input type="text" name="banda" class="form-control largo campo-vacio" id="input-banda" placeholder="Nombre de la banda">
+                <input type="text" name="banda" class="form-control largo campo-vacio" id="input-banda" placeholder="Nombre de la banda" value="{$banda->banda}">
                 <div class="invalid-feedback">Ingresa una banda</div>
             </div>
 
             <div class="form-group">
                 <label for="cant-canciones" class="blanco">Cantidad de canciones</label>
-                <input type="number" name="cant-canciones" class="form-control largo campo-vacio" id="input-cantidad" placeholder="Cantidad de canciones de la banda" min="0">
+                <input type="number" name="cant-canciones" class="form-control largo campo-vacio" id="input-cantidad" placeholder="Cantidad de canciones de la banda" min="0" value="{$banda->cantidadCanciones}">
                 <div id="error-cantidad" class="invalid-feedback">Ingresa la cantidad de canciones</div>
             </div>
 
             <div class="form-group">
                 <label for="anio" class="blanco">Año</label>
-                <input type="number" name="anio" class="form-control largo campo-vacio" id="input-anio" placeholder="Año de la banda" min="1900">
+                <input type="number" name="anio" class="form-control largo campo-vacio" id="input-anio" placeholder="Año de la banda" min="1900" value="{$banda->anio}">
                 <div class="invalid-feedback">Ingresa un año</div>
             </div>
 

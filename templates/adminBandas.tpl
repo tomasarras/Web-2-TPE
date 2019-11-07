@@ -33,7 +33,7 @@
                 </td>
                 {if $banda->evento eq null}
                     <td>
-                        <a href="admin/bandas/eliminar/{$banda->id_banda}">
+                        <a href="javascript:void(0);" class="btns-abrir-popup" name="{$banda->id_banda}">
                             <i class="fa fa-trash-o rojo" style="font-size:24px"></i>
                         </a>
                     </td>
@@ -44,6 +44,27 @@
             {/foreach}
         </tbody>
     </table>
+</div>
+
+
+<div id="overlay" class="overlay">
+    <div id="popup" class="popup">
+        
+        <div class="flex-end">
+            <a href="javascript:void(0);" id="btn-cerrar-popup" class="btn-cerrar-popup js-cerrar">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+        
+        <h5>
+            Seguro queres borrar el evento: <span id="js-nombre-evento"></span>?
+        </h5>
+
+        
+        <a src="admin/bandas/eliminar/" class="btn btn-danger" id="btn-borrar">Borrar</a>
+        <button class="btn btn-primary js-cerrar">Cancelar</button>
+        
+    </div>	
 </div>
 
 
