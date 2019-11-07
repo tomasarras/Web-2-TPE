@@ -20,10 +20,14 @@
                     <td>{$evento->detalle}</td>
                     <td name="{$evento->id_banda}">{$evento->banda}</td>
                     <td>
-                        <a class="btn btn-primary ancho blanco" href="admin/eventos/editar/{$evento->id}">Editar</a>
+                        <a href="admin/eventos/editar/{$evento->id}">
+                            <i class='far fa-edit' style='font-size:24px'></i>
+                        </a>
                     </td>
                     <td>
-                        <a class="btn btn-danger ancho blanco" href="admin/eventos/eliminar/{$evento->id}">Eliminar</a>
+                        <a href="admin/eventos/eliminar/{$evento->id}">
+                            <i class="fa fa-trash-o rojo" style="font-size:24px"></i>
+                        </a>
                     </td>
                 </tr>
             {/foreach}

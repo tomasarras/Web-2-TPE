@@ -26,11 +26,16 @@
                     <td>{$banda->evento}</td>
                 {/if}
                 <td>
-                    <a href="admin/bandas/editar/{$banda->id_banda}" class="btn btn-primary ancho">Editar</a>
+                    <!--<a href="admin/bandas/editar/{$banda->id_banda}" class="btn btn-primary ancho">Editar</a> -->
+                    <a href="admin/bandas/editar/{$banda->id_banda}">
+                        <i class='far fa-edit' style='font-size:24px'></i>
+                    </a>
                 </td>
                 {if $banda->evento eq null}
                     <td>
-                        <a href="admin/bandas/eliminar/{$banda->id_banda}" class="btn btn-danger ancho">Eliminar</a>
+                        <a href="admin/bandas/eliminar/{$banda->id_banda}">
+                            <i class="fa fa-trash-o rojo" style="font-size:24px"></i>
+                        </a>
                     </td>
                 {else}
                     <td>No disponible</td>

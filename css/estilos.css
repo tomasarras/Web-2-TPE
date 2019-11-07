@@ -449,3 +449,7 @@ td.link {
 td.link:hover {
   text-decoration: underline;
 }
+
+.rojo {
+  color:red;
+}
