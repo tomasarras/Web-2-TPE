@@ -3,14 +3,15 @@
 
 
 <div class="centrar-contenido margen-tabla-admin">
-    <table class="tabla-noticias ancho">
-        <thead>
+
+    <table class="table">
+        <thead class="thead-dark">
             <tr>
-                <td>Evento</td>
-                <td>Detalle</td>
-                <td>Banda asociada</td>
-                <td>Editar</td>
-                <td>Eliminar</td>
+                <th scope="col">Evento</th>
+                <th scope="col">Detalle</th>
+                <th scope="col">Banda asociada</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -21,12 +22,12 @@
                     <td name="{$evento->id_banda}">{$evento->banda}</td>
                     <td>
                         <a href="admin/eventos/editar/{$evento->id}">
-                            <i class='far fa-edit' style='font-size:24px'></i>
+                            <i class='far fa-edit icono-tabla icono'></i>
                         </a>
                     </td>
                     <td>
                         <a href="javascript:void(0);" class="btns-abrir-popup" name="{$evento->id}">
-                            <i class="fa fa-trash-o rojo" style="font-size:24px"></i>
+                            <i class="fa fa-trash-o rojo icono"></i>
                         </a>
                     </td>
                 </tr>
@@ -58,31 +59,6 @@
 
 
 
-<div id="overlay" class="overlay">
-	<div id="popup" class="popup">
-		<a href="javascript:void(0);" id="btn-cerrar-popup" class="btn-cerrar-popup">
-			<i class="fa fa-times"></i>
-		</a>
-		
-		<h3>
-			Suscribete
-		</h3>
-		
-		<h4>
-			y recibe un cupón de descuento
-		</h4>
-		
-		<form action="javascript:void(0);">
-			<div class="contenedor-inputs">
-				<input type="text" placeholder="Nombre">
-				<input type="email" placeholder="Email">
-			</div>
-			
-			<input type="submit" class="btn-submit" value="Suscribirse">
-		</form>
-	</div>	
-</div>
-
 
 <div class="centrar-contenido admin margen-abajo">
     
@@ -94,18 +70,19 @@
             </div>
                 
             <div class="form-group">
-                <label for="evento" class="blanco">Evento</label>
+                <label for="input-evento" class="blanco">Evento</label>
                 <input type="text" name="evento" class="form-control largo campo-vacio" id="input-evento" placeholder="Nombre del evento">
                 <div class="invalid-feedback">Ingresa un evento</div>
             </div>
 
             <div class="form-group">
-                <label for="detalle" class="blanco">Detalle del evento</label>
+                <label for="input-detalle" class="blanco">Detalle del evento</label>
                 <input type="text" name="detalle" class="form-control largo campo-vacio" id="input-detalle" placeholder="Detalle del evento">
                 <div id="error-cantidad" class="invalid-feedback">Ingresa un detalle del evento</div>
             </div>
 
             <div class="form-group">
+                <label for="banda-asociada" class="blanco">Banda asociada</label>
                 <select class="custom-select" name="id_banda" id="banda-asociada">
                     {foreach from=$bandas item=banda}
                         <option value="{$banda->id_banda}">{$banda->banda}</option>

@@ -1,24 +1,25 @@
-<div class="centrar-contenido">
+<div class="centrar-contenido blanco">
   <h2>Proximos Eventos (item)</h2>
 </div>
 
-<table class="tabla-noticias ancho margen-abajo">
-    <thead>
+
+<table class="table">
+    <thead class="thead-dark">
         <tr>
-            <td src="nombre" class="js-orden link" value="eventos">Nombre del evento</td>
-            <td src="detalle" class="js-orden link" value="eventos">Ciudad</td>
-            <td src="banda" class="js-orden link" value="eventos">Banda Asociada</td>
-            <td>Mas Info</td>
+            <th src="nombre" class="js-orden link" value="eventos" scope="col">Nombre del evento</th>
+            <th src="detalle" class="js-orden link" value="eventos" scope="col">Detalle</th>
+            <th src="banda" class="js-orden link" value="eventos" scope="col">Banda asociada</th>
+            <th scope="col">Mas info</th>
         </tr>
     </thead>
     <tbody>
         {foreach from=$eventos item=evento}
-        <tr>
-            <td>{$evento->nombre}</td>
-            <td>{$evento->detalle}</td>
-            <td>{$evento->banda}</td>
-            <td><a href="VerEvento/{$evento->id}">Mas Detalles</a></td>
-        </tr>
+            <tr>
+                <td>{$evento->nombre}</td>
+                <td>{$evento->detalle}</td>
+                <td>{$evento->banda}</td>
+                <td><a href="VerEvento/{$evento->id}">Mas Detalles</a></td>
+            </tr>
         {/foreach}
     </tbody>
 </table>

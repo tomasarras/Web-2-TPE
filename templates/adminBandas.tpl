@@ -3,44 +3,48 @@
 
 
 <div class="centrar-contenido margen-tabla-admin">
-    <table class="tabla-noticias ancho">
-        <thead>
+
+    <table class="table">
+        <thead class="thead-dark">
             <tr>
-                <td>Banda</td>
-                <td>Año</td>
-                <td>Cantidad de canciones</td>
-                <td>Evento</td>
-                <td>Editar</td>
-                <td>Eliminar</td>
+                <th scope="col">Banda</th>
+                <th scope="col">Año</th>
+                <th scope="col">Cantidad de canciones</th>
+                <th scope="col">Evento</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
             </tr>
         </thead>
         <tbody>
             {foreach from=$bandas item=banda}
-            <tr>
-                <td>{$banda->banda}</td>
-                <td>{$banda->anio}</td>
-                <td>{$banda->cantidadCanciones}</td>
-                {if $banda->evento eq null}
-                    <td name="sin-evento">Ningun evento asignado</td>
-                {else}
-                    <td>{$banda->evento}</td>
-                {/if}
-                <td>
-                    <!--<a href="admin/bandas/editar/{$banda->id_banda}" class="btn btn-primary ancho">Editar</a> -->
-                    <a href="admin/bandas/editar/{$banda->id_banda}">
-                        <i class='far fa-edit' style='font-size:24px'></i>
-                    </a>
-                </td>
-                {if $banda->evento eq null}
+                <tr>
+                    <td>{$banda->banda}</td>
+                    <td>{$banda->anio}</td>
+                    <td>{$banda->cantidadCanciones}</td>
+
+                    {if $banda->evento eq null}
+                        <td name="sin-evento">Ningun evento asignado</td>
+                    {else}
+                        <td>{$banda->evento}</td>
+                    {/if}
+
                     <td>
-                        <a href="javascript:void(0);" class="btns-abrir-popup" name="{$banda->id_banda}">
-                            <i class="fa fa-trash-o rojo" style="font-size:24px"></i>
+                        <a href="admin/bandas/editar/{$banda->id_banda}">
+                            <i class='far fa-edit icono'></i>
                         </a>
                     </td>
-                {else}
-                    <td>No disponible</td>
-                {/if}
-            </tr>
+
+                    {if $banda->evento eq null}
+                        <td>
+                            <a href="javascript:void(0);" class="btns-abrir-popup" name="{$banda->id_banda}">
+                                <i class="fa fa-trash-o rojo icono"></i>
+                            </a>
+                        </td>
+                    {else}
+                        <td>No disponible</td>
+                    {/if}
+                    
+                </tr>
             {/foreach}
         </tbody>
     </table>
@@ -78,19 +82,19 @@
             </div>
                 
             <div class="form-group">
-                <label for="banda" class="blanco">Banda</label>
+                <label for="input-banda" class="blanco">Banda</label>
                 <input type="text" name="banda" class="form-control largo campo-vacio" id="input-banda" placeholder="Nombre de la banda">
                 <div class="invalid-feedback">Ingresa una banda</div>
             </div>
 
             <div class="form-group">
-                <label for="cant-canciones" class="blanco">Cantidad de canciones</label>
+                <label for="input-cantidad" class="blanco">Cantidad de canciones</label>
                 <input type="number" name="cant-canciones" class="form-control largo campo-vacio" id="input-cantidad" placeholder="Cantidad de canciones de la banda" min="0">
                 <div id="error-cantidad" class="invalid-feedback">Ingresa la cantidad de canciones</div>
             </div>
 
             <div class="form-group">
-                <label for="anio" class="blanco">Año</label>
+                <label for="input-anio" class="blanco">Año</label>
                 <input type="number" name="anio" class="form-control largo campo-vacio" id="input-anio" placeholder="Año de la banda" min="1900">
                 <div class="invalid-feedback">Ingresa un año</div>
             </div>

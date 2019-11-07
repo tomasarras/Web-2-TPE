@@ -2,26 +2,6 @@ html {
   margin: 9.6vh 0 0 0;
 }
 
-th {
-  background-color: #4CAF50;
-  color: white;
-}
-tbody {
-  color: blue;
-}
-tfoot {
-  color: red;
-}
-table, td, tr {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-table{
-  width: 60%;
-}
-.completada{
-  background: red;
-}
 .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
   color: white;
   font-weight: bold;
@@ -63,26 +43,30 @@ body{
 }
 
 
-
-/* Tabla noticias */
-.tabla-noticias th,.tabla-noticias td {
+/* tabla bootstrap */
+.table tr th, .table td {
+  vertical-align: middle;
   text-align: center;
   padding: 20px;
-  background-color: lightblue;
-  color: black;
-  border: none;
 }
 
-table.tabla-noticias {
-  border-collapse: separate;
-  border: none;
+.table th:first-of-type { border-radius: 10px 0 0 0;}
+.table th:last-of-type { border-radius: 0 10px 0 0;}
+.table tbody tr:last-of-type td:last-of-type { border-radius: 0 0 10px 0;}
+.table tbody tr:last-of-type td:first-of-type { border-radius: 0 0 0 10px;}
+
+.table td {
+  background-color: white;
 }
 
-/* Borde de tabla */
-.tabla-noticias thead td:first-of-type { border-radius: 15px 0 0 0;}
-.tabla-noticias thead td:last-of-type { border-radius: 0 15px 0 0;}
-.tabla-noticias tbody tr:last-of-type td:last-of-type { border-radius: 0 0 15px 0;}
-.tabla-noticias tbody tr:last-of-type td:first-of-type { border-radius: 0 0 0 15px;}
+.table .thead-dark th {
+  border: none;
+  border-bottom: 2px solid #454d55;
+}
+
+.icono {
+  font-size: 24px;
+}
 
 a.btn-login {
   text-decoration: none;
@@ -206,24 +190,22 @@ div.botonera input {
 }
 
 @media only screen and (max-width:800px) {
-  .tabla-noticias th,.tabla-noticias td {
+
+  .table tr th, .table td {
     padding: 13px;
   }
 
 }
 
 @media only screen and (max-width:500px) {
-  button.btn-seleccionar-banda, button.btn-seleccionar-evento{
-    font-size: 0.7em;
+
+  .table tr th, .table td {
+    font-size: 0.8em;
+    padding: 7px;
   }
 
   nav a.titulo {
     font-size: 0.8em;
-  }
-
-  .tabla-noticias th,.tabla-noticias td {
-    font-size: 0.8em;
-    padding: 7px;
   }
 }
 

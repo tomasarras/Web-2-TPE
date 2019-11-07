@@ -1,14 +1,14 @@
-<div class="centrar-contenido">
+<div class="centrar-contenido blanco">
     <h2>Bandas(Categorias)</h2>
 </div>
 
-<table class="tabla-noticias ancho margen-abajo">
-    <thead>
+<table class="table">
+    <thead class="thead-dark">
         <tr>
-            <td src="banda" class="js-orden link" value="bandas">Banda</td>
-            <td src="anio" class="js-orden link" value="bandas">Año</td>
-            <td src="cantidadCanciones" class="js-orden link" value="bandas">Cantidad de canciones</td>
-            <td>Mas Info</td>
+            <th src="banda" class="js-orden link" value="bandas" scope="col">Banda</th>
+            <th src="anio" class="js-orden link" value="bandas" scope="col">Año</th>
+            <th src="cantidadCanciones" class="js-orden link" value="bandas" scope="col">Cantidad de canciones</th>
+            <th scope="col">Mas info</th>
         </tr>
     </thead>
     <tbody>
