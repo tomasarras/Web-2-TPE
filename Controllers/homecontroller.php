@@ -56,7 +56,8 @@ class homeController
       $this->noExiste();
     }
   }
-  function VerDetallesEvento($id){
+  function VerDetallesEvento($params = null) {
+    $id = $params[':ID'];
     $eventos = $this->eventosmodel->GetDetalleEvento($id);
     $bandas = $this->bandasmodel->GetBandas();
     session_start();
@@ -64,7 +65,8 @@ class homeController
     $this->eventosview->MostrarDetallesEventos("Ver Evento detallado", $eventos,$logueado);
 
   }
-  function VerDetallesBandas($id){
+  function VerDetallesBandas($params = null) {
+    $id = $params[':ID'];
     $bandas = $this->bandasmodel->GetDetalleBanda($id);
     session_start();
     $logueado = isset($_SESSION["id_usuario"]);
