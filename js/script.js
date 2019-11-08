@@ -70,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let href = btnBorrar.getAttribute("src") + btnAbrirPopup.getAttribute("name");
             btnBorrar.setAttribute("href",href);
             let evento = btnAbrirPopup.parentNode.parentNode.firstElementChild;
-            console.log(evento);
             let spanEvento = document.querySelector("#js-nombre-evento");
             spanEvento.innerHTML = evento.innerHTML;
         });

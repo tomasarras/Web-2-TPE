@@ -1,16 +1,15 @@
-{include file="html.tpl" }
-{include file="header.tpl" }
+{include file="header.tpl"}
 
 <div class="centrar-contenido view">
     <section class="bg-dark borde grande botonera-admin">
-        <form action="admin/eventos/editar/{$evento->id}" method="POST" id="btns-formulario">
+        <form action="admin/eventos/editar/{$evento->id_evento}" method="POST" id="btns-formulario">
             <div class="centrar-contenido">
-                <h3 class="blanco">Editar: {$evento->nombre}</h3>
+                <h3 class="blanco">Editar: {$evento->evento}</h3>
             </div>
                 
             <div class="form-group">
                 <label for="input-evento" class="blanco">Evento</label>
-                <input type="text" name="evento" class="form-control largo campo-vacio" id="input-evento" placeholder="Nombre del evento" value="{$evento->nombre}">
+                <input type="text" name="evento" class="form-control largo campo-vacio" id="input-evento" placeholder="Nombre del evento" value="{$evento->evento}">
                 <div class="invalid-feedback">Ingresa un evento</div>
             </div>
 
@@ -37,4 +36,4 @@
     </section>
 </div>
 
-{include file="footer.tpl" }
+{include file="footer.tpl"}

@@ -1,18 +1,18 @@
 <?php
-require_once("./Views/loginView.php");
+require_once("./Views/UsuariosView.php");
 require_once("./Helpers/AuthHelper.php");
-require_once("./Model/loginModel.php");
+require_once("./Model/UsuariosModel.php");
 
-class loginController {
+class UsuariosController {
 
-    private $loginView;
-    private $loginModel;
+    private $UsuariosView;
+    private $UsuariosModel;
     private $titulo;
     private $authHelper;
     function __construct(){
-        $this->loginView = new loginView();
+        $this->UsuariosView = new UsuariosView();
         $this->authHelper = new AuthHelper();
-        $this->loginModel = new loginModel();
+        $this->UsuariosModel = new UsuariosModel();
         $this->titulo = "La maquina del Metal";
     }
 
@@ -20,29 +20,29 @@ class loginController {
         $user = $_POST['usuario'];
         $pass = $_POST['password'];
     
-        $usuario = $this->loginModel->getUser($user);
+        $usuario = $this->UsuariosModel->getUser($user);
 
         if ($usuario) {
-            $hash = $usuario->contraseña;
+            $hash = $usuario->password;
             
             if ( password_verify($pass, $hash) ){
                 session_start();
                 $_SESSION["id_usuario"] = $usuario->id_usuario;
-                $_SESSION["nombre"] = $usuario->nombre;
+                $_SESSION["nombre"] = $usuario->email;
                 header("Location: ". HOME);
                 die();
             }
 
         }
 
-        $this->loginView->getLogin($this->titulo,false,"Usario o contraseña incorrectos");
+        $this->UsuariosView->getLogin($this->titulo,false,"Usario o contraseña incorrectos");
     
     }
 
     function getLogin(){
         $logueado = $this->authHelper->isLoged();
         if ( !$logueado ) {
-            $this->loginView->getLogin($this->titulo, $logueado);
+            $this->UsuariosView->getLogin($this->titulo, $logueado);
         } else {
             header("Location: ". HOME);
             die();
@@ -53,17 +53,17 @@ class loginController {
     function guardaUsuario(){
         $user = $_POST["user"];
         $pass = $_POST["password"];
-        $existe = $this->loginModel->getUser($user);
+        $existe = $this->UsuariosModel->getUser($user);
         $logeado = $this->authHelper->isLoged();
         if (empty($user) || empty($pass)){
-            $this->loginView->getRegistro($logeado,"Datos incorrectos");
+            $this->UsuariosView->getRegistro($logeado,"Datos incorrectos");
         } else {
             // buscamos si existe el usuario en la db y llamamos al model para comprobar
             if ($existe) { // si existe ..
-                $this->loginView->getRegistro(false,"Este nombre ya existe");
+                $this->UsuariosView->getRegistro(false,"Este nombre ya existe");
                 // ya existe (mensaje);
-            }else{    
-                $id = $this->loginModel->registrarse($user,$pass);
+            } else {    
+                $id = $this->UsuariosModel->registrarse($user,$pass);
                 session_start();
                 $_SESSION["id_usuario"] = $id;
                 header("Location: ". HOME);
@@ -84,7 +84,7 @@ class loginController {
         $logueado = $this->authHelper->isLoged();
 
         if ( !$logueado ) {
-            $this->loginView->MostrarRegistro($logueado);
+            $this->UsuariosView->MostrarRegistro($logueado);
         } else {
             header("Location: ". HOME);
             die();

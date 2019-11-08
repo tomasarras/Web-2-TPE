@@ -5,7 +5,11 @@ class BandasModel
         $this->db = $this->Connect();
     }
     private function connect(){
-        return new PDO('mysql:host=localhost;'.'dbname=bandas;charset=utf8','root', '');
+        try {
+            return new PDO('mysql:host=localhost;'.'dbname=bandas;charset=utf8','root', '');
+        } catch (Exception $e) {
+            echo "ERROR: ". $e->getMessage();
+        }
     }
 
     function getBandasNombre(){
@@ -16,7 +20,7 @@ class BandasModel
     }
 
     function GetBandas(){
-        $sentencia = $this->db->prepare( "select * from banda");
+        $sentencia = $this->db->prepare( "SELECT * FROM banda");
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
@@ -31,7 +35,7 @@ class BandasModel
         switch ( $orden ) {
             case "banda": $ordenamiento = "banda"; break;
             case "anio": $ordenamiento = "anio"; break;
-            case "cantidadCanciones": $ordenamiento = "cantidadCanciones"; break;
+            case "cantidad_canciones": $ordenamiento = "cantidad_canciones"; break;
             default: $ordenamiento = "banda"; break;
         }
         $sql = "SELECT * FROM banda ORDER BY $ordenamiento;";
@@ -42,10 +46,10 @@ class BandasModel
     }
 
     function getBandasyEventos() {
-        $sql = "SELECT banda.*,evento.nombre AS evento from banda 
+        $sql = "SELECT banda.*,evento.evento FROM banda 
         LEFT JOIN evento ON banda.id_banda = evento.id_banda 
         UNION ALL
-        SELECT banda.*,evento.nombre AS evento FROM banda 
+        SELECT banda.*,evento.evento FROM banda 
         RIGHT JOIN evento ON banda.id_banda = evento.id_banda 
         WHERE banda.id_banda IS NULL";
         
@@ -55,21 +59,20 @@ class BandasModel
     }
 
     function agregarBanda($banda,$cantidad,$anio) {
-        $sql = "INSERT INTO banda(id_banda,banda,anio,cantidadCanciones) VALUES (NULL,?,?,?)";
+        $sql = "INSERT INTO banda(id_banda,banda,anio,cantidad_canciones) VALUES (NULL,?,?,?)";
         $sentencia = $this->db->prepare($sql);
         $sentencia->execute( array(
             $banda,
             $anio,
             $cantidad
         ));
-
     }
 
     function editarBanda($banda,$cantidad,$anio,$id) {
         $sql = "UPDATE banda SET
         banda = ?,
         anio = ?,
-        cantidadCanciones = ?
+        cantidad_canciones = ?
         WHERE id_banda = ?";
         $sentencia = $this->db->prepare($sql);
         $sentencia->execute( array(
@@ -87,7 +90,7 @@ class BandasModel
         $sentencia->execute( array($id) );
     }
     function GetDetalleBanda($id){
-        $sentencia = $this->db->prepare( "select * from banda where id_banda=?");
+        $sentencia = $this->db->prepare( "SELECT * FROM banda WHERE id_banda=?");
         $sentencia->execute(array($id));
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }

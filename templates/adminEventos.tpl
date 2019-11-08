@@ -1,6 +1,4 @@
-{include file="html.tpl" }
-{include file="header.tpl" }
-
+{include file="header.tpl"}
 
 <div class="centrar-contenido margen-tabla-admin">
 
@@ -9,6 +7,7 @@
             <tr>
                 <th scope="col">Evento</th>
                 <th scope="col">Detalle</th>
+                <th scope="col">Ciudad</th>
                 <th scope="col">Banda asociada</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
@@ -17,16 +16,17 @@
         <tbody>
             {foreach from=$eventos item=evento}
                 <tr>
-                    <td name="{$evento->id}">{$evento->nombre}</td>
+                    <td name="{$evento->id_evento}">{$evento->evento}</td>
                     <td>{$evento->detalle}</td>
+                    <td>{$evento->ciudad}</td>
                     <td name="{$evento->id_banda}">{$evento->banda}</td>
                     <td>
-                        <a href="admin/eventos/editar/{$evento->id}">
+                        <a href="admin/eventos/editar/{$evento->id_evento}">
                             <i class='far fa-edit icono-tabla icono'></i>
                         </a>
                     </td>
                     <td>
-                        <a href="javascript:void(0);" class="btns-abrir-popup" name="{$evento->id}">
+                        <a href="javascript:void(0);" class="btns-abrir-popup" name="{$evento->id_evento}">
                             <i class="fa fa-trash-o rojo icono"></i>
                         </a>
                     </td>
@@ -36,7 +36,7 @@
     </table>
 </div>
 
-
+<!-- popup -->
 <div id="overlay" class="overlay">
     <div id="popup" class="popup">
         
@@ -56,9 +56,6 @@
         
     </div>	
 </div>
-
-
-
 
 <div class="centrar-contenido admin margen-abajo">
     
@@ -95,4 +92,5 @@
         
     </section>
 </div>
+
 {include file="footer.tpl" }

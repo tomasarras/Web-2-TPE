@@ -15,10 +15,10 @@
     <tbody>
         {foreach from=$eventos item=evento}
             <tr>
-                <td>{$evento->nombre}</td>
+                <td>{$evento->evento}</td>
                 <td>{$evento->detalle}</td>
                 <td>{$evento->banda}</td>
-                <td><a href="VerEvento/{$evento->id}">Mas Detalles</a></td>
+                <td><a href="VerEvento/{$evento->id_evento}">Mas Detalles</a></td>
             </tr>
         {/foreach}
     </tbody>

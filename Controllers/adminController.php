@@ -4,6 +4,7 @@ require_once("./Views/homeview.php");
 require_once("./Helpers/AuthHelper.php");
 require_once("./Model/bandasmodel.php");
 require_once("./Model/eventosmodel.php");
+require_once("./Model/UsuariosModel.php");
 
 class AdminController {
 
@@ -12,6 +13,7 @@ class AdminController {
     private $logueado;
     private $bandasModel;
     private $eventosModel;
+    private $UsuariosModel;
     private $homeView;
 
     function __construct() {
@@ -20,6 +22,21 @@ class AdminController {
         $this->bandasModel = new BandasModel();
         $this->eventosModel = new eventosmodel();
         $this->homeView = new homeview();
+        $this->UsuariosModel = new UsuariosModel();
+    }
+
+    function mostrarUsuarios() {
+        $this->authHelper->verificarPermiso();
+        $usuarios = $this->UsuariosModel->getUsuarios();
+        $this->adminView->mostrarUsuarios("Usuarios",$usuarios);
+    }
+
+    function eliminarUsuario($params = null) {
+        $this->authHelper->verificarPermiso();
+        $id = $params[':ID'];
+        $this->UsuariosModel->eliminarUsuario($id);
+        header("Location: ".ADMINISTRAR_USUARIOS);
+        die();
     }
 
     function getAdmin() {

@@ -1,5 +1,4 @@
-{include file="html.tpl" }
-{include file="header.tpl" }
+{include file="header.tpl"}
 
 <div class="centrar-contenido view">
     <section class="bg-dark borde grande botonera-admin">
@@ -16,7 +15,7 @@
 
             <div class="form-group">
                 <label for="input-cantidad" class="blanco">Cantidad de canciones</label>
-                <input type="number" name="cant-canciones" class="form-control largo campo-vacio" id="input-cantidad" placeholder="Cantidad de canciones de la banda" min="0" value="{$banda->cantidadCanciones}">
+                <input type="number" name="cant-canciones" class="form-control largo campo-vacio" id="input-cantidad" placeholder="Cantidad de canciones de la banda" min="0" value="{$banda->cantidad_canciones}">
                 <div id="error-cantidad" class="invalid-feedback">Ingresa la cantidad de canciones</div>
             </div>
 
@@ -34,4 +33,4 @@
     </section>
 </div>
 
-{include file="footer.tpl" }
+{include file="footer.tpl"}

@@ -1,24 +1,25 @@
 <?php
 
-require_once("Controllers/bandascontroller.php");
-require_once("Controllers/loginController.php");
-require_once("Controllers/eventoscontroller.php");
-require_once("Controllers/homecontroller.php");
-require_once("Controllers/adminController.php");
-require_once('Router.php');
+require_once("./Controllers/bandascontroller.php");
+require_once("./Controllers/UsuariosController.php");
+require_once("./Controllers/eventoscontroller.php");
+require_once("./Controllers/homecontroller.php");
+require_once("./Controllers/adminController.php");
+require_once('./Router.php');
 
 define("HOME","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"]."/"));
 define("LOGIN","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/login");
 define("ADMINISTRAR_BANDAS","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/admin/bandas");
 define("ADMINISTRAR_EVENTOS","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/admin/eventos");
+define("ADMINISTRAR_USUARIOS","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/admin/usuarios");
 
 $router = new Router();
 
-$router->addRoute("login", "GET", "loginController", "getLogin");
-$router->addRoute("login", "POST", "loginController", "verificarUser");
-$router->addRoute("logout", "GET", "loginController", "logout");
-$router->addRoute("NuevoUsuario", "GET", "loginController", "MostrarRegistro");
-$router->addRoute("guardaUsuario", "POST", "loginController", "guardaUsuario");
+$router->addRoute("login", "GET", "UsuariosController", "getLogin");
+$router->addRoute("login", "POST", "UsuariosController", "verificarUser");
+$router->addRoute("logout", "GET", "UsuariosController", "logout");
+$router->addRoute("NuevoUsuario", "GET", "UsuariosController", "MostrarRegistro");
+$router->addRoute("guardaUsuario", "POST", "UsuariosController", "guardaUsuario");
 $router->addRoute("admin", "GET", "adminController", "getAdmin");
 $router->addRoute("admin/bandas", "POST", "adminController", "getBandas");
 $router->addRoute("admin/bandas", "GET", "adminController", "getBandas");
@@ -36,6 +37,8 @@ $router->addRoute("filtrarEventos", "POST", "homecontroller", "filtrarPorEvento"
 $router->addRoute("#", "POST", "homecontroller", "Home");
 $router->addRoute("VerEvento/:ID", "GET", "homecontroller", "VerDetallesEvento");
 $router->addRoute("MasDetallesBanda/:ID", "GET", "homecontroller", "VerDetallesBandas");
+$router->addRoute("admin/usuarios", "GET", "adminController", "mostrarUsuarios");
+$router->addRoute("admin/usuarios/eliminar/:ID", "GET", "adminController", "eliminarUsuario");
 
 $router->setDefaultRoute("homeController", "Home");
 

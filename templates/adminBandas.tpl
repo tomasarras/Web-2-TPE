@@ -1,6 +1,4 @@
-{include file="html.tpl" }
-{include file="header.tpl" }
-
+{include file="header.tpl"}
 
 <div class="centrar-contenido margen-tabla-admin">
 
@@ -20,7 +18,7 @@
                 <tr>
                     <td>{$banda->banda}</td>
                     <td>{$banda->anio}</td>
-                    <td>{$banda->cantidadCanciones}</td>
+                    <td>{$banda->cantidad_canciones}</td>
 
                     {if $banda->evento eq null}
                         <td name="sin-evento">Ningun evento asignado</td>
@@ -50,7 +48,7 @@
     </table>
 </div>
 
-
+<!-- popup -->
 <div id="overlay" class="overlay">
     <div id="popup" class="popup">
         
@@ -61,7 +59,7 @@
         </div>
         
         <h5>
-            Seguro queres borrar el evento: <span id="js-nombre-evento"></span>?
+            Seguro queres borrar la banda: <span id="js-nombre-evento"></span>?
         </h5>
 
         
@@ -104,4 +102,5 @@
         
     </section>
 </div>
-{include file="footer.tpl" }
+
+{include file="footer.tpl"}

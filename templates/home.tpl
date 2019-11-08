@@ -1,4 +1,3 @@
-{include file="html.tpl"}
 {include file="header.tpl"}
 {include file="correo.tpl"}
 
@@ -39,4 +38,5 @@
     </form>
 
 </div>
+
 {include file="footer.tpl"}

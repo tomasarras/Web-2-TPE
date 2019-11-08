@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2019 a las 03:44:38
+-- Tiempo de generación: 08-11-2019 a las 23:32:37
 -- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.8
+-- Versión de PHP: 7.1.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,14 +32,14 @@ CREATE TABLE `banda` (
   `id_banda` int(11) NOT NULL,
   `banda` text NOT NULL,
   `anio` int(11) DEFAULT NULL,
-  `cantidadCanciones` int(11) DEFAULT NULL
+  `cantidad_canciones` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `banda`
 --
 
-INSERT INTO `banda` (`id_banda`, `banda`, `anio`, `cantidadCanciones`) VALUES
+INSERT INTO `banda` (`id_banda`, `banda`, `anio`, `cantidad_canciones`) VALUES
 (1, 'Iron Maiden', 1978, 133),
 (2, 'AC/DC', 1976, 232),
 (3, 'Metallica', 1972, 523),
@@ -52,31 +52,33 @@ INSERT INTO `banda` (`id_banda`, `banda`, `anio`, `cantidadCanciones`) VALUES
 --
 
 CREATE TABLE `evento` (
-  `id` int(11) NOT NULL,
+  `id_evento` int(11) NOT NULL,
   `id_banda` int(11) NOT NULL,
-  `nombre` text NOT NULL,
-  `detalle` text NOT NULL
+  `evento` text DEFAULT NULL,
+  `ciudad` text NOT NULL,
+  `detalle` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `evento`
 --
 
-INSERT INTO `evento` (`id`, `id_banda`, `nombre`, `detalle`) VALUES
-(1, 1, 'Rock in Rio', 'Rio de janeiro.'),
-(2, 2, 'Rock n\' roll San Diego.', 'San Diego USA.'),
-(3, 3, 'OzzFest', 'New York Usa');
+INSERT INTO `evento` (`id_evento`, `id_banda`, `evento`, `ciudad`, `detalle`) VALUES
+(1, 1, 'Rock in Rio', 'Rio de janeiro.', NULL),
+(2, 2, 'Rock n\' roll San Diego.', 'San Diego USA.', NULL),
+(3, 3, 'OzzFest', 'New York Usa', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuarios` (
+CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
-  `nombre` varchar(50) DEFAULT NULL,
-  `contraseña` varchar(255) DEFAULT NULL
+  `email` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `admin` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -93,14 +95,14 @@ ALTER TABLE `banda`
 -- Indices de la tabla `evento`
 --
 ALTER TABLE `evento`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_banda` (`id`),
+  ADD PRIMARY KEY (`id_evento`),
+  ADD KEY `id_banda` (`id_evento`),
   ADD KEY `fk_banda` (`id_banda`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indices de la tabla `usuario`
 --
-ALTER TABLE `usuarios`
+ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
@@ -117,12 +119,12 @@ ALTER TABLE `banda`
 -- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
--- AUTO_INCREMENT de la tabla `usuarios`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
-ALTER TABLE `usuarios`
+ALTER TABLE `usuario`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --

@@ -1,5 +1,5 @@
-{include file="html.tpl"}
 {include file="header.tpl"}
+
 <div class="centrar-contenido view">
     <section class="bg-dark borde grande">
         <form action="guardaUsuario" method="post">
@@ -24,4 +24,5 @@
         </form>  
     </section>
 </div>
+
 {include file="footer.tpl"}

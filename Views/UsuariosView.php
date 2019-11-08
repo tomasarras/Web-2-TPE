@@ -1,7 +1,7 @@
 <?php
-require_once('libs/Smarty.class.php');
+require_once('./libs/Smarty.class.php');
 
-class loginView {
+class UsuariosView {
 
     function getLogin($titulo,$logueado,$mensaje=""){
         $smarty = new Smarty();

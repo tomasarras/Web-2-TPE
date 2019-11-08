@@ -1,6 +1,5 @@
 <?php
-
-require_once('libs/Smarty.class.php');
+require_once('./libs/Smarty.class.php');
 
 class AdminView {
 
@@ -10,6 +9,14 @@ class AdminView {
         $this->smarty = new Smarty();
     }
     
+    function mostrarUsuarios($titulo,$usuarios) {
+        $this->smarty->assign("titulo",$titulo);
+        $this->smarty->assign("logueado",true);
+        $this->smarty->assign("usuarios",$usuarios);
+        $this->smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
+        $this->smarty->display('templates/usuariosCSR.tpl');
+    }
+
     function mostrarAdmin($titulo) {
         $this->smarty->assign("titulo",$titulo);
         $this->smarty->assign("logueado",true);
