@@ -6,8 +6,8 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th src="nombre" class="js-orden link" value="eventos" scope="col">Nombre del evento</th>
-            <th src="detalle" class="js-orden link" value="eventos" scope="col">Detalle</th>
+            <th src="evento" class="js-orden link" value="eventos" scope="col">Nombre del evento</th>
+            <th src="ciudad" class="js-orden link" value="eventos" scope="col">Ciudad</th>
             <th src="banda" class="js-orden link" value="eventos" scope="col">Banda asociada</th>
             <th scope="col">Mas info</th>
         </tr>
@@ -16,7 +16,7 @@
         {foreach from=$eventos item=evento}
             <tr>
                 <td>{$evento->evento}</td>
-                <td>{$evento->detalle}</td>
+                <td>{$evento->ciudad}</td>
                 <td>{$evento->banda}</td>
                 <td><a href="VerEvento/{$evento->id_evento}">Mas Detalles</a></td>
             </tr>

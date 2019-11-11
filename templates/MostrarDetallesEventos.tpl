@@ -1,12 +1,12 @@
 {include file="header.tpl"}
 {include file="correo.tpl"}
 
-<div class="container cuadro blanco">
+<div class="container cuadro rojo">
     <h2>Evento Detallado</h2>
     {foreach from=$eventos item=evento}
         <div class="form-group">
             <label for="nombreForm">Nombre del evento</label>
-            <input type="text" class="form-control" id='nombreForm' name="nombreForm" value="{$evento->evento}">
+            <input type="text" class="form-control" id='nombreForm' name="{$evento->id_evento}" value="{$evento->evento}">
         </div>
         <div class="form-group">
             <label for="precioForm">Ciudad</label>
@@ -20,7 +20,9 @@
             <label for="materialForm">Precio de la entrada</label>
             <input type="text" class="form-control" id="materialForm" name="materialForm" value="">
         </div>
-      {/foreach}
+    {/foreach}
+
+    {include file="vue/Comentarios.tpl"}
 </div>
 
 {include file="footer.tpl"}

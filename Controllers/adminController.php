@@ -10,15 +10,15 @@ class AdminController {
 
     private $adminView;
     private $authHelper;
-    private $logueado;
     private $bandasModel;
     private $eventosModel;
     private $UsuariosModel;
     private $homeView;
 
     function __construct() {
-        $this->adminView = new AdminView();
         $this->authHelper = new AuthHelper();
+        $this->authHelper->verificarPermiso();
+        $this->adminView = new AdminView();
         $this->bandasModel = new BandasModel();
         $this->eventosModel = new eventosmodel();
         $this->homeView = new homeview();
@@ -26,13 +26,11 @@ class AdminController {
     }
 
     function mostrarUsuarios() {
-        $this->authHelper->verificarPermiso();
         $usuarios = $this->UsuariosModel->getUsuarios();
-        $this->adminView->mostrarUsuarios("Usuarios",$usuarios);
+        $this->adminView->mostrarUsuarios($usuarios);
     }
 
     function eliminarUsuario($params = null) {
-        $this->authHelper->verificarPermiso();
         $id = $params[':ID'];
         $this->UsuariosModel->eliminarUsuario($id);
         header("Location: ".ADMINISTRAR_USUARIOS);
@@ -40,29 +38,22 @@ class AdminController {
     }
 
     function getAdmin() {
-        $this->authHelper->verificarPermiso();
-        $this->adminView->mostrarAdmin("Administrar");
+        $this->adminView->mostrarAdmin();
     }
 
     function getBandas(){
-        $this->authHelper->verificarPermiso();
-
         $bandas = $this->bandasModel->getBandasyEventos();
-        $this->adminView->mostrarBandas("Administrar bandas",$bandas);
+        $this->adminView->mostrarBandas($bandas);
     }
 
     function getEventos() {
-        $this->authHelper->verificarPermiso();
-
         $eventos = $this->eventosModel->getEventosJoinBandas();
         $bandas = $this->bandasModel->getNombreBandas();
 
-        $this->adminView->mostrarEventos("Administrar eventos",$eventos,$bandas);
+        $this->adminView->mostrarEventos($eventos,$bandas);
     }
 
     function agregarBanda() {
-        $this->authHelper->verificarPermiso();
-
         $banda = $_POST['banda'];
         $cantidad = $_POST['cant-canciones'];
         $anio = $_POST['anio'];
@@ -73,8 +64,6 @@ class AdminController {
     }
 
     function agregarEvento() {
-        $this->authHelper->verificarPermiso();
-
         $evento = $_POST['evento'];
         $detalle = $_POST['detalle'];
         $id_banda = $_POST['id_banda'];
@@ -85,7 +74,6 @@ class AdminController {
     }
 
     function editarBanda($params = null) {
-        $this->authHelper->verificarPermiso();
         $id = $params[':ID'];
         if ( isset($_POST['banda']) && isset($_POST['cant-canciones']) && isset($_POST['anio']) ) {
             $banda = $_POST['banda'];
@@ -99,19 +87,17 @@ class AdminController {
     }
 
     function getBanda($params = null) {
-        $this->authHelper->verificarPermiso();
         $id = $params[':ID'];
         $banda = $this->bandasModel->getBanda($id);
 
         if ($banda) {
-            $this->adminView->mostrarEditarBanda("Editar banda",$banda);
+            $this->adminView->mostrarEditarBanda($banda);
         } else {
             $this->homeView->noExiste("Esta banda no existe");
         }
     }
 
     function editarEvento($params = null) {
-        $this->authHelper->verificarPermiso();
         $id = $params[':ID'];
         if ( isset($_POST['evento']) && isset($_POST['detalle']) && isset($_POST['id_banda']) ) {
             $evento = $_POST['evento'];
@@ -126,12 +112,11 @@ class AdminController {
 
     function getEvento($params = null) {
         $id = $params[':ID'];
-        $this->authHelper->verificarPermiso();
 
         $evento = $this->eventosModel->getEvento($id);
         if ($evento) {
             $bandas = $this->bandasModel->getBandasNombre();
-            $this->adminView->mostrarEditarEvento("Editar evento",$evento,$bandas);
+            $this->adminView->mostrarEditarEvento($evento,$bandas);
         } else {
             $this->homeView->noExiste("Este evento no existe");
         }
@@ -139,7 +124,6 @@ class AdminController {
     
     function eliminarBanda($params = null) {
         $id = $params[':ID'];
-        $this->authHelper->verificarPermiso();
 
         $this->bandasModel->eliminarBanda($id);
         header("Location: ".ADMINISTRAR_BANDAS);
@@ -148,7 +132,6 @@ class AdminController {
 
     function eliminarEvento($params = null) {
         $id = $params[':ID'];
-        $this->authHelper->verificarPermiso();
 
         $this->eventosModel->eliminarEvento($id);
         header("Location: ".ADMINISTRAR_EVENTOS);

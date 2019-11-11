@@ -2,7 +2,6 @@
 
 require_once("./Controllers/bandascontroller.php");
 require_once("./Controllers/UsuariosController.php");
-require_once("./Controllers/eventoscontroller.php");
 require_once("./Controllers/homecontroller.php");
 require_once("./Controllers/adminController.php");
 require_once('./Router.php');
@@ -18,8 +17,8 @@ $router = new Router();
 $router->addRoute("login", "GET", "UsuariosController", "getLogin");
 $router->addRoute("login", "POST", "UsuariosController", "verificarUser");
 $router->addRoute("logout", "GET", "UsuariosController", "logout");
-$router->addRoute("NuevoUsuario", "GET", "UsuariosController", "MostrarRegistro");
-$router->addRoute("guardaUsuario", "POST", "UsuariosController", "guardaUsuario");
+$router->addRoute("registrarse", "GET", "UsuariosController", "MostrarRegistro");
+$router->addRoute("registrarse", "POST", "UsuariosController", "guardaUsuario");
 $router->addRoute("admin", "GET", "adminController", "getAdmin");
 $router->addRoute("admin/bandas", "POST", "adminController", "getBandas");
 $router->addRoute("admin/bandas", "GET", "adminController", "getBandas");

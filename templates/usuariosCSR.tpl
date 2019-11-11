@@ -36,6 +36,4 @@
 </div>
 
 
-<script src="js/tablaUsuarios.js"></script>
-
 {include file="footer.tpl"}

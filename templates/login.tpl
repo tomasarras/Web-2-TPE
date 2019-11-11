@@ -6,13 +6,13 @@
             
             <div class="form-group">
                 <label for="usuario" class="blanco">Email</label>
-                <input type="text" name="usuario" class="form-control largo campo-vacio" id="usuario" aria-describedby="emailHelp" placeholder="Ingresa tu nombre de usuario">
+                <input type="email" name="usuario" class="form-control largo campo-vacio" id="usuario" aria-describedby="emailHelp" placeholder="Ingresa tu nombre de usuario">
                 <div class="invalid-feedback">Error, el nombre de usuario no puede quedar vacio</div>
             </div>
             
             <div class="form-group">
-                <label for="password" class="blanco">Password</label>
-                <input type="password" name="password" class="form-control largo campo-vacio" id="password" placeholder="Password">
+                <label for="password" class="blanco">Contraseña</label>
+                <input type="password" name="password" class="form-control largo campo-vacio" id="password" placeholder="Contraseña">
                 <div class="invalid-feedback">Error, la contraseña no puede quedar vacia</div>
             </div>
             

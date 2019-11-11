@@ -13,7 +13,8 @@ class homeController
   private $bandasviews;
   private $bandasmodel;
   private $eventosmodel;
-  private $Titulo;
+  private $user;
+
   function __construct()
   {
     $this->homeView = new homeview();
@@ -22,13 +23,22 @@ class homeController
     $this->eventosmodel = new eventosmodel();
     $this->bandasmodel = new bandasmodel();
     $this->authHelper = new AuthHelper();
-    $this->Titulo = "Inicio";
+    $this->user = new stdClass();
+    $this->user->logueado = $this->authHelper->isLoged();
+
+    if ( $this->user->logueado ) {
+      $this->user->admin = $_SESSION["admin"] == "1";
+      $this->user->email = $_SESSION["email"];
+      $this->user->id_usuario = $_SESSION["id_usuario"];
+    }
+    else
+      $this->user->admin = false;
   }
+
   function Home() {
-    $logueado = $this->authHelper->isLoged();
-    //$nombre = $_SESSION["nombre"];
     $ordenBandas = false;
     $ordenEventos = false;
+
     if ( isset($_POST['eventos']) ) {
       $ordenEventos = $_POST['eventos'];
       $eventos = $this->eventosmodel->getEventosOrdenado($ordenEventos);
@@ -42,16 +52,16 @@ class homeController
     } else {
       $bandas = $this->bandasmodel->GetBandas();
     }
-    $this->homeView->Mostrar($this->Titulo, $bandas, $eventos,$logueado,$ordenEventos,$ordenBandas);
+    $this->homeView->Mostrar($bandas, $eventos,$this->user,$ordenEventos,$ordenBandas);
   }
+
   function filtrarPorEvento(){
     if (isset($_POST["banda"])){
       $id_banda = $_POST["banda"];
       $bandas = $this->bandasmodel->GetBandas();
       $EventoFiltrado = $this ->eventosmodel->getEventoFiltrado($id_banda);
-      session_start();
-      $logueado = isset($_SESSION["id_usuario"]);
-      $this->homeView->Mostrar($this->Titulo,$bandas,$EventoFiltrado,$logueado);
+
+      $this->homeView->Mostrar($bandas,$EventoFiltrado,$this->user);
     } else {
       $this->noExiste();
     }
@@ -60,21 +70,19 @@ class homeController
     $id = $params[':ID'];
     $eventos = $this->eventosmodel->GetDetalleEvento($id);
     $bandas = $this->bandasmodel->GetBandas();
-    session_start();
-    $logueado = isset($_SESSION["id_usuario"]);
-    $this->eventosview->MostrarDetallesEventos("Ver Evento detallado", $eventos,$logueado);
 
+    $this->eventosview->MostrarDetallesEventos($eventos,$this->user);
   }
+
+  
   function VerDetallesBandas($params = null) {
     $id = $params[':ID'];
     $bandas = $this->bandasmodel->GetDetalleBanda($id);
-    session_start();
-    $logueado = isset($_SESSION["id_usuario"]);
-    $this->BandasView->MostrarDetalleBanda("Ver Banda detallada", $bandas,$logueado);
+
+    $this->BandasView->MostrarDetalleBanda($bandas,$this->user);
   }
 
   function noExiste() {
-    $logueado = $this->authHelper->isLoged();
     $this->homeView->noExiste();
   }
   

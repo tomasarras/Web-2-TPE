@@ -7,13 +7,13 @@ class UsuariosController {
 
     private $UsuariosView;
     private $UsuariosModel;
-    private $titulo;
     private $authHelper;
+    private $user;
+
     function __construct(){
         $this->UsuariosView = new UsuariosView();
         $this->authHelper = new AuthHelper();
         $this->UsuariosModel = new UsuariosModel();
-        $this->titulo = "La maquina del Metal";
     }
 
     function verificarUser() {
@@ -28,21 +28,21 @@ class UsuariosController {
             if ( password_verify($pass, $hash) ){
                 session_start();
                 $_SESSION["id_usuario"] = $usuario->id_usuario;
-                $_SESSION["nombre"] = $usuario->email;
+                $_SESSION["email"] = $usuario->email;
+                $_SESSION["admin"] = $usuario->admin;
                 header("Location: ". HOME);
                 die();
             }
 
         }
-
-        $this->UsuariosView->getLogin($this->titulo,false,"Usario o contraseña incorrectos");
+        $this->UsuariosView->getLogin("Usario o contraseña incorrectos");
     
     }
 
     function getLogin(){
         $logueado = $this->authHelper->isLoged();
         if ( !$logueado ) {
-            $this->UsuariosView->getLogin($this->titulo, $logueado);
+            $this->UsuariosView->getLogin();
         } else {
             header("Location: ". HOME);
             die();
@@ -60,12 +60,14 @@ class UsuariosController {
         } else {
             // buscamos si existe el usuario en la db y llamamos al model para comprobar
             if ($existe) { // si existe ..
-                $this->UsuariosView->getRegistro(false,"Este nombre ya existe");
+                $this->UsuariosView->MostrarRegistro("Este nombre ya existe");
                 // ya existe (mensaje);
             } else {    
                 $id = $this->UsuariosModel->registrarse($user,$pass);
                 session_start();
                 $_SESSION["id_usuario"] = $id;
+                $_SESSION["email"] = $user;
+                $_SESSION["admin"] = "0";
                 header("Location: ". HOME);
                 die();
             } 
@@ -84,7 +86,7 @@ class UsuariosController {
         $logueado = $this->authHelper->isLoged();
 
         if ( !$logueado ) {
-            $this->UsuariosView->MostrarRegistro($logueado);
+            $this->UsuariosView->MostrarRegistro();
         } else {
             header("Location: ". HOME);
             die();

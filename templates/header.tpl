@@ -28,12 +28,23 @@
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav ml-auto">
+
                 <a class="nav-item nav-link active" href="#">Inicio</a>
-                {if $logueado}
+
+
+                {if $user->logueado}
+                    <input class="none" id="user-admin" value="{{$user->admin}}">
+                    <input class="none" id="user-logueado" value="{{$user->logueado}}">
+                    <input class="none" id="user-email" value="{{$user->email}}">
+                    <input class="none" id="user-id" value="{{$user->id_usuario}}">
+                
+                    {if $user->admin}
                     <a class="nav-item nav-link active" href="admin">Administrar</a>
+                    {/if}
 
                     <a href="logout">
                         <div class="log nav-item btn btn-danger">
@@ -42,15 +53,23 @@
                         </div>
                     </a>
 
+
+                    <p class="blanco">{{$user->email}}<--Hay que mover esto xd</p> 
+
                 {else}
+                    <input class="none" id="user-admin" value="0">
+                    <input class="none" id="user-logueado" value="0">
+                    <input class="none" id="user-email" value="">
+                    <input class="none" id="user-id" value="">
+
                     <a href="login">
                         <div class="log nav-item btn btn-danger">
                             <img src="images/lock.png">
                             Login
                         </div>
                     </a>
-                    <a href="NuevoUsuario">
-                        <div class="log nav-item btn btn-danger">
+                    <a href="registrarse">
+                        <div class="log nav-item btn btn-danger cd-signup">
                             <img src="images/newuser.png">
                             Registro
                         </div>

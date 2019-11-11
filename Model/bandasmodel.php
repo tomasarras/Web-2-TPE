@@ -4,6 +4,7 @@ class BandasModel
     function __construct(){
         $this->db = $this->Connect();
     }
+    
     private function connect(){
         try {
             return new PDO('mysql:host=localhost;'.'dbname=bandas;charset=utf8','root', '');
@@ -11,8 +12,9 @@ class BandasModel
             echo "ERROR: ". $e->getMessage();
         }
     }
+    
 
-    function getBandasNombre(){
+    function getBandasNombre() {
         $sql = "SELECT banda.id_banda, banda.banda FROM banda";
         $sentencia = $this->db->prepare($sql);
         $sentencia->execute();
@@ -38,6 +40,7 @@ class BandasModel
             case "cantidad_canciones": $ordenamiento = "cantidad_canciones"; break;
             default: $ordenamiento = "banda"; break;
         }
+
         $sql = "SELECT * FROM banda ORDER BY $ordenamiento;";
         $sentencia = $this->db->prepare($sql);
         //$sentencia->execute( array($orden) );

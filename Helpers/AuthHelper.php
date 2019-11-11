@@ -20,22 +20,28 @@ class AuthHelper {
         
     }
 
-    //verifica si esta logueado, si no esta, lo redirige a login
+    //verifica si esta es admin, si no es, lo redirige a home
     function verificarPermiso() { 
         session_start();
         
-        if ( isset($_SESSION["id_usuario"]) ) {
+        if ( isset($_SESSION["admin"]) ) {
+            if ( $_SESSION["admin"] == "1" ) {
+                
 
-            if ( isset($_SESSION['LAST_ACTIVITY']) && 
-            (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) { 
-                session_destroy(); // destruye la sesión, y vuelve al login
-                header("Location: ". LOGIN);
+                if ( isset($_SESSION['LAST_ACTIVITY']) && 
+                (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) { 
+                    session_destroy(); // destruye la sesión, y vuelve al login
+                    header("Location: ". LOGIN);
+                    die();
+                }
+                
+                $_SESSION['LAST_ACTIVITY'] = time(); // actualiza el último instante de actividad
+            } else {
+                header("Location: ". HOME);
                 die();
             }
-            
-            $_SESSION['LAST_ACTIVITY'] = time(); // actualiza el último instante de actividad
         } else {
-            header("Location: ". LOGIN);
+            header("Location: ". HOME);
             die();
         }
 

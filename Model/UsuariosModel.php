@@ -14,6 +14,30 @@ class UsuariosModel {
         $this->db = $this->Connect();
     }
 
+    function cambiarAdmin($id,$admin) {
+        $sql = "UPDATE usuario SET
+        admin = ?
+        WHERE usuario.id_usuario = ?;";
+        $sentencia = $this->db->prepare($sql);
+        $sentencia->execute( array( $admin,$id ));
+    }
+
+    /*
+    function editarUsuario($id,$email,$password,$admin) {
+        $sql = "UPDATE usuario SET
+        email = ?,
+        password = ?,
+        admin = ?
+        WHERE usuario.id_usuario = ?;";
+        $sentencia = $this->db->prepare($sql);
+        $sentencia->execute( array(
+            $email,
+            $password,
+            $admin,
+            $id
+        ));
+    }*/
+
     function getUsuarios() {
         $sentencia = $this->db->prepare( "SELECT * FROM usuario");
         $sentencia->execute();
