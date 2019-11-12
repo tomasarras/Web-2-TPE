@@ -1,18 +1,17 @@
-document.addEventListener("DOMContentLoaded",function(){
-
-let tablaBandas = new Vue({
-    el:"#tabla-bandas",
+document.addEventListener("DOMContentLoaded",function() {
+let tablaEventos = new Vue({
+    el: "#tabla-eventos",
     data: {
-        bandas: []
+        eventos: []
     }
-});
+})
 
-let btnAgregar = document.querySelector("#btn-agregar-banda");
-btnAgregar.addEventListener("click",agregarBanda);
+let btnAgregarEvento = document.querySelector("#btn-agregar-evento");
+btnAgregarEvento.addEventListener("click",agregarEvento);
 
-
-async function borrarBanda(id) {
-    await fetch("api/bandas/" + id,{
+async function borrarEvento(id) {
+    console.log(id)
+    await fetch("api/eventos/" + id,{
         "method": "DELETE"
     });
 
@@ -21,25 +20,26 @@ async function borrarBanda(id) {
 
     overlay.classList.remove('active');
     popup.classList.remove('active');
-    getBandas();
+    getEventos();
 }
-    
-async function agregarBanda() {
+
+async function agregarEvento() {
     if (datosCorrectos()) {
         
         let json = {
-            "banda": document.querySelector("#input-banda").value,
-            "cantidad_canciones": document.querySelector("#input-cantidad").value,
-            "anio": document.querySelector("#input-anio").value
+            "evento": document.querySelector("#input-evento").value,
+            "ciudad": document.querySelector("#input-ciudad").value,
+            "id_banda": document.querySelector("#banda-asociada").value,
+            "detalle": document.querySelector("#input-detalle").value
         };
         
-        let response = await fetch("api/bandas",{
+        let response = await fetch("api/eventos",{
             "method": "POST",
             "headers": { "Content-Type": "application/json" },
             "body": JSON.stringify(json)
         });
 
-        getBandas();
+        getEventos();
     }
 }
 
@@ -71,7 +71,8 @@ function asignarIconosBorrar() {
         });
     });
 }
-    
+
+
 //verifica que los inputs no esten vacios
 function datosCorrectos() {
     let inputs = document.querySelectorAll(".campo-vacio");
@@ -91,18 +92,23 @@ function datosCorrectos() {
     return valido;
 }
 
-function getBandas() {
-    fetch("api/bandas?evento=")
+
+function getEventos() {
+    fetch("api/eventos?bandas=")
     .then(response => response.json())
-    .then(bandas => {
-        tablaBandas.bandas = bandas; 
+    .then(eventos => {
+        tablaEventos.eventos = eventos; 
     })
     .then(listo => asignarIconosBorrar())
     .catch(error => console.log(error));
 }
 
-getBandas();
+
+
+getEventos();
 
 let btnBorrar = document.querySelector("#btn-borrar");
-btnBorrar.addEventListener("click",function() { borrarBanda(btnBorrar.getAttribute("name")) });
-})
+btnBorrar.addEventListener("click",function() { borrarEvento(btnBorrar.getAttribute("name")) });
+
+
+});
