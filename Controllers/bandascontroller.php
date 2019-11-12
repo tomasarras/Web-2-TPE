@@ -1,6 +1,6 @@
 <?php
-require_once("./Views/bandasviews.php");
-require_once("./Model/bandasmodel.php");
+require_once("./Views/BandasView.php");
+require_once("./Model/BandasModel.php");
 
 class BandasController
 {

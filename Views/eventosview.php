@@ -1,7 +1,7 @@
 <?php
 require_once('./libs/Smarty.class.php');
 
-class eventosview {
+class EventosView {
     private $smarty;
 
     function __construct() {

@@ -5,22 +5,22 @@ require_once("./Model/UsuariosModel.php");
 
 class UsuariosController {
 
-    private $UsuariosView;
-    private $UsuariosModel;
+    private $usuariosView;
+    private $usuariosModel;
     private $authHelper;
     private $user;
 
     function __construct(){
-        $this->UsuariosView = new UsuariosView();
+        $this->usuariosView = new UsuariosView();
         $this->authHelper = new AuthHelper();
-        $this->UsuariosModel = new UsuariosModel();
+        $this->usuariosModel = new UsuariosModel();
     }
 
     function verificarUser() {
         $user = $_POST['usuario'];
         $pass = $_POST['password'];
     
-        $usuario = $this->UsuariosModel->getUser($user);
+        $usuario = $this->usuariosModel->getUser($user);
 
         if ($usuario) {
             $hash = $usuario->password;
@@ -35,14 +35,14 @@ class UsuariosController {
             }
 
         }
-        $this->UsuariosView->getLogin("Usario o contraseña incorrectos");
+        $this->usuariosView->getLogin("Usario o contraseña incorrectos");
     
     }
 
     function getLogin(){
         $logueado = $this->authHelper->isLoged();
         if ( !$logueado ) {
-            $this->UsuariosView->getLogin();
+            $this->usuariosView->getLogin();
         } else {
             header("Location: ". HOME);
             die();
@@ -53,17 +53,17 @@ class UsuariosController {
     function guardaUsuario(){
         $user = $_POST["user"];
         $pass = $_POST["password"];
-        $existe = $this->UsuariosModel->getUser($user);
+        $existe = $this->usuariosModel->getUser($user);
         $logeado = $this->authHelper->isLoged();
         if (empty($user) || empty($pass)){
-            $this->UsuariosView->getRegistro($logeado,"Datos incorrectos");
+            $this->usuariosView->getRegistro($logeado,"Datos incorrectos");
         } else {
             // buscamos si existe el usuario en la db y llamamos al model para comprobar
             if ($existe) { // si existe ..
-                $this->UsuariosView->MostrarRegistro("Este nombre ya existe");
+                $this->usuariosView->MostrarRegistro("Este nombre ya existe");
                 // ya existe (mensaje);
             } else {    
-                $id = $this->UsuariosModel->registrarse($user,$pass);
+                $id = $this->usuariosModel->registrarse($user,$pass);
                 session_start();
                 $_SESSION["id_usuario"] = $id;
                 $_SESSION["email"] = $user;
@@ -86,7 +86,7 @@ class UsuariosController {
         $logueado = $this->authHelper->isLoged();
 
         if ( !$logueado ) {
-            $this->UsuariosView->MostrarRegistro();
+            $this->usuariosView->MostrarRegistro();
         } else {
             header("Location: ". HOME);
             die();

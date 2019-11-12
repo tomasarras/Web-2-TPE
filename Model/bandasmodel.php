@@ -1,6 +1,6 @@
 <?php
-class BandasModel
-{
+class BandasModel {
+    
     function __construct(){
         $this->db = $this->Connect();
     }
@@ -69,6 +69,8 @@ class BandasModel
             $anio,
             $cantidad
         ));
+
+        return $this->db->lastInsertId();
     }
 
     function editarBanda($banda,$cantidad,$anio,$id) {

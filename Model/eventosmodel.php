@@ -1,5 +1,5 @@
 <?php
-  class eventosmodel{
+  class EventosModel {
     private $db;
 
     function __construct(){
@@ -13,10 +13,10 @@
         echo "ERROR: ". $e->getMessage();
       }
     }
-
+    
     function getEventos(){
       $sentencia = $this->db->prepare(
-        "SELECT evento.*, banda FROM evento INNER JOIN banda ON evento.id_banda = banda.id_banda ORDER BY banda.banda"
+        "SELECT * FROM evento"
       );
       $sentencia->execute();
       return $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -40,6 +40,20 @@
       return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
+    // devuelve todos los eventos que tengan esa banda
+    public function getEventosDeBanda($id_banda) {
+      $sql = "SELECT evento.evento 
+      FROM evento 
+      JOIN banda 
+      ON banda.id_banda = evento.id_banda 
+      WHERE banda.id_banda = ?;";
+
+      $sentencia = $this->db->prepare($sql);
+      $sentencia->execute( array($id_banda) );
+      //$sentencia->execute( array($orden) );
+      return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
     function getEvento($id) {
       $sql = "SELECT * FROM evento WHERE id_evento = ?";
       $sentencia = $this->db->prepare($sql);
@@ -53,7 +67,7 @@
       return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function getEventosJoinBandas() {
+    function getEventosConBanda() {
       $sql = "SELECT evento.*, banda.banda 
       FROM evento JOIN banda 
       ON evento.id_banda = banda.id_banda";
@@ -63,7 +77,7 @@
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function agregarEvento($evento,$detalle,$id_banda,$ciudad="") {
+    function agregarEvento($evento,$detalle,$id_banda,$ciudad) {
       $sql = "INSERT INTO evento(id_evento,id_banda,evento,detalle,ciudad) VALUES (NULL,?,?,?,?)";
       $sentencia = $this->db->prepare($sql);
       $sentencia->execute(array(
@@ -72,15 +86,16 @@
         $detalle,
         $ciudad
       ));
+      return $this->db->lastInsertId();
     }
 
-    function editarEvento($evento,$detalle,$idEvento,$idBanda) {
+    function editarEvento($evento,$detalle,$idEvento,$idBanda,$ciudad) {
       $sql = "UPDATE evento SET
       evento = ?,
       detalle = ?,
       id_evento = ?,
       id_banda = ?,
-      ciudad = NULL
+      ciudad = ?
       WHERE id_evento = ?";
 
       $sentencia = $this->db->prepare($sql);
@@ -89,6 +104,7 @@
         $detalle,
         $idEvento,
         $idBanda,
+        $ciudad,
         $idEvento
       ));
     }

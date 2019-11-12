@@ -1,9 +1,9 @@
 <?php 
-require_once("./Views/adminView.php");
-require_once("./Views/homeview.php");
+require_once("./Views/AdminView.php");
+require_once("./Views/HomeView.php");
 require_once("./Helpers/AuthHelper.php");
-require_once("./Model/bandasmodel.php");
-require_once("./Model/eventosmodel.php");
+require_once("./Model/BandasModel.php");
+require_once("./Model/EventosModel.php");
 require_once("./Model/UsuariosModel.php");
 
 class AdminController {
@@ -20,8 +20,8 @@ class AdminController {
         $this->authHelper->verificarPermiso();
         $this->adminView = new AdminView();
         $this->bandasModel = new BandasModel();
-        $this->eventosModel = new eventosmodel();
-        $this->homeView = new homeview();
+        $this->eventosModel = new EventosModel();
+        $this->homeView = new Homeview();
         $this->UsuariosModel = new UsuariosModel();
     }
 
@@ -47,7 +47,7 @@ class AdminController {
     }
 
     function getEventos() {
-        $eventos = $this->eventosModel->getEventosJoinBandas();
+        $eventos = $this->eventosModel->getEventosConBanda();
         $bandas = $this->bandasModel->getNombreBandas();
 
         $this->adminView->mostrarEventos($eventos,$bandas);

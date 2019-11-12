@@ -1,27 +1,26 @@
 <?php
-require_once("./Views/homeview.php");
-require_once("./Views/eventosview.php");
-require_once("./Views/bandasviews.php");
-require_once("./Model/bandasmodel.php");
-require_once("./Model/eventosmodel.php");
+require_once("./Views/HomeView.php");
+require_once("./Views/EventosView.php");
+require_once("./Views/BandasView.php");
+require_once("./Model/BandasModel.php");
+require_once("./Model/EventosModel.php");
 require_once("./Helpers/AuthHelper.php");
 
-class homeController
-{
+class HomeController {
   private $homeView;
-  private $eventosview;
-  private $bandasviews;
-  private $bandasmodel;
-  private $eventosmodel;
+  private $eventosView;
+  private $bandasView;
+  private $bandasModel;
+  private $eventosModel;
   private $user;
 
   function __construct()
   {
-    $this->homeView = new homeview();
-    $this->eventosview = new eventosview();
-    $this->BandasView = new BandasView();
-    $this->eventosmodel = new eventosmodel();
-    $this->bandasmodel = new bandasmodel();
+    $this->homeView = new HomeView();
+    $this->eventosView = new EventosView();
+    $this->bandasView = new BandasView();
+    $this->eventosModel = new EventosModel();
+    $this->bandasModel = new BandasModel();
     $this->authHelper = new AuthHelper();
     $this->user = new stdClass();
     $this->user->logueado = $this->authHelper->isLoged();
@@ -41,16 +40,16 @@ class homeController
 
     if ( isset($_POST['eventos']) ) {
       $ordenEventos = $_POST['eventos'];
-      $eventos = $this->eventosmodel->getEventosOrdenado($ordenEventos);
+      $eventos = $this->eventosModel->getEventosOrdenado($ordenEventos);
     } else {
-      $eventos = $this->eventosmodel->getEventos();
+      $eventos = $this->eventosModel->getEventosConBanda();
     }
 
     if ( isset($_POST['bandas']) ) {
       $ordenBandas = $_POST['bandas'];
-      $bandas = $this->bandasmodel->getBandasOrdenadas($ordenBandas);
+      $bandas = $this->bandasModel->getBandasOrdenadas($ordenBandas);
     } else {
-      $bandas = $this->bandasmodel->GetBandas();
+      $bandas = $this->bandasModel->GetBandas();
     }
     $this->homeView->Mostrar($bandas, $eventos,$this->user,$ordenEventos,$ordenBandas);
   }
@@ -58,28 +57,28 @@ class homeController
   function filtrarPorEvento(){
     if (isset($_POST["banda"])){
       $id_banda = $_POST["banda"];
-      $bandas = $this->bandasmodel->GetBandas();
-      $EventoFiltrado = $this ->eventosmodel->getEventoFiltrado($id_banda);
+      $bandas = $this->bandasModel->GetBandas();
+      $eventoFiltrado = $this ->eventosModel->getEventoFiltrado($id_banda);
 
-      $this->homeView->Mostrar($bandas,$EventoFiltrado,$this->user);
+      $this->homeView->Mostrar($bandas,$eventoFiltrado,$this->user);
     } else {
       $this->noExiste();
     }
   }
   function VerDetallesEvento($params = null) {
     $id = $params[':ID'];
-    $eventos = $this->eventosmodel->GetDetalleEvento($id);
-    $bandas = $this->bandasmodel->GetBandas();
+    $eventos = $this->eventosModel->GetDetalleEvento($id);
+    $bandas = $this->bandasModel->GetBandas();
 
-    $this->eventosview->MostrarDetallesEventos($eventos,$this->user);
+    $this->eventosView->MostrarDetallesEventos($eventos,$this->user);
   }
 
   
   function VerDetallesBandas($params = null) {
     $id = $params[':ID'];
-    $bandas = $this->bandasmodel->GetDetalleBanda($id);
+    $bandas = $this->bandasModel->GetDetalleBanda($id);
 
-    $this->BandasView->MostrarDetalleBanda($bandas,$this->user);
+    $this->bandasView->MostrarDetalleBanda($bandas,$this->user);
   }
 
   function noExiste() {

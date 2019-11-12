@@ -52,7 +52,7 @@ class UsuariosApiController extends ApiController {
             if ($usuario)
                 $this->view->response($usuario, 200);
             else
-                $this->view->reponse("Error", 502);
+                $this->view->response("Error", 502);
         } else
             $this->view->response("El usuario ya existe",500);
     }

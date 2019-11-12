@@ -61,7 +61,7 @@ function getUsuarios(callback) {
     fetch("api/usuarios")
     .then(response => response.json())
     .then(usuarios => {
-        tabla.usuarios = usuarios; // similar a $this->smarty->assign("tasks", $tasks)
+        tabla.usuarios = usuarios;
     })
     .then(listo => callback())
     .catch(error => console.log(error));
