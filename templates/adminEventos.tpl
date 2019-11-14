@@ -32,7 +32,7 @@
         </h5>
 
         
-        <a class="btn btn-danger blanco" id="btn-borrar">Borrar</a>
+        <a class="btn btn-danger" id="btn-borrar">Borrar</a>
         <button class="btn btn-primary js-cerrar">Cancelar</button>
         
     </div>	

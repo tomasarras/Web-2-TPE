@@ -37,18 +37,23 @@ stars.forEach(star => {
         mostrarPuntaje.innerHTML = puntaje;
     });
 });
+
 //obtiene los comentarios de la api y los muestra
-async function getComentarios() {
+function getComentarios() {
     let id = document.querySelector("#nombreForm").getAttribute("name");
-    let response = await fetch("api/comentarios/" + id);
-    let json = await response.json();
-    sectionComentarios.comentarios = json;
+    fetch("api/comentarios?evento=" + id)
+    .then(response => response.json())
+    .then(comentarios => { sectionComentarios.comentarios = comentarios; })
+    .then(()=> asignarIconosBorrar() )
+    .catch(error => console.log(error));
 }
 
 if (sectionComentarios.user.logueado == "1") {
     let btnEnviar = document.querySelector("#btn-enviar-comentario");
     btnEnviar.addEventListener("click",enviarComentario);
 }
+
+
 
 async function enviarComentario() {
     let comentario = document.querySelector("#js-comentario").value;
@@ -59,7 +64,7 @@ async function enviarComentario() {
         "comentario": comentario,
         "puntaje": puntaje
     }
-
+    
     let response = await fetch("api/comentarios",{
         "method" : "POST",
         "headers": { "Content-Type": "application/json" },
@@ -69,4 +74,54 @@ async function enviarComentario() {
     getComentarios();
 }
 
+async function borrarComentario(id) {
+    await fetch("api/comentarios/" + id,{
+        "method": "DELETE"
+    });
+
+    let overlay = document.getElementById('overlay'),
+    popup = document.getElementById('popup');
+
+    overlay.classList.remove('active');
+    popup.classList.remove('active');
+    getComentarios();
+}
+
+
+
+
+//agrega popup al apretar el icono de borrar
+function asignarIconosBorrar() {
+    let btnsAbrirPopup = document.querySelectorAll('.btns-abrir-popup');
+    let overlay = document.getElementById('overlay'),
+    popup = document.getElementById('popup'),
+    btnCerrarpopup = document.querySelectorAll('.js-cerrar');
+    
+    btnsAbrirPopup.forEach(btnAbrirPopup => {
+        
+        btnAbrirPopup.addEventListener('click', function() {
+            overlay.classList.add('active');
+            popup.classList.add('active');
+            let btnBorrar = document.querySelector("#btn-borrar");
+            btnBorrar.setAttribute("name",btnAbrirPopup.getAttribute("name"));
+            let evento = btnAbrirPopup.parentNode.parentNode.firstElementChild;
+            let spanEvento = document.querySelector("#js-nombre-evento");
+            spanEvento.innerHTML = evento.innerHTML;
+        });
+        
+    });
+    
+    btnCerrarpopup.forEach(btn => {
+        btn.addEventListener('click', function() {
+            overlay.classList.remove('active');
+            popup.classList.remove('active');
+        });
+    });
+}
+
 getComentarios();
+
+let btnBorrarComentario = document.querySelector("#btn-borrar");
+btnBorrarComentario.addEventListener("click",()=> 
+    borrarComentario(btnBorrarComentario.getAttribute("name")
+));

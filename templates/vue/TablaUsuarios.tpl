@@ -9,18 +9,11 @@
                 <input type="checkbox" v-bind:checked="usuario.admin == 1" class="cb-value" v-bind:name="usuario.id_usuario"/>
                 <span class="round-btn"></span>
             </div>
-
-            <!--<label class="switch">
-                <input type="checkbox" v-bind:checked="usuario.admin == 1">
-                <div>
-                    <span class="switch-admin"></span>
-                </div>
-            </label> -->
         </td>
 
         <td> 
             <a href="javascript:void(0);" class="btns-abrir-popup" v-bind:name="usuario.id_usuario">
-                <i class="fa fa-trash-o rojo icono"></i>
+                aa<i class="fa fa-trash-o rojo icono"></i>
             </a>
         </td>
         

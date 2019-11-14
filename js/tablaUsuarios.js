@@ -6,16 +6,20 @@ let tabla = new Vue({
     }
 });
 
+let id_user = document.querySelector("#user-id").value;
+
 //agrega el efecto al hacer click en el switch
 function moverSwitches() {
     let switches = document.querySelectorAll(".cb-value");
     switches.forEach(swich => {
         swich.addEventListener("click",()=>{
-            let mainParent = swich.parentNode;
-            if (swich.checked)
-                mainParent.classList.add("active");
-            else
-                mainParent.classList.remove("active");
+            if (swich.getAttribute("name") != id_user) {
+                let mainParent = swich.parentNode;
+                if (swich.checked)
+                    mainParent.classList.add("active");
+                else
+                    mainParent.classList.remove("active");
+            }
         });
     });
 }
@@ -26,17 +30,10 @@ async function asignarSwitches() {
     switches.forEach(checkbox => {
         checkbox.addEventListener("click",()=>{
             let estado = checkbox.checked;
-            console.log(estado);
-            cambiarAdmin(estado,checkbox.getAttribute("name"));
+            //console.log(estado);
+            if (checkbox.getAttribute("name") != id_user)
+                cambiarAdmin(estado,checkbox.getAttribute("name"));
         });
-        /*
-        let interruptor = i.parentNode;
-        let estado = interruptor.previousElementSibling.checked;
-        interruptor.addEventListener("click", () => {
-            estado = !estado;
-            console.log(estado);
-            cabiarAdmin(estado,interruptor);
-        });*/
     });
 }
 
@@ -63,7 +60,7 @@ function getUsuarios(callback) {
     .then(usuarios => {
         tabla.usuarios = usuarios;
     })
-    .then(listo => callback())
+    .then(()=> callback() )
     .catch(error => console.log(error));
 }
 
@@ -104,4 +101,5 @@ function asignarIconosBorrar() {
             popup.classList.remove('active');
         });
     });
+
 }

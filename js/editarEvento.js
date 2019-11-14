@@ -1,24 +1,25 @@
 document.addEventListener("DOMContentLoaded",()=>{
 
     
-async function editarBanda() {
+async function editarEvento() {
     if (datosCorrectos()) {
-        let id_banda = document.querySelector("#id_banda").value;
+        let id_evento = document.querySelector("#id_evento").value;
         let json = {
-            "anio": document.querySelector("#input-anio").value,
-            "cantidad_canciones": document.querySelector("#input-cantidad").value,
-            "banda": document.querySelector("#input-banda").value,
-            "id_banda": id_banda
+            "ciudad": document.querySelector("#input-ciudad").value,
+            "detalle": document.querySelector("#input-detalle").value,
+            "evento": document.querySelector("#input-evento").value,
+            "id_banda": document.querySelector("#banda-asociada").value,
+            "id_evento": id_evento
         }
 
-        await fetch("api/bandas/" + id_banda,{
+        await fetch("api/eventos/" + id_evento,{
             "method" : "PUT",
             "headers" : { "Content-Type" : "application/json" },
             "body" : JSON.stringify(json)
         });
     }
 }
-
+    
 //verifica que los inputs no esten vacios
 function datosCorrectos() {
     let inputs = document.querySelectorAll(".campo-vacio");
@@ -39,6 +40,6 @@ function datosCorrectos() {
 }
 
 let btnEditar = document.querySelector("#btn-editar");
-btnEditar.addEventListener("click",editarBanda);
+btnEditar.addEventListener("click",editarEvento);
 
 });

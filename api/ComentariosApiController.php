@@ -14,9 +14,36 @@ class ComentariosApiController extends ApiController {
         $this->authHelper = new AuthHelper();
     }
 
-    public function getComentariosByEvento($params = null) {
+    public function borrarComentario($params = null) {
+        $this->authHelper->verificarPermiso();
         $id = $params[":ID"];
-        $comentarios = $this->model->getComentariosByEvento($id);
+        $comentario = $this->model->getComentario($id);
+        if ($comentario) {
+            $this->model->borrarComentario($id);
+            $this->view->response("Se elimino el comentario id={$id}",200);
+        } else
+            $this->view->response("El comentario con el id={$id} no existe", 404);
+
+    }
+
+    public function getComentario($params = null) {
+        $id = $params[":ID"];
+
+        $comentario = $this->model->getComentario($id);
+        if ($comentario)
+            $this->view->response($comentario,200);
+        else
+            $this->view->response("El comentario con el id={$id} no existe", 404);
+    }
+
+    public function getComentarios($params = null) {
+
+        if (isset($_GET["evento"])) {
+            $id_evento = $_GET["evento"];
+            $comentarios = $this->model->getComentariosByEvento($id_evento);
+        } else
+            $comentarios = $this->model->getComentarios();
+
         $this->view->response($comentarios, 200);
     }
 

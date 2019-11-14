@@ -99,7 +99,7 @@ function getEventos() {
     .then(eventos => {
         tablaEventos.eventos = eventos; 
     })
-    .then(listo => asignarIconosBorrar())
+    .then(()=> asignarIconosBorrar() )
     .catch(error => console.log(error));
 }
 

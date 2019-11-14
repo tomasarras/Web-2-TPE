@@ -112,7 +112,7 @@ section.grande {
   display: block;
 }
 
-.blanco {
+.blanco, #btn-borrar {
   color: white;
 }
 
@@ -122,10 +122,6 @@ section.grande {
 
 input.largo {
   width: 100%;
-}
-
-.rojo {
-  color: red;
 }
 
 div.admin {
@@ -536,10 +532,6 @@ td.link:hover {
 .popup.active {
 	opacity: 1;
 	transform: scale(1);
-}
-
-a.blanco {
-  color: white;
 }
 
 .flex-end {

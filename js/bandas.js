@@ -97,7 +97,7 @@ function getBandas() {
     .then(bandas => {
         tablaBandas.bandas = bandas; 
     })
-    .then(listo => asignarIconosBorrar())
+    .then(()=> asignarIconosBorrar() )
     .catch(error => console.log(error));
 }
 
