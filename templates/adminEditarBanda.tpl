@@ -2,7 +2,8 @@
 
 <div class="centrar-contenido view">
     <section class="bg-dark borde grande botonera-admin">
-        <form action="admin/bandas/editar/{$banda->id_banda}" method="POST" id="btns-formulario">
+        <form action="admin/bandas" method="POST">
+            
             <div class="centrar-contenido">
                 <h3 class="blanco">Editar: {$banda->banda}</h3>
             </div>
@@ -25,12 +26,16 @@
                 <div class="invalid-feedback">Ingresa un año</div>
             </div>
 
+            <input class="none" id="id_banda" value="{$banda->id_banda}">
+
             <div class="botonera">
-                <input type="submit" class="btn btn-primary campos-vacios margen-der" value="Editar">
-                <input type="submit" src="admin/bandas" class="btn btn-primary btns-formulario margen-izq" id="btn-editar" value="Cancelar">
+                <button class="btn btn-primary campos-vacios margen-der ancho" id="btn-editar">Editar</button>
+                <button class="btn btn-primary ancho margen-izq">Cancelar</button>
             </div>
         </form>
     </section>
 </div>
+
+<script src="./js/editarBanda.js"><script>
 
 {include file="footer.tpl"}

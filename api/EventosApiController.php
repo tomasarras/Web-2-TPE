@@ -15,7 +15,12 @@ class EventosApiController extends ApiController {
     }
 
     public function getEventos($params = null) {
-        $eventos = $this->model->getEventos();
+
+        if (isset($_GET["bandas"]))
+            $eventos = $this->model->getEventosConBanda();
+        else 
+            $eventos = $this->model->getEventos();
+        
         $this->view->response($eventos, 200);
     }
 

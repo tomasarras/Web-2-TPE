@@ -71,6 +71,11 @@
                                     <label v-bind:class="{ marcada: comentario.puntaje >= 2 }"></label>
                                     <label v-bind:class="{ marcada: comentario.puntaje >= 1 }"></label>
                                 </div>
+
+                                <a v-if="user.admin == 1" href="javascript:void(0);" class="btns-abrir-popup" :name="comentario.id_comentario">
+                                   aa<i class="fa fa-trash-o rojo icono" id="rojo"></i>
+                                </a>
+
                             </div>
 						</div>
 						<div class="comment-content">
@@ -82,6 +87,34 @@
 		</ul>
         
 	</div>
+
+
+
+
+
+
+    
+
+<!-- popup -->
+<div id="overlay" class="overlay">
+    <div id="popup" class="popup">
+        
+        <div class="flex-end">
+            <a href="javascript:void(0);" id="btn-cerrar-popup" class="btn-cerrar-popup js-cerrar">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+        
+        <h5>
+            Seguro queres borrar el comentario de: <span id="js-nombre-evento"></span>?
+        </h5>
+
+        
+        <button class="btn btn-danger" id="btn-borrar">Borrar</button>
+        <button class="btn btn-primary js-cerrar">Cancelar</button>
+        
+    </div>	
+</div>
 
     <script type="application/javascript" src="./js/comentarios.js"></script>
 

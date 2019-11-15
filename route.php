@@ -1,9 +1,9 @@
 <?php
 
-require_once("./Controllers/bandascontroller.php");
+require_once("./Controllers/BandasController.php");
 require_once("./Controllers/UsuariosController.php");
-require_once("./Controllers/homecontroller.php");
-require_once("./Controllers/adminController.php");
+require_once("./Controllers/HomeController.php");
+require_once("./Controllers/AdminController.php");
 require_once('./Router.php');
 
 define("HOME","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"]."/"));

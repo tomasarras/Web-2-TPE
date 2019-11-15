@@ -2,7 +2,7 @@
 
 <div class="centrar-contenido view">
     <section class="bg-dark borde grande botonera-admin">
-        <form action="admin/eventos/editar/{$evento->id_evento}" method="POST" id="btns-formulario">
+        <form action="admin/eventos" method="POST">
             <div class="centrar-contenido">
                 <h3 class="blanco">Editar: {$evento->evento}</h3>
             </div>
@@ -14,9 +14,15 @@
             </div>
 
             <div class="form-group">
+                <label for="input-ciudad" class="blanco">Ciudad del evento</label>
+                <input type="text" name="ciudad" class="form-control largo campo-vacio" id="input-ciudad" placeholder="Ciudad del evento" value="{$evento->ciudad}">
+                <div class="invalid-feedback">Ingresa una ciudad</div>
+            </div>
+
+            <div class="form-group">
                 <label for="input-detalle" class="blanco">Detalle del evento</label>
                 <input type="text" name="detalle" class="form-control largo campo-vacio" id="input-detalle" placeholder="Detalle del evento" value="{$evento->detalle}">
-                <div id="error-cantidad" class="invalid-feedback">Ingresa un detalle del evento</div>
+                <div class="invalid-feedback">Ingresa un detalle del evento</div>
             </div>
 
             <div class="form-group">
@@ -28,12 +34,16 @@
                 </select>
             </div>
 
+            <input class="none" value="{$evento->id_evento}" id="id_evento">
+
             <div class="botonera">
-                <input type="submit" class="btn btn-primary campos-vacios margen-der" value="Editar">
-                <input type="submit" src="admin/eventos" class="btn btn-primary btns-formulario margen-izq" id="btn-editar" value="Cancelar">
+                <button class="btn btn-primary ancho campos-vacios margen-der" id="btn-editar">Editar</button>
+                <button class="btn btn-primary ancho margen-izq">Cancelar</button>
             </div>
-        </form>  
+        </form>
     </section>
 </div>
+
+<script src="./js/editarEvento.js"></script>
 
 {include file="footer.tpl"}
