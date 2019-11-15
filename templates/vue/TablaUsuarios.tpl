@@ -13,7 +13,7 @@
 
         <td> 
             <a href="javascript:void(0);" class="btns-abrir-popup" v-bind:name="usuario.id_usuario">
-                aa<i class="fa fa-trash-o rojo icono"></i>
+                <i class="fa fa-trash-o rojo icono"></i>
             </a>
         </td>
         

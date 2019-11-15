@@ -17,10 +17,10 @@ class UsuariosController {
     }
 
     function verificarUser() {
-        $user = $_POST['usuario'];
+        $email = $_POST['email'];
         $pass = $_POST['password'];
     
-        $usuario = $this->usuariosModel->getUser($user);
+        $usuario = $this->usuariosModel->getUserByEmail($email);
 
         if ($usuario) {
             $hash = $usuario->password;
@@ -51,26 +51,35 @@ class UsuariosController {
     }
 
     function guardaUsuario(){
-        $user = $_POST["user"];
-        $pass = $_POST["password"];
-        $existe = $this->usuariosModel->getUser($user);
         $logeado = $this->authHelper->isLoged();
-        if (empty($user) || empty($pass)){
-            $this->usuariosView->getRegistro($logeado,"Datos incorrectos");
-        } else {
-            // buscamos si existe el usuario en la db y llamamos al model para comprobar
-            if ($existe) { // si existe ..
-                $this->usuariosView->MostrarRegistro("Este nombre ya existe");
-                // ya existe (mensaje);
-            } else {    
-                $id = $this->usuariosModel->registrarse($user,$pass);
-                session_start();
-                $_SESSION["id_usuario"] = $id;
-                $_SESSION["email"] = $user;
-                $_SESSION["admin"] = "0";
-                header("Location: ". HOME);
-                die();
-            } 
+
+        if ( !$logueado ) {
+            
+            $email = $_POST["email"];
+            $userName = $_POST['user_name'];
+            $pass = $_POST["password"];
+            //$passdos = $_POST['passwordCon']; la comprobacion de password se hace en js
+            $pregunta = $_POST['preguntas'];
+            $respuesta = $_POST['respuesta'];
+            //$admin = 0; ningun usuario que se registra es admin, en el model se le asigna
+            
+
+            if (empty($email) || empty($pass)){
+                $this->UsuariosView->mostrarRegistro("Datos incorrectos");
+            } else {
+                $existe = $this->UsuariosModel->getUserByEmail($email);
+                // buscamos si existe el usuario en la db y llamamos al model para comprobar
+                if ($existe) { // si existe ..
+                    $this->UsuariosView->mostrarRegistro("Este nombre ya existe");
+                    // ya existe (mensaje);
+                } else {    
+                    $id = $this->UsuariosModel->registrarse($email,$pass,$userName,$pregunta,$respuesta);
+                    $_SESSION["id_usuario"] = $id;
+                    $_SESSION["email"] = $email;
+                    $_SESSION["admin"] = "0";
+                    header("Location: ". HOME);
+                } 
+            }
         }
     }
 

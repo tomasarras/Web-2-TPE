@@ -11,13 +11,13 @@
 
         <td>
             <a v-bind:href="'admin/bandas/editar/' + banda.id_banda">
-                aa<i class='far fa-edit icono'></i>
+                <i class='far fa-edit icono'></i>
             </a>
         </td>
 
         <td v-if="banda.evento == null">
             <a href="javascript:void(0);" class="btns-abrir-popup" v-bind:name="banda.id_banda">
-                aa<i class="fa fa-trash-o rojo icono"></i>
+                <i class="fa fa-trash-o rojo icono"></i>
             </a>
         </td>
 

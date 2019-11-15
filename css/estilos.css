@@ -140,6 +140,14 @@ button.btn-seleccionar-banda, button.btn-seleccionar-evento{
   display: none;
 }
 
+
+.invalid {
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color:#dc3545;
+}
+
 .ancho {
   width: 100%;
 }

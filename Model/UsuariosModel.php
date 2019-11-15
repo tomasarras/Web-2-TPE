@@ -44,11 +44,17 @@ class UsuariosModel {
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function registrarse($user,$password){
+    function registrarse($email,$password,$userName,$pregunta,$respuesta){
         $hash = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO usuario (email,password,admin) VALUES ('$user', '$hash','0')";
-        $sentencia = $this->db->prepare($sql);
-        $sentencia->execute();
+        $sql = $this->db->prepare("INSERT INTO usuario(id_usuario,email,password,nombre,pregunta,respuesta,admin) 
+        VALUES (null,?,?,?,?,?,'0');");
+        $sql->execute(array(
+        $email,
+        $hash,
+        $userName,
+        $pregunta,
+        $respuesta
+        ));
         return $this->db->lastInsertId();
     }
 
@@ -58,9 +64,15 @@ class UsuariosModel {
         $sentencia->execute( array($id) );
     }
  
-    function getUser($user){
+    function getUserByEmail($email){
         $sentencia = $this->db->prepare( "SELECT * FROM usuario WHERE email = ?");
-        $sentencia->execute(array($user));
+        $sentencia->execute(array($email));
+        return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
+
+    function getUserByNombre($nombre){
+        $sentencia = $this->db->prepare( "SELECT * FROM usuario WHERE nombre = ?");
+        $sentencia->execute(array($nombre));
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 

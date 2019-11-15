@@ -73,7 +73,7 @@
                                 </div>
 
                                 <a v-if="user.admin == 1" href="javascript:void(0);" class="btns-abrir-popup" :name="comentario.id_comentario">
-                                   aa<i class="fa fa-trash-o rojo icono" id="rojo"></i>
+                                   <i class="fa fa-trash-o rojo icono" id="rojo"></i>
                                 </a>
 
                             </div>
