@@ -14,6 +14,7 @@ define("ADMINISTRAR_USUARIOS","http://". $_SERVER["SERVER_NAME"].dirname($_SERVE
 
 $router = new Router();
 
+$router->addRoute("login/restablecer-contraseña", "GET", "UsuariosController", "showRestablecerPassword");
 $router->addRoute("login", "GET", "UsuariosController", "getLogin");
 $router->addRoute("login", "POST", "UsuariosController", "verificarUser");
 $router->addRoute("logout", "GET", "UsuariosController", "logout");

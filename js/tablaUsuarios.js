@@ -46,7 +46,7 @@ async function cambiarAdmin(estado,id) {
         json = { "admin": "0" }
     }
     
-    await fetch('api/usuarios/' + id,{
+    await fetch('api/admin/usuarios/' + id,{
         "method" : "PUT",
         "headers" : { "Content-Type" : "application/json" },
         "body" : JSON.stringify(json)

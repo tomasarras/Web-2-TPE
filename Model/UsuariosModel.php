@@ -45,17 +45,31 @@ class UsuariosModel {
     }
 
     function registrarse($email,$password,$userName,$pregunta,$respuesta){
-        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $hash_password = password_hash($password, PASSWORD_DEFAULT);
+        $hash_respuesta = password_hash($respuesta, PASSWORD_DEFAULT);
         $sql = $this->db->prepare("INSERT INTO usuario(id_usuario,email,password,nombre,pregunta,respuesta,admin) 
         VALUES (null,?,?,?,?,?,'0');");
         $sql->execute(array(
         $email,
-        $hash,
+        $hash_password,
         $userName,
         $pregunta,
-        $respuesta
+        $hash_respuesta
         ));
         return $this->db->lastInsertId();
+    }
+
+    function editarPassword($email,$id,$password) {
+        $hash_password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "UPDATE usuario SET
+        password = ?
+        WHERE email = ? AND id_usuario = ?";
+        $sentencia = $this->db->prepare($sql);
+        $sentencia->execute( array(
+            $hash_password,
+            $email,
+            $id
+        ));
     }
 
     function eliminarUsuario($id) {

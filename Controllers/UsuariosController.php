@@ -47,7 +47,6 @@ class UsuariosController {
             header("Location: ". HOME);
             die();
         }
-        
     }
 
     function guardaUsuario(){
@@ -67,13 +66,13 @@ class UsuariosController {
             if (empty($email) || empty($pass)){
                 $this->UsuariosView->mostrarRegistro("Datos incorrectos");
             } else {
-                $existe = $this->UsuariosModel->getUserByEmail($email);
+                $existe = $this->usuariosModel->getUserByEmail($email);
                 // buscamos si existe el usuario en la db y llamamos al model para comprobar
                 if ($existe) { // si existe ..
                     $this->UsuariosView->mostrarRegistro("Este nombre ya existe");
                     // ya existe (mensaje);
                 } else {    
-                    $id = $this->UsuariosModel->registrarse($email,$pass,$userName,$pregunta,$respuesta);
+                    $id = $this->usuariosModel->registrarse($email,$pass,$userName,$pregunta,$respuesta);
                     $_SESSION["id_usuario"] = $id;
                     $_SESSION["email"] = $email;
                     $_SESSION["admin"] = "0";
@@ -81,6 +80,10 @@ class UsuariosController {
                 } 
             }
         }
+    }
+
+    function showRestablecerPassword() {
+        $this->usuariosView->restablecerPassword();
     }
 
     function logout() {

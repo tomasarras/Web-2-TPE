@@ -25,6 +25,12 @@ class UsuariosView {
         $this->smarty->assign('user',$this->user);
         $this->smarty->display('templates/registro.tpl');
     }
+
+    function restablecerPassword() {
+        $this->smarty->assign('titulo',"Restablecer contraseña");
+        $this->smarty->assign('user',$this->user);
+        $this->smarty->display('templates/restablecerPassword.tpl');
+    }
 }
 
 ?>

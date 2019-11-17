@@ -16,6 +16,8 @@
                 <div class="invalid-feedback">Error, la contraseña no puede quedar vacia</div>
             </div>
             
+            <a href="login/restablecer-contraseña">Olvide mi contraseña</a>
+
             <div class="centrar-contenido">
                 <button type="submit" class="btn btn-primary campos-vacios">Login</button>
             </div>

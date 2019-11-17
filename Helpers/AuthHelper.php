@@ -1,4 +1,5 @@
 <?php 
+
 class AuthHelper {
 
     // verifica si paso 30 minutos desde el ultimo request y devuelve si esta logueado o no
@@ -31,17 +32,17 @@ class AuthHelper {
                 if ( isset($_SESSION['LAST_ACTIVITY']) && 
                 (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) { 
                     session_destroy(); // destruye la sesión, y vuelve al login
-                    header("Location: ". LOGIN);
+                    header("Location: ". "http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/login");
                     die();
                 }
                 
                 $_SESSION['LAST_ACTIVITY'] = time(); // actualiza el último instante de actividad
             } else {
-                header("Location: ". HOME);
+                header("Location: ". "http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"]."/"));
                 die();
             }
         } else {
-            header("Location: ". HOME);
+            header("Location: ". "http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"]."/"));
             die();
         }
 
