@@ -2,7 +2,10 @@
 
 <tbody id="vue-tabla-usuarios">
     <tr v-for="usuario in usuarios">
+
         <td v-bind:name="usuario.id_usuario">{{usuario.email}}</td>
+
+        <td v-bind:name="usuario.id_usuario">{{usuario.nombre}}</td>
 
         <td>
             <div class="toggle-btn" v-bind:class="{ active: usuario.admin == 1 }">

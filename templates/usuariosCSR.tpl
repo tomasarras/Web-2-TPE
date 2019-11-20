@@ -5,9 +5,10 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Email</th>
+                <th scope="col">Nombre de usuario</th>
                 <th scope="col">Admin</th>
                 <th scope="col">Eliminar</th>
-        </tr>
+            </tr>
         </thead>
         {include file="vue/TablaUsuarios.tpl"}
     </table>

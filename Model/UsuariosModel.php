@@ -39,7 +39,7 @@ class UsuariosModel {
     }*/
 
     function getUsuarios() {
-        $sentencia = $this->db->prepare( "SELECT * FROM usuario");
+        $sentencia = $this->db->prepare( "SELECT id_usuario,email,nombre,admin FROM usuario");
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }

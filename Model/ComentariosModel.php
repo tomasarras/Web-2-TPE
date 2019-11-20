@@ -34,13 +34,6 @@ class ComentariosModel {
         $sentencia->execute( array($id) );
     }
 
-    public function getComentarios() {
-        $sql = "SELECT * FROM comentario";
-        $sentencia = $this->db->prepare($sql);
-        $sentencia->execute();
-        return $sentencia->fetchAll(PDO::FETCH_OBJ);
-    }
-
     public function getComentario($id) {
         $sql = "SELECT * FROM comentario
         WHERE id_comentario = ?;";

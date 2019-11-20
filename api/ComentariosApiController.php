@@ -16,13 +16,14 @@ class ComentariosApiController extends ApiController {
 
     public function borrarComentario($params = null) {
         $this->authHelper->verificarPermiso();
-        $id = $params[":ID"];
-        $comentario = $this->model->getComentario($id);
+        $id_comentario = $params[":ID_COMENTARIO"];
+
+        $comentario = $this->model->getComentario($id_comentario);
         if ($comentario) {
-            $this->model->borrarComentario($id);
-            $this->view->response("Se elimino el comentario id={$id}",200);
+            $this->model->borrarComentario($id_comentario);
+            $this->view->response("Se elimino el comentario id={$id_comentario}",200);
         } else
-            $this->view->response("El comentario con el id={$id} no existe", 404);
+            $this->view->response("El comentario con el id={$id_comentario} no existe", 404);
 
     }
 
@@ -38,33 +39,10 @@ class ComentariosApiController extends ApiController {
 
     public function getComentarios($params = null) {
 
-        if (isset($_GET["evento"])) {
-            $id_evento = $_GET["evento"];
-            $comentarios = $this->model->getComentariosByEvento($id_evento);
-        } else
-            $comentarios = $this->model->getComentarios();
+        $id_evento = $params[":ID_EVENTO"];
+        $comentarios = $this->model->getComentariosByEvento($id_evento);
 
         $this->view->response($comentarios, 200);
-    }
-
-    public function getUsuario($params = null) {
-        $id = $params[':ID'];
-        
-        $comentario = $this->model->getComentarioById($id);        
-        if ($comentario)
-            $this->view->response($comentario, 200);
-        else
-            $this->view->response("El comentario con el id={$id} no existe", 404);
-    } 
-
-    public function eliminarUsuario($params = null) {
-        $id = $params[':ID'];
-        $comentario = $this->model->getComentarioById($id);
-        if ($comentario) {
-            $this->model->eliminarUsuario($id);
-            $this->view->response("El comentario fue borrado con exito.", 200);
-        } else
-            $this->view->response("El comentario con el id={$id} no existe", 404);
     }
 
     public function enviarComentario($params = null) {
@@ -78,13 +56,13 @@ class ComentariosApiController extends ApiController {
         $body = $this->getData();
         
         $id_usuario = $_SESSION["id_usuario"];
-        $id_evento = $body->id_evento;
+        $id_evento = $params[":ID_EVENTO"];
         $comentario = $body->comentario;
         $puntaje = $body->puntaje;
 
         $id = $this->model->enviarComentario($id_usuario,$id_evento,$comentario,$puntaje);
         if ($id)
-            $this->view->response("Comentario enviado",200);
+            $this->view->response("Comentario enviado id={$id}",200);
         else
             $this->view->response("Error al enviar el comentario", 500);
     }

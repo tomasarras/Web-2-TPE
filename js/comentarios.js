@@ -41,7 +41,7 @@ stars.forEach(star => {
 //obtiene los comentarios de la api y los muestra
 function getComentarios() {
     let id = document.querySelector("#nombreForm").getAttribute("name");
-    fetch("api/comentarios?evento=" + id)
+    fetch("api/eventos/" + id + "/comentarios")
     .then(response => response.json())
     .then(comentarios => { sectionComentarios.comentarios = comentarios; })
     .then(()=> asignarIconosBorrar() )
@@ -60,16 +60,18 @@ async function enviarComentario() {
     let id_evento = document.querySelector("#nombreForm").getAttribute("name");
 
     let json = {
-        "id_evento": id_evento,
         "comentario": comentario,
         "puntaje": puntaje
     }
     
-    let response = await fetch("api/comentarios",{
+    let response = await fetch("api/eventos/" + id_evento + "/comentarios",{
         "method" : "POST",
         "headers": { "Content-Type": "application/json" },
         "body"   : JSON.stringify(json)
     });
+
+    if ( !response.ok )
+        console.log("error de conexion");
 
     getComentarios();
 }
