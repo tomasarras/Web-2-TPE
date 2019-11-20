@@ -18,7 +18,7 @@
                 <td>{$evento->evento}</td>
                 <td>{$evento->ciudad}</td>
                 <td>{$evento->banda}</td>
-                <td><a href="VerEvento/{$evento->id_evento}">Mas Detalles</a></td>
+                <td><a href="ver-evento/{$evento->id_evento}">Mas Detalles</a></td>
             </tr>
         {/foreach}
     </tbody>

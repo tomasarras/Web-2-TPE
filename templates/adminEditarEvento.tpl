@@ -1,8 +1,8 @@
 {include file="header.tpl"}
 
 <div class="centrar-contenido view">
-    <section class="bg-dark borde grande botonera-admin">
-        <form action="admin/eventos" method="POST">
+    <section class="bg-dark borde grande">
+        <form action="admin/eventos/editar/{$evento->id_evento}" method="POST">
             <div class="centrar-contenido">
                 <h3 class="blanco">Editar: {$evento->evento}</h3>
             </div>
@@ -37,13 +37,11 @@
             <input class="none" value="{$evento->id_evento}" id="id_evento">
 
             <div class="botonera">
-                <button class="btn btn-primary ancho campos-vacios margen-der" id="btn-editar">Editar</button>
-                <button class="btn btn-primary ancho margen-izq">Cancelar</button>
+                <button type="submit" class="btn btn-primary ancho campos-vacios margen-der" id="btn-editar">Editar</button>
+                <a href="admin/eventos" class="btn btn-primary ancho margen-izq">Cancelar</a>
             </div>
         </form>
     </section>
 </div>
-
-<script src="./js/editarEvento.js"></script>
 
 {include file="footer.tpl"}

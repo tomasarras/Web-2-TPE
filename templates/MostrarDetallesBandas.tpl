@@ -1,5 +1,5 @@
 {include file="header.tpl"}
-{include file="correo.tpl"}
+
 
 <div class="container cuadro blanco">
     {foreach from=$bandas item=banda}

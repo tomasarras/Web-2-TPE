@@ -6,8 +6,8 @@ let tablaEventos = new Vue({
     }
 })
 
-let btnAgregarEvento = document.querySelector("#btn-agregar-evento");
-btnAgregarEvento.addEventListener("click",agregarEvento);
+//let btnAgregarEvento = document.querySelector("#btn-agregar-evento");
+//btnAgregarEvento.addEventListener("click",agregarEvento);
 
 async function borrarEvento(id) {
     console.log(id)

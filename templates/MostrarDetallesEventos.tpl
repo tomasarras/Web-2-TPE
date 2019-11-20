@@ -1,7 +1,41 @@
 {include file="header.tpl"}
-{include file="correo.tpl"}
 
 <div class="container cuadro rojo">
+    <!-- carousel bootstrap -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+      <ol class="carousel-indicators">
+        {assign var=i value=0}
+        {foreach from=$imagenes item=imagen}
+          <li data-target="#carouselExampleIndicators" data-slide-to="{$i}" {if $i == 0} class="active" {/if}></li>
+          {assign var=i value=$i+1}
+        {/foreach}
+      </ol>
+
+      <div class="carousel-inner">
+
+        {assign var=i value=0}
+        {foreach from=$imagenes item=imagen}
+          <div class="carousel-item {if $i == 0} active {/if}">
+            <img class="d-block w-100" src="./{$imagen->ruta}">
+          </div>
+          {assign var=i value=$i+1}
+        {/foreach}
+
+      </div>
+      
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Anterior</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Siguiente</span>
+      </a>
+    </div>
+
+
+
     <h2>Evento Detallado</h2>
     {foreach from=$eventos item=evento}
         <div class="form-group">

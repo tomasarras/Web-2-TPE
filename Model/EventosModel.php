@@ -89,6 +89,27 @@
       return $this->db->lastInsertId();
     }
 
+    function agregarImagen($id_evento,$filePath) {
+        $sql = "INSERT INTO imagen_evento(id_imagen,id_evento,ruta) VALUES (NULL,?,?)";
+        $sentencia = $this->db->prepare($sql);
+        $sentencia->execute(array(
+          $id_evento,
+          $filePath
+        ));
+        return $this->db->lastInsertId();
+    }
+
+    function getImagenesEvento($id) {
+        $sql = "SELECT ruta 
+        FROM imagen_evento JOIN evento 
+        ON evento.id_evento = imagen_evento.id_evento
+        WHERE evento.id_evento = ?;";
+
+          $sentencia = $this->db->prepare($sql);
+          $sentencia->execute( array($id) );
+          return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
     function editarEvento($evento,$detalle,$idEvento,$idBanda,$ciudad) {
       $sql = "UPDATE evento SET
       evento = ?,

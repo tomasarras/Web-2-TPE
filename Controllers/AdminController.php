@@ -64,13 +64,38 @@ class AdminController {
     }
 
     function agregarEvento() {
-        $evento = $_POST['evento'];
-        $detalle = $_POST['detalle'];
-        $id_banda = $_POST['id_banda'];
 
-        $this->eventosModel->agregarEvento($evento,$detalle,$id_banda);
+        if (isset($_POST["evento"]) && isset($_POST["detalle"]) && isset($_POST["id_banda"]) && isset($_POST["ciudad"])) {
+            $evento = $_POST['evento'];
+            $detalle = $_POST['detalle'];
+            $id_banda = $_POST['id_banda'];
+            $ciudad = $_POST["ciudad"];
+
+            $id_evento = $this->eventosModel->agregarEvento($evento,$detalle,$id_banda,$ciudad);
+            
+            $cantidadArchivos = count($_FILES["imagesToUpload"]["name"]);
+
+            for ($i = 0; $i < $cantidadArchivos; $i++) {
+
+                $type     = $_FILES["imagesToUpload"]["type"][$i];
+                $name     = $_FILES["imagesToUpload"]["name"][$i];
+                $tmp_name = $_FILES["imagesToUpload"]["tmp_name"][$i];
+
+                if (   $type == "image/jpg"
+                    || $type == "image/jpeg"
+                    || $type == "image/png" ) {
+
+                        
+                        $filePath = "images/eventos/" . uniqid("", true) . "." 
+                        . strtolower(pathinfo($name, PATHINFO_EXTENSION));
+                        
+                        move_uploaded_file($tmp_name, $filePath);
+                        $this->eventosModel->agregarImagen($id_evento,$filePath);
+                } 
+            }
+        }
+
         header("Location: ".ADMINISTRAR_EVENTOS);
-        die();
     }
 
     function editarBanda($params = null) {
@@ -103,14 +128,14 @@ class AdminController {
             $evento = $_POST['evento'];
             $detalle = $_POST['detalle'];
             $idBanda = $_POST["id_banda"];
+            $ciudad = $_POST["ciudad"];
             
-            $this->eventosModel->editarEvento($evento,$detalle,$id,$idBanda);
+            $this->eventosModel->editarEvento($evento,$detalle,$id,$idBanda,$ciudad);
             header("Location: ".ADMINISTRAR_EVENTOS);
-            die();
         }
     }
 
-    function getEvento($params = null) {
+    function showEditarEvento($params = null) {
         $id = $params[':ID'];
 
         $evento = $this->eventosModel->getEvento($id);

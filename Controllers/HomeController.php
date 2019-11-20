@@ -67,18 +67,23 @@ class HomeController {
   }
   function VerDetallesEvento($params = null) {
     $id = $params[':ID'];
-    $eventos = $this->eventosModel->GetDetalleEvento($id);
-    $bandas = $this->bandasModel->GetBandas();
-
-    $this->eventosView->MostrarDetallesEventos($eventos,$this->user);
+    $evento = $this->eventosModel->GetDetalleEvento($id);
+    if ($evento) {
+      $imagenes = $this->eventosModel->getImagenesEvento($id);
+      $this->eventosView->MostrarDetallesEventos($evento,$imagenes,$this->user);
+    } else
+      $this->homeView->noExiste("Este evento no existe");
   }
 
   
-  function VerDetallesBandas($params = null) {
+  function VerDetallesBanda($params = null) {
     $id = $params[':ID'];
-    $bandas = $this->bandasModel->GetDetalleBanda($id);
+    $banda = $this->bandasModel->GetDetalleBanda($id);
 
-    $this->bandasView->MostrarDetalleBanda($bandas,$this->user);
+    if ($banda)
+      $this->bandasView->MostrarDetalleBanda($banda,$this->user);
+    else 
+      $this->homeView->noExiste("Esta banda no existe");
   }
 
   function noExiste() {
