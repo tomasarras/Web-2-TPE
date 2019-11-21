@@ -46,9 +46,9 @@
                 <input type="text" class="form-control campo-vacio" placeholder="Repuesta" id="respuesta" name="respuesta">
                 <div class="invalid-feedback">Escribi una respuesta para la pregunta de seguridad</div>
             </div>
-            
+
             <div class="centrar-contenido espacio-top">
-                <button class="btn btn-primary campos-vacios" id="btn-registrarse">Registrarse</button>
+                <button type="submit" class="btn btn-primary campos-vacios ancho" id="btn-registrarse">Registrarse</button>
             </div>
 
             <div class="rojo">{$mensaje}</div>

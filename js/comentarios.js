@@ -78,7 +78,7 @@ stars.forEach(star => {
 
 //obtiene los comentarios de la api y los muestra
 function getComentarios() {
-    let id = document.querySelector("#nombreForm").getAttribute("name");
+    let id = document.querySelector("#evento").getAttribute("name");
     fetch("api/eventos/" + id + "/comentarios")
     .then(response => response.json())
     .then(comentarios => { sectionComentarios.comentarios = calcularTiempo(comentarios); })
@@ -95,7 +95,7 @@ if (sectionComentarios.user.logueado == "1") {
 
 async function enviarComentario() {
     let comentario = document.querySelector("#js-comentario").value;
-    let id_evento = document.querySelector("#nombreForm").getAttribute("name");
+    let id_evento = document.querySelector("#evento").getAttribute("name");
 
     let json = {
         "comentario": comentario,

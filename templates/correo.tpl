@@ -1,4 +1,4 @@
-<div class="container-fluid slider d-flex flex-column justify-content-center aling-items-center margen-abajo">
+<div class="container-fluid slider d-flex flex-column justify-content-center aling-items-center margen-abajo view">
     <div class="text-center text-white">
         <h1 class="display">Las ultimas novedades en tu bandeja de entrada!</h1>
         <h3>¿Querés enterarte de las ultimas novedades?</h3>

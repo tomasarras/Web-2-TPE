@@ -53,9 +53,6 @@
                         </div>
                     </a>
 
-
-                    <p class="blanco">{{$user->email}}<--Hay que mover esto xd</p> 
-
                 {else}
                     <input class="none" id="user-admin" value="0">
                     <input class="none" id="user-logueado" value="0">

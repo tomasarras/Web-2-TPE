@@ -44,6 +44,10 @@ body{
 
 
 /* tabla bootstrap */
+.table {
+  box-shadow: rgba(121,121,121,.35) 1px 10px 20px;
+}
+
 .table tr th, .table td {
   vertical-align: middle;
   text-align: center;
@@ -64,6 +68,43 @@ body{
   border-bottom: 2px solid #454d55;
 }
 
+.fondo-blanco {
+  padding: 2%;
+  margin-bottom: 2%;
+  background-color: #FFF;
+}
+
+.tablas {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabla-bandas,.tabla-eventos {
+  margin-top: 6%;
+}
+
+
+@media only screen and (min-width:1000px) {
+  .tablas{
+    flex-direction: row;
+  }
+
+  .tabla-bandas {
+    margin-left: 1%;
+  }
+
+  .tabla-eventos {
+    margin-right: 1%;
+  }
+
+}
+
+.centrado {
+  text-align: center;
+}
+.carousel-item img {
+  height: 60%;
+}
 .icono {
   font-size: 24px;
 }
@@ -168,10 +209,6 @@ button.btn-seleccionar-banda, button.btn-seleccionar-evento{
   margin: 3% 0;
 }
 
-.tablas {
-  margin : 0 5% 0 5%;
-}
-
 .margen-abajo {
   margin: 0 0 5% 0;
 }
@@ -230,6 +267,10 @@ form button
   margin: 0 auto;
 }
 @media screen and (max-width: 400px) {
+  h2 {
+    font-size: 1.3em;
+  }
+
   .face {
     margin-top: 40px;
     transform: scale(0.8);
@@ -820,6 +861,15 @@ ul {
 /** =====================
 * Responsive
 ========================*/
+
+
+@media only screen and (min-width: 766px) and (max-width:1000px) {
+  .comments-list .comment-box {
+    float: none;
+    width: 70%;
+    margin-left: 12%;
+  }
+}
 @media only screen and (max-width: 766px) {
  .comments-container {
    width: 480px;
@@ -842,18 +892,18 @@ ul {
 
 
 /*** rating 2.0*/
+
 .rating-comment label {
   cursor: pointer;
 }
 
 .rating label, .rating-comment label {
   color: rgba(255, 255, 255, 0.3);
-  font-size: 26px;
   margin: 6px 8px;
   float: right;
 }
 
-.rating .rating-num, .rating-comment .rating-num {
+.rating-num {
   font-family: sans-serif;
   font-weight: 700;
   font-size: 20px;
@@ -875,6 +925,31 @@ ul {
 .rating label, .rating-comment label {
   font-size: 15px;
   margin: 0 8px 6px 8px;
+}
+
+@media only screen and (max-width: 500px) {
+  
+  .rating label, .rating-comment label {
+    font-size: 10px;
+  }
+
+  .rating-num {
+    font-size: 15px;
+  }
+
+  .rating label, .rating-comment label {
+    margin: 0 2px 0 2px;
+  }
+
+  .rating-comment {
+    height: 23px;
+  }
+
+  .comments-list .comment-box {
+    width: 300px;
+    float: none;
+    margin-left: 17%;
+  }
 }
 
 div.rating div.rating-num,div.rating-comment div.rating-num {

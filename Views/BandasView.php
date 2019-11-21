@@ -9,10 +9,10 @@ class BandasView {
       $this->smarty->assign('home','//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/');
     } 
 
-    function MostrarDetalleBanda($bandas,$user) {
+    function MostrarDetalleBanda($banda,$user) {
       $this->smarty->assign('titulo',"Ver Banda detallada");
       $this->smarty->assign('user',$user);
-      $this->smarty->assign('bandas',$bandas);
+      $this->smarty->assign('banda',$banda);
       $this->smarty->display('templates/MostrarDetallesBandas.tpl');
     }
 }

@@ -70,7 +70,7 @@ class HomeController {
     $evento = $this->eventosModel->GetDetalleEvento($id);
     if ($evento) {
       $imagenes = $this->eventosModel->getImagenesEvento($id);
-      $this->eventosView->MostrarDetallesEventos($evento,$imagenes,$this->user);
+      $this->eventosView->MostrarDetallesEvento($evento,$imagenes,$this->user);
     } else
       $this->homeView->noExiste("Este evento no existe");
   }

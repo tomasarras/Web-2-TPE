@@ -97,7 +97,7 @@ class BandasModel {
     function GetDetalleBanda($id){
         $sentencia = $this->db->prepare( "SELECT * FROM banda WHERE id_banda=?");
         $sentencia->execute(array($id));
-        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
     function getBanda($id) {

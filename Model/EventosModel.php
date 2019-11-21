@@ -138,7 +138,7 @@
     function GetDetalleEvento($id){
       $sentencia = $this->db->prepare( "SELECT evento.*, banda.banda FROM evento INNER JOIN banda ON evento.id_banda = banda.id_banda WHERE evento.id_evento=?");
       $sentencia->execute(array($id));
-      return $sentencia->fetchAll(PDO::FETCH_OBJ);
+      return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
   }

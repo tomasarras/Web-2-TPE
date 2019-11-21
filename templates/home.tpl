@@ -1,15 +1,16 @@
 {include file="header.tpl"}
 {include file="correo.tpl"}
 
-<div class="tablas"> <!-- filtro -->
-    <form class="margen-abajo" action="filtrarEventos" method="POST">
-        <div class="centrar-contenido blanco">
+<div class="container fondo-blanco borde"> 
+
+    <form class="margen-abajo" action="filtrar-eventos" method="POST"> <!-- filtro -->
+        <div class="centrar-contenido">
             <h4>Buscar evento por banda</h4> 
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <button class="btn btn-outline-light" type="submit" name="button">Filtrar</button>
+                <button class="btn btn-primary" type="submit" name="button">Filtrar</button>
             </div>
             <select name = "banda" class="custom-select" >
                 {foreach from=$bandas item=banda}
@@ -32,9 +33,10 @@
             value="{$ordenBanda}"
         {/if}
         >
-
-        {include file="eventos.tpl"}
-        {include file="bandas.tpl"}
+        <div class="tablas">
+            {include file="eventos.tpl"}
+            {include file="bandas.tpl"}
+        </div>
     </form>
 
 </div>

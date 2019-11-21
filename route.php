@@ -40,7 +40,7 @@ $router->addRoute("admin/eventos/eliminar/:ID", "GET", "adminController", "elimi
 $router->addRoute("admin/usuarios", "GET", "adminController", "mostrarUsuarios");
 $router->addRoute("admin/usuarios/eliminar/:ID", "GET", "adminController", "eliminarUsuario");
 
-$router->addRoute("filtrarEventos", "POST", "homecontroller", "filtrarPorEvento");
+$router->addRoute("filtrar-eventos", "POST", "homecontroller", "filtrarPorEvento");
 
 $router->addRoute("#", "POST", "homecontroller", "Home");
 
