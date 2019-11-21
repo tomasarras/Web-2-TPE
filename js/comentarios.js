@@ -11,6 +11,44 @@ let sectionComentarios = new Vue({
     }
 });
 
+function calcularTiempo(comentarios) {
+    let fechaActual = new Date();
+    
+    comentarios.forEach(comentario => {
+        
+        let fechaComentario = new Date(comentario.fecha);
+        
+        let segundos = ( fechaActual.getTime() - fechaComentario.getTime() ) / 1000;
+        let minutos = segundos / 60;
+        let horas = minutos / 60;
+        let dias = horas / 24;
+        let meses = dias / 30;
+        let anio = meses / 12;
+        
+        if (Math.floor(anio) > 0) 
+            if (Math.floor(anio) > 1) comentario.tiempo = "mas de " + Math.floor(anio) + " años";
+            else comentario.tiempo = "un año";
+        else if (Math.floor(meses) > 0)
+            if (Math.floor(meses) > 1) comentario.tiempo = "mas de " + Math.floor(meses) + " meses";
+            else comentario.tiempo = "un mes";
+        else if (Math.floor(dias) > 0)
+            if (Math.floor(dias) > 1) comentario.tiempo = "mas de " + Math.floor(dias) + " dias";
+            else comentario.tiempo = "un dia";
+        else if (Math.floor(horas) > 0)
+            if (Math.floor(horas) > 1) json.tiempo = "mas de " + Math.floor(horas) + " horas";
+            else comentario.tiempo = "una hora";
+        else if (Math.floor(minutos) > 0)
+            if (Math.floor(minutos) > 1) comentario.tiempo = "mas de " + Math.floor(minutos) + " minutos";
+            else comentario.tiempo = "un minuto";
+        else if (Math.floor(segundos) > 0)
+            if (Math.floor(segundos) > 1) comentario.tiempo = "mas de " + Math.floor(segundos) + " segundos";
+            else comentario.tiempo = "un segundo";
+        else
+            comentario.tiempo = "un segundo";
+    });
+        return comentarios;
+}
+
 /* efecto al hacer click en las rating-stars */
 let puntaje = "1";
 let stars = document.querySelectorAll(".rating-star");
@@ -43,7 +81,7 @@ function getComentarios() {
     let id = document.querySelector("#nombreForm").getAttribute("name");
     fetch("api/eventos/" + id + "/comentarios")
     .then(response => response.json())
-    .then(comentarios => { sectionComentarios.comentarios = comentarios; })
+    .then(comentarios => { sectionComentarios.comentarios = calcularTiempo(comentarios); })
     .then(()=> asignarIconosBorrar() )
     .catch(error => console.log(error));
 }

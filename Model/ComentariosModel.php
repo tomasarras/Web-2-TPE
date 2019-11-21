@@ -14,15 +14,16 @@ class ComentariosModel {
         }
     }
 
-    public function enviarComentario($id_usuario,$id_evento,$comentario,$puntaje) {
-        $sql = "INSERT comentario(id_comentario,id_usuario,id_evento,comentario,puntaje)
-        VALUES (NULL,?,?,?,?);";
+    public function enviarComentario($id_usuario,$id_evento,$comentario,$puntaje,$fecha) {
+        $sql = "INSERT comentario(id_comentario,id_usuario,id_evento,comentario,puntaje,fecha)
+        VALUES (NULL,?,?,?,?,?);";
         $sentencia = $this->db->prepare($sql);
         $sentencia->execute(array(
           $id_usuario,
           $id_evento,
           $comentario,
-          $puntaje
+          $puntaje,
+          $fecha
         ));
         
         return $this->db->lastInsertId();

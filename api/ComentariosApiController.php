@@ -59,8 +59,10 @@ class ComentariosApiController extends ApiController {
         $id_evento = $params[":ID_EVENTO"];
         $comentario = $body->comentario;
         $puntaje = $body->puntaje;
+        date_default_timezone_set('UTC');
+        $fecha = date(DATE_W3C);
 
-        $id = $this->model->enviarComentario($id_usuario,$id_evento,$comentario,$puntaje);
+        $id = $this->model->enviarComentario($id_usuario,$id_evento,$comentario,$puntaje,$fecha);
         if ($id)
             $this->view->response("Comentario enviado id={$id}",200);
         else

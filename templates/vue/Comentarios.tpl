@@ -52,11 +52,12 @@
 					<!-- Contenedor del Comentario -->
 					<div class="comment-box">
 						<div class="comment-head">
-							<h6 class="comment-name" v-bind:class="{ 'by-author': comentario.admin == 1 }">{{comentario.email}}</h6>
-                            <!-- Estrellas -->
 
-                            <div class="flex-end">
-                                
+                                <h6 class="comment-name" v-bind:class="{ 'by-author': comentario.admin == 1 }">{{comentario.email}}</h6>
+                                <span>hace {{comentario.tiempo}}</span>
+
+                            <div class="float-right">
+                                <!-- Estrellas -->
                                 <div class="rating" v-bind:class="{ 
                                     'background-verde-oscuro': comentario.puntaje == 5,
                                     'background-verde': comentario.puntaje == 4,
@@ -75,8 +76,8 @@
                                 <a v-if="user.admin == 1" href="javascript:void(0);" class="btns-abrir-popup" :name="comentario.id_comentario">
                                    <i class="fa fa-trash-o rojo icono" id="rojo"></i>
                                 </a>
-
                             </div>
+
 						</div>
 						<div class="comment-content">
 							{{comentario.comentario}}

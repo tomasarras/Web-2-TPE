@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2019 a las 18:00:50
+-- Tiempo de generación: 21-11-2019 a las 02:11:37
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.1.31
 
@@ -56,7 +56,8 @@ CREATE TABLE `comentario` (
   `id_usuario` int(11) NOT NULL,
   `id_evento` int(11) NOT NULL,
   `comentario` text NOT NULL,
-  `puntaje` int(11) NOT NULL
+  `puntaje` int(11) NOT NULL,
+  `fecha` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -81,6 +82,18 @@ INSERT INTO `evento` (`id_evento`, `id_banda`, `evento`, `ciudad`, `detalle`) VA
 (1, 3, 'Rock in Rio', 'Rio de janeiro', NULL),
 (2, 3, 'OzzFest', 'New York Usa', NULL),
 (3, 4, 'Rock \'n roll', 'San Diego', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `imagen_evento`
+--
+
+CREATE TABLE `imagen_evento` (
+  `id_imagen` int(11) NOT NULL,
+  `id_evento` int(11) NOT NULL,
+  `ruta` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -125,6 +138,12 @@ ALTER TABLE `evento`
   ADD KEY `fk_banda` (`id_banda`);
 
 --
+-- Indices de la tabla `imagen_evento`
+--
+ALTER TABLE `imagen_evento`
+  ADD PRIMARY KEY (`id_imagen`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -151,6 +170,12 @@ ALTER TABLE `comentario`
 --
 ALTER TABLE `evento`
   MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `imagen_evento`
+--
+ALTER TABLE `imagen_evento`
+  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
