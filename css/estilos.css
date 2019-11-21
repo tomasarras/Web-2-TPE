@@ -177,10 +177,19 @@ button.btn-seleccionar-banda, button.btn-seleccionar-evento{
   margin-top: 2%;
 }
 
+.espacio-bottom {
+  margin-bottom: 10%;
+}
+
 .none {
   display: none;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .invalid {
   width: 100%;
@@ -1013,78 +1022,100 @@ label.marcada {
  
 /* restablecer contraseña */
 
-#employer-post-new-job .res-steps-container .res-steps {
-    width: 25%;
-    text-align: center;
-    float: left;
-    cursor: pointer
+.tabsModule {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px;
+  font-size: 16px;
+  font-family: 'avenir', sans-serif;
+}
+.tabs {
+  display: flex;
+  width: 320px;
 }
 
-#employer-post-new-job .res-steps-container .res-steps .res-step-bar {
-    -webkit-border-radius: 50% !important;
-    -moz-border-radius: 50% !important;
-    -ms-border-radius: 50% !important;
-    border-radius: 50% !important;
-    background: #0aa7e1;
-    display: inline-block;
-    height: 40px;
-    width: 40px;
-    margin-top: 10px;
-    text-align: center;
-    color: #fff;
-    padding-top: 7px;
-    font-size: 20px
+.tabs .tab.active {
+  color:#000;
+  font-weight: 500;
 }
 
-#employer-post-new-job .res-steps-container .res-steps .res-progress-title {
-    text-align: center;
-    font-size: 15px;
-    padding-top: 10px;
-    display: block
+.sections .section.active {
+  display: block;
 }
 
-#employer-post-new-job .res-steps-container .res-steps .res-progress-bar {
-    height: 5px;
-    background: #0aa7e1;
-    width: 50%;
-    margin: -22px 0 0 50%;
-    float: left
+.sections .section.active .content {
+  opacity: 1;
+  margin-top: 0;
 }
 
-#employer-post-new-job .res-steps-container .res-step-two .res-progress-bar, #employer-post-new-job .res-steps-container .res-step-three .res-progress-bar, #employer-post-new-job .res-steps-container .res-step-four .res-progress-bar {
-    width: 100%;
-    margin-left: 0%
+.tabs .tab {
+  width: 25%;
+  padding: 8px;
+  color: #9e9e9e;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  background: transparent;
+  transition: all 100ms ease-in-out;
+}
+.tabs .tab:hover {
+  background: #f8f8f8;
+  transition: all 100ms ease-in-out;
+}
+.tabs .tab:active {
+  background: #f4f4f4;
+  transition: all 100ms ease-in-out;
+}
+.sections .section {
+  width: 400px;
+  display: none;
+  padding: 32px;
+}
+/*.sections .section button {
+  cursor: pointer;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 24px;
+  background-color: #0078d4;
+}
+.sections .section button:hover {
+  transform: scale(1.1);
+  background-color: #005ba1;
+  transition: all 200ms ease-in-out;
+}
+.sections .section button:active {
+  transform: scale(0.9);
+  outline: none;
+  background-color: lighter(#0078d4, 10deg);
+  transition: all 200ms ease-in-out;
+}
+.sections .section button:focus {
+  outline: none;
+}
+.sections .section .content {
+  opacity: 0;
+  margin-top: 48px;
+  transition: all 400ms ease-in-out;
+}*/
+.tabSlider {
+  height: 3px;
+  width: 320px;
+  background: transparent;
+}
+.tabSlider .bar {
+  height: 100%;
+  width: 25%;
+  background: #0078d4;
+  margin-left: 0;
+  transition: all 200ms ease-in-out;
 }
 
-#employer-post-new-job .res-steps-container .res-step-four .res-progress-bar {
-    width: 50%;
-    margin-right: 50%
-}
-
-#employer-post-new-job .res-step-form {
-    border: 1px solid #d2d2d2;
-    box-shadow: 0px 6px 4px -2px silver;
-    position: absolute
-}
-
-#employer-post-new-job .res-step-form h3 {
-    margin: 10px 0;
-    color: #0aa7e1;
-    font-size: 18px
-}
-
-#employer-post-new-job .res-step-form .form-horizontal label {
-    font-weight: normal
-}
-
-#employer-post-new-job .res-form-two, #employer-post-new-job .res-form-three, #employer-post-new-job .res-form-four {
-    left: 150%
-}
-
-#employer-post-new-job .active .res-step-bar {
-    background: #f19b20 !important
-}
-
-div.res-step-form {
-    background-color: white;
+.flex-center {
+  display: flex;
+  justify-content: center;
 }

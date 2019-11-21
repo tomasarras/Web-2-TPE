@@ -1,117 +1,137 @@
-$(document).ready(function(){
-    let select = new Vue({
-        el:"#pregunta-seguridad-vue",
-        data: {
-            pregunta : "",
-            id: ""
+let select = new Vue({
+    el:"#pregunta-seguridad-vue",
+    data: {
+        pregunta : "",
+        id: ""
+    }
+});
+
+async function informacionValida(btn,callback) {
+    let step = btn.getAttribute("value");
+
+    if (step == "email") {
+        let email = document.querySelector("#email");
+
+        try {
+            let response = await fetch("api/usuarios/email/" + email.value);
+            let json = await response.json();
+            select.pregunta = json.pregunta;
+            select.id = json.id;
+            callback(btn);
+        } catch(e) {
+            email.classList.add("is-invalid");
         }
-    });
+            
+    }
 
-    async function informacionValida(btn,callback) {
-        let step = btn.attr("value");
-        let valido = false;
+    if (step == "respuesta") {
+        let respuesta = document.querySelector("#respuesta");
+        let json = { "respuesta": respuesta.value };
 
-        if (step == "email") {
-            let email = document.querySelector("#email");
+        let response = await fetch("api/usuarios/" + select.id + "/verificar-respuesta",{
+            "method": "POST",
+            "headers": { "Content-Type":"application/json" },
+            "body": JSON.stringify(json)
+        });
 
-            try {
-                let response = await fetch("api/usuarios/email/" + email.value);
-                let json = await response.json();
-                select.pregunta = json.pregunta;
-                select.id = json.id;
-                callback(btn);
-            } catch(e) {
-                email.classList.add("is-invalid");
-            }
-                
-        }
+        if (response.ok)
+            callback(btn);
+        else
+            respuesta.classList.add("is-invalid");
+    }
 
-        if (step == "respuesta") {
-            let respuesta = document.querySelector("#respuesta");
-            let json = { "respuesta": respuesta.value };
+    if (step == "password") {
+        //verificar que coincidan
+        let passwordUno = document.querySelector("#password").value;
+        let passwordDos = document.querySelector("#password-2");
 
-            let response = await fetch("api/usuarios/" + select.id + "/verificar-respuesta",{
-                "method": "POST",
-                "headers": { "Content-Type":"application/json" },
+        if (passwordUno === passwordDos.value && passwordUno != '') {
+
+            let json = { "password" : passwordUno };
+            fetch("api/usuarios/" + select.id,{
+                "method" : "PUT",
+                "headers": { "Content-Type": "application/json" },
                 "body": JSON.stringify(json)
             });
-
-            if (response.ok)
-                callback(btn);
-            else
-                respuesta.classList.add("is-invalid");
-        }
-
-        if (step == "password") {
-            //verificar que coincidan
-            let passwordUno = document.querySelector("#password").value;
-            let passwordDos = document.querySelector("#password-2");
-
-            if (passwordUno === passwordDos.value && passwordUno != '') {
-
-                let json = { "password" : passwordUno };
-                fetch("api/usuarios/" + select.id,{
-                    "method" : "PUT",
-                    "headers": { "Content-Type": "application/json" },
-                    "body": JSON.stringify(json)
-                });
-                callback(btn);
-            } else 
-                passwordDos.classList.add("is-invalid");
-        }
+            callback(btn);
+        } else 
+            passwordDos.classList.add("is-invalid");
     }
+}
 
+let buttons = document.querySelectorAll(".content button");
 
-
-
-
-
-    async function registrarUsuario(event) {
-        let form = document.querySelector("#form-registro");
-        event.preventDefault();
-    
-        let password1 = document.querySelector("#password-1");
-        let password2 = document.querySelector("#password-2");
-    
-        if ( datosCorrectos() && password1.value != '' && password2.value != '' ) {
-            if ( password1.value === password2.value ) {
-                let json = {
-                    "email": document.querySelector("#email").value,
-                    "password": password1.value,
-                    "usuario": document.querySelector("#user_name").value,
-                    "pregunta": document.querySelector("#pregunta").value,
-                    "respuesta": document.querySelector("#respuesta").value
-                };
-    
-    
-                let response = await fetch("api/usuarios",{
-                    "method": "POST",
-                    "headers": { "Content-Type": "application/json" },
-                    "body": JSON.stringify(json)
-                });
-    
-                if (response.ok)
-                    form.submit();
-                else {
-                    let text = await response.text();
-                    if (text == '"El email ya existe"')
-                        errorEmail();
-                    
-                    if (text == '"El usuario ya existe"')
-                        errorUsuario();
-                }
-    
-            } else
-                password2.classList.add("is-invalid");
-    
-        } else {
-    
+buttons.forEach(button => {
+    button.addEventListener("click",()=>{
+        if (button.getAttribute("value") == "back")
+            previousStep(button);
+        else {
+            informacionValida(button,()=> nextStep(button) );
         }
-        
-    }
+    });
+});
+
+function hide(section,tab) {
+    section.classList.remove("active");
+    tab.classList.remove("active");
+}
+
+function show(section,tab) {
+    section.classList.add("active");
+    tab.classList.add("active");
+}
+
+function moveBar(tabNumber) {
+    let bar = document.querySelector(".tabSlider .bar");
+    let tabs = document.querySelectorAll(".tabs .tab");
+    let porcentaje = 100 / tabs.length;
+    porcentaje = porcentaje * tabNumber;
+    bar.style.marginLeft = porcentaje + '%';
+}
+function previousStep(button) {
+    let tabNumber = button.getAttribute("name") -1;
+    let sections = document.querySelectorAll(".sections .section");
+    let tabs = document.querySelectorAll(".tabs .tab");
+    let thisSection = sections[tabNumber]
+    let thisTab = tabs[tabNumber];
+    
+    hide(thisSection,thisTab);
+
+    tabNumber--;
+    let previousSection = sections[tabNumber];
+    let previousTab = tabs[tabNumber];
+    
+    moveBar(tabNumber);
+    show(previousSection,previousTab);
+}
+
+function nextStep(button) {
+    let tabNumber = button.getAttribute("name") -1;
+    let sections = document.querySelectorAll(".sections .section");
+    let tabs = document.querySelectorAll(".tabs .tab");
+    let thisSection = sections[tabNumber]
+    let thisTab = tabs[tabNumber];
+    
+    hide(thisSection,thisTab);
+    
+    if (tabNumber == tabs.length -1)
+        tabNumber = 0;
+    else
+        tabNumber++;
+
+    
+    let nextSection = sections[tabNumber];
+    let nextTab = tabs[tabNumber];
+    
+    moveBar(tabNumber);
+    show(nextSection,nextTab);
+}
 
 
+/*$(document).ready(function(){
+    
 
+    
 
 
 
@@ -123,7 +143,7 @@ $(document).ready(function(){
         informacionValida($(this),pasarPagina );
     });
 
-    /* step back */
+    // step back 
     $(".res-step-form .res-btn-gray").click(function(){
         var getClass = $(this).attr('data-class');
         $(".res-steps").removeClass('active');
@@ -138,7 +158,7 @@ $(document).ready(function(){
         }, 500)
     });
 
-    /* click from top bar steps */
+    // click from top bar steps 
     $('.res-step-one').click(function(){
         if(!$(this).hasClass('active')){
             $(".res-steps").removeClass('active');
@@ -221,4 +241,4 @@ $(document).ready(function(){
             });
         }
     }
-});
+});*/
