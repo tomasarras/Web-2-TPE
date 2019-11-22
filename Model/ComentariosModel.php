@@ -44,7 +44,7 @@ class ComentariosModel {
     }
 
     public function getComentariosByEvento($id_evento) {
-        $sql = "SELECT usuario.email,usuario.admin, comentario.*
+        $sql = "SELECT usuario.nombre,usuario.email,usuario.admin, comentario.*
         FROM comentario
         JOIN evento ON evento.id_evento = comentario.id_evento 
         JOIN usuario ON usuario.id_usuario = comentario.id_usuario 

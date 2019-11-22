@@ -40,6 +40,7 @@
                     <input class="none" id="user-admin" value="{{$user->admin}}">
                     <input class="none" id="user-logueado" value="{{$user->logueado}}">
                     <input class="none" id="user-email" value="{{$user->email}}">
+                    <input class="none" id="user-nombre" value="{{$user->nombre}}">
                     <input class="none" id="user-id" value="{{$user->id_usuario}}">
                 
                     {if $user->admin}

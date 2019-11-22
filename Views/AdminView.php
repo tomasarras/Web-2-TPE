@@ -14,6 +14,7 @@ class AdminView {
         $this->user->logueado = true;
         $this->user->admin = true;
         $this->user->email = $_SESSION["email"];
+        $this->user->nombre = $_SESSION["nombre"];
         $this->user->id_usuario = $_SESSION["id_usuario"];
         $this->smarty->assign("user",$this->user);
     }

@@ -17,26 +17,42 @@ class UsuariosController {
     }
 
     function verificarUser() {
-        $email = $_POST['email'];
-        $pass = $_POST['password'];
-    
-        $usuario = $this->usuariosModel->getUserByEmail($email);
+        if ( isset($_POST['email-usuario']) && isset($_POST['password']) ) {
 
-        if ($usuario) {
-            $hash = $usuario->password;
+            $user = $_POST['email-usuario'];
+            $pass = $_POST['password'];
             
-            if ( password_verify($pass, $hash) ){
-                session_start();
-                $_SESSION["id_usuario"] = $usuario->id_usuario;
-                $_SESSION["email"] = $usuario->email;
-                $_SESSION["admin"] = $usuario->admin;
-                header("Location: ". HOME);
-                die();
-            }
+            $usuario = $this->usuariosModel->getUserByEmail($user);//pido por email
 
+            if (!$usuario) {//si no existe por email, compruebo por nombre
+                $usuario = $this->usuariosModel->getUserByNombre($user);//pido por nombre
+
+                if ($usuario) {//nombre valido
+                    $this->checkPassword($usuario,$pass);
+                } else
+                    $this->usuariosView->getLogin("Usuario o contraseña incorrectos");
+            }
+            else {//email valido
+                $this->checkPassword($usuario,$pass);
+            }
+            
         }
-        $this->usuariosView->getLogin("Usario o contraseña incorrectos");
     
+    }
+
+    private function checkPassword($user,$pass) {
+        $hash = $user->password;
+                
+        if ( password_verify($pass, $hash) ){
+            session_start();
+            $_SESSION["id_usuario"] = $user->id_usuario;
+            $_SESSION["email"] = $user->email;
+            $_SESSION["nombre"] = $user->nombre;
+            $_SESSION["admin"] = $user->admin;
+            header("Location: ". HOME);
+            die();
+        }
+
     }
 
     function getLogin(){
@@ -75,6 +91,7 @@ class UsuariosController {
                     $id = $this->usuariosModel->registrarse($email,$pass,$userName,$pregunta,$respuesta);
                     $_SESSION["id_usuario"] = $id;
                     $_SESSION["email"] = $email;
+                    $_SESSION["nombre"] = $userName;
                     $_SESSION["admin"] = "0";
                     header("Location: ". HOME);
                 } 

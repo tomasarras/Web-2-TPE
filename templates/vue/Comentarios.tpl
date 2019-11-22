@@ -14,7 +14,7 @@
                     <!-- Contenedor del Comentario -->
                     <div class="comment-box">
                         <div class="comment-head">
-                            <h6 class="comment-name" v-bind:class="{ 'by-author': user.admin == 1 }">{{user.email}}</h6>
+                            <h6 class="comment-name" v-bind:class="{ 'by-author': user.admin == 1 }">{{user.nombre}}</h6>
                             <!-- Estrellas -->
 
                             <div class="flex-end">
@@ -40,6 +40,8 @@
 
                         <textarea name="" id="js-comentario" cols="30" rows="3" placeholder="Agregar comentario..."></textarea>
 
+                        <span class="rojo none"></span>
+
                         <button class="btn btn-primary ancho" id="btn-enviar-comentario">Enviar</button>
                     </div>
                 </div>
@@ -53,7 +55,7 @@
 					<div class="comment-box">
 						<div class="comment-head">
 
-                                <h6 class="comment-name" v-bind:class="{ 'by-author': comentario.admin == 1 }">{{comentario.email}}</h6>
+                                <h6 class="comment-name" v-bind:class="{ 'by-author': comentario.admin == 1 }">{{comentario.nombre}}</h6>
                                 <span>hace {{comentario.tiempo}}</span>
 
                             <div class="float-right">

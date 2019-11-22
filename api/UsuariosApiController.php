@@ -119,6 +119,7 @@ class UsuariosApiController extends ApiController {
         session_start();
         $_SESSION["id_usuario"] = $id;
         $_SESSION["email"] = $body->email;
+        $_SESSION["nombre"] = $body->usuario;
         $_SESSION["admin"] = "0";
         $this->view->response("Se creo el usuario",200);
         

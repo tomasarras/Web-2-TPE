@@ -14,7 +14,7 @@
 
             <div class="form-group">
                 <label for="user_name" class="blanco">Nombre de Usuario</label>
-                <input type="text" name="user_name" id="user_name" class="form-control largo campo-vacio" placeholder="nombre de usuario">
+                <input type="text" name="user_name" id="user_name" class="form-control largo campo-vacio" placeholder="Nombre de usuario">
                 <div class="invalid-feedback">Error, nombre de usuario no puede quedar vacio</div>
                 <div id="usuario-existente" class="invalid none">El nombre de usuario ya esta en uso</div>
             </div>

@@ -28,6 +28,7 @@ class HomeController {
     if ( $this->user->logueado ) {
       $this->user->admin = $_SESSION["admin"] == "1";
       $this->user->email = $_SESSION["email"];
+      $this->user->nombre = $_SESSION["nombre"];
       $this->user->id_usuario = $_SESSION["id_usuario"];
     }
     else

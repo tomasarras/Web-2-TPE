@@ -5,8 +5,8 @@
         <form action="login" method="POST">
             
             <div class="form-group">
-                <label for="email" class="blanco">Email</label>
-                <input type="email" name="email" class="form-control largo campo-vacio" id="email" aria-describedby="emailHelp" placeholder="Ingresa tu email">
+                <label for="email-usuario" class="blanco">Nombre de usuario o email</label>
+                <input type="text" name="email-usuario" class="form-control largo campo-vacio" id="email-usuario" placeholder="Ingresa tu nombre de usuario o email">
                 <div class="invalid-feedback">Error, el nombre de usuario no puede quedar vacio</div>
             </div>
             

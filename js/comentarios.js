@@ -6,6 +6,7 @@ let sectionComentarios = new Vue({
             "email" : document.querySelector("#user-email").value,
             "id_usuario": document.querySelector("#user-id").value,
             "admin": document.querySelector("#user-admin").value,
+            "nombre": document.querySelector("#user-nombre").value,
             "logueado": document.querySelector("#user-logueado").value
         }
     }
@@ -35,7 +36,7 @@ function calcularTiempo(comentarios) {
             if (Math.floor(dias) > 1) comentario.tiempo = "mas de " + Math.floor(dias) + " dias";
             else comentario.tiempo = "un dia";
         else if (Math.floor(horas) > 0)
-            if (Math.floor(horas) > 1) json.tiempo = "mas de " + Math.floor(horas) + " horas";
+            if (Math.floor(horas) > 1) comentario.tiempo = "mas de " + Math.floor(horas) + " horas";
             else comentario.tiempo = "una hora";
         else if (Math.floor(minutos) > 0)
             if (Math.floor(minutos) > 1) comentario.tiempo = "mas de " + Math.floor(minutos) + " minutos";
@@ -50,7 +51,7 @@ function calcularTiempo(comentarios) {
 }
 
 /* efecto al hacer click en las rating-stars */
-let puntaje = "1";
+let puntaje = "0";
 let stars = document.querySelectorAll(".rating-star");
 stars.forEach(star => {
     star.addEventListener("click",()=>{
@@ -87,31 +88,61 @@ function getComentarios() {
 }
 
 if (sectionComentarios.user.logueado == "1") {
+    //si esta logueado se habilita el boton de comentar
     let btnEnviar = document.querySelector("#btn-enviar-comentario");
     btnEnviar.addEventListener("click",enviarComentario);
+
+    //se quita el mensaje de error si es que hay
+    let textArea = document.querySelector("#js-comentario")
+    textArea.addEventListener("click",()=> {
+        let mensajeError = document.querySelector(".comment-box span");
+        mensajeError.classList.add("none");
+    });
 }
 
 
 
 async function enviarComentario() {
     let comentario = document.querySelector("#js-comentario").value;
-    let id_evento = document.querySelector("#evento").getAttribute("name");
-
-    let json = {
-        "comentario": comentario,
-        "puntaje": puntaje
-    }
+    let mensajeError = document.querySelector(".comment-box span");
     
-    let response = await fetch("api/eventos/" + id_evento + "/comentarios",{
-        "method" : "POST",
-        "headers": { "Content-Type": "application/json" },
-        "body"   : JSON.stringify(json)
-    });
+    if (comentario != '') {
 
-    if ( !response.ok )
-        console.log("error de conexion");
+        if (puntaje != '0') {
 
-    getComentarios();
+            
+            let id_evento = document.querySelector("#evento").getAttribute("name");
+            
+            let json = {
+                "comentario": comentario,
+                "puntaje": puntaje
+            }
+            
+            let response = await fetch("api/eventos/" + id_evento + "/comentarios",{
+                "method" : "POST",
+                "headers": { "Content-Type": "application/json" },
+                "body"   : JSON.stringify(json)
+            });
+            
+            if ( !response.ok )
+            console.log("error de conexion");
+            
+            getComentarios();
+        } else{
+            mensajeError.classList.remove("none");
+            mensajeError.innerHTML = "*Puntua el comentario";
+        }
+
+
+    } else {
+
+        mensajeError.classList.remove("none");
+        mensajeError.innerHTML = "*Escribi un comentario";
+
+        if (puntaje == '0')
+            mensajeError.innerHTML += " y una puntuacion";
+
+    }
 }
 
 async function borrarComentario(id) {
