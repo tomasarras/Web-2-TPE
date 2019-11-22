@@ -14,7 +14,7 @@
     <link rel="icon"  href="images/favicon.png">
     <script src="https://kit.fontawesome.com/a349ac397c.js" crossorigin="anonymous"></script>
     <script src="js/vue.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/Helper.js"></script>
 
     <title>{$titulo}</title>
 </head>

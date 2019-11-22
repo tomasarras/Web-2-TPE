@@ -6,9 +6,9 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th src="banda" class="js-orden link" value="bandas" scope="col">Banda</th>
-                <th src="anio" class="js-orden link" value="bandas" scope="col">Año</th>
-                <th src="cantidadCanciones" class="js-orden link" value="bandas" scope="col">Cantidad de canciones</th>
+                <th scope="col">Banda</th>
+                <th scope="col">Año</th>
+                <th scope="col">Cantidad de canciones</th>
                 <th scope="col">Mas info</th>
             </tr>
         </thead>

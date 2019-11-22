@@ -21,7 +21,7 @@
     </form>
 
 
-    <form method="POST" id="js-form-tablas">
+    <form method="POST" id="js-form-tablas"><!--hacer ordenamiento-->
         <input class="none" name="eventos"
         {if $ordenEvento}
             value="{$ordenEvento}"
@@ -40,5 +40,4 @@
     </form>
 
 </div>
-
 {include file="footer.tpl"}

@@ -91,35 +91,28 @@
         
 	</div>
 
+    <!-- popup -->
+    <div id="overlay" class="overlay">
+        <div id="popup" class="popup">
+            
+            <div class="flex-end">
+                <a href="javascript:void(0);" id="btn-cerrar-popup" class="btn-cerrar-popup js-cerrar">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+            
+            <h5>
+                Seguro queres borrar el comentario de: <span id="js-nombre-evento"></span>?
+            </h5>
 
-
-
-
-
-    
-
-<!-- popup -->
-<div id="overlay" class="overlay">
-    <div id="popup" class="popup">
-        
-        <div class="flex-end">
-            <a href="javascript:void(0);" id="btn-cerrar-popup" class="btn-cerrar-popup js-cerrar">
-                <i class="fa fa-times"></i>
-            </a>
-        </div>
-        
-        <h5>
-            Seguro queres borrar el comentario de: <span id="js-nombre-evento"></span>?
-        </h5>
-
-        
-        <button class="btn btn-danger" id="btn-borrar">Borrar</button>
-        <button class="btn btn-primary js-cerrar">Cancelar</button>
-        
-    </div>	
-</div>
-
-    <script type="application/javascript" src="./js/comentarios.js"></script>
+            
+            <button class="btn btn-danger" id="btn-borrar">Borrar</button>
+            <button class="btn btn-primary js-cerrar">Cancelar</button>
+            
+        </div>	
+    </div>
 
 </section>
+<script src="./js/comentarios.js"></script>
+
 {/literal}

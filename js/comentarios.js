@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded",()=>{
+
 let sectionComentarios = new Vue({
     el: "#vue-comentarios",
     data: {
@@ -11,6 +13,8 @@ let sectionComentarios = new Vue({
         }
     }
 });
+
+let helper = new Helper();
 
 function calcularTiempo(comentarios) {
     let fechaActual = new Date();
@@ -50,8 +54,8 @@ function calcularTiempo(comentarios) {
         return comentarios;
 }
 
-/* efecto al hacer click en las rating-stars */
 let puntaje = "0";
+/* efecto al hacer click en las rating-stars */
 let stars = document.querySelectorAll(".rating-star");
 stars.forEach(star => {
     star.addEventListener("click",()=>{
@@ -83,7 +87,7 @@ function getComentarios() {
     fetch("api/eventos/" + id + "/comentarios")
     .then(response => response.json())
     .then(comentarios => { sectionComentarios.comentarios = calcularTiempo(comentarios); })
-    .then(()=> asignarIconosBorrar() )
+    .then(()=> helper.asignarIconosBorrar() )
     .catch(error => console.log(error));
 }
 
@@ -125,9 +129,10 @@ async function enviarComentario() {
             });
             
             if ( !response.ok )
-            console.log("error de conexion");
+                console.log("error de conexion");
             
             getComentarios();
+            
         } else{
             mensajeError.classList.remove("none");
             mensajeError.innerHTML = "*Puntua el comentario";
@@ -158,41 +163,11 @@ async function borrarComentario(id) {
     getComentarios();
 }
 
-
-
-
-//agrega popup al apretar el icono de borrar
-function asignarIconosBorrar() {
-    let btnsAbrirPopup = document.querySelectorAll('.btns-abrir-popup');
-    let overlay = document.getElementById('overlay'),
-    popup = document.getElementById('popup'),
-    btnCerrarpopup = document.querySelectorAll('.js-cerrar');
-    
-    btnsAbrirPopup.forEach(btnAbrirPopup => {
-        
-        btnAbrirPopup.addEventListener('click', function() {
-            overlay.classList.add('active');
-            popup.classList.add('active');
-            let btnBorrar = document.querySelector("#btn-borrar");
-            btnBorrar.setAttribute("name",btnAbrirPopup.getAttribute("name"));
-            let evento = btnAbrirPopup.parentNode.parentNode.firstElementChild;
-            let spanEvento = document.querySelector("#js-nombre-evento");
-            spanEvento.innerHTML = evento.innerHTML;
-        });
-        
-    });
-    
-    btnCerrarpopup.forEach(btn => {
-        btn.addEventListener('click', function() {
-            overlay.classList.remove('active');
-            popup.classList.remove('active');
-        });
-    });
-}
-
 getComentarios();
 
 let btnBorrarComentario = document.querySelector("#btn-borrar");
 btnBorrarComentario.addEventListener("click",()=> 
     borrarComentario(btnBorrarComentario.getAttribute("name")
 ));
+
+});

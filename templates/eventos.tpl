@@ -7,9 +7,9 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th src="evento" class="js-orden link" value="eventos" scope="col">Nombre del evento</th>
-                <th src="ciudad" class="js-orden link" value="eventos" scope="col">Ciudad</th>
-                <th src="banda"  class="js-orden link" value="eventos" scope="col">Banda asociada</th>
+                <th scope="col">Nombre del evento</th>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Banda asociada</th>
                 <th scope="col">Mas info</th>
             </tr>
         </thead>

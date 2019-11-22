@@ -41,7 +41,7 @@
 
 <div class="centrar-contenido admin margen-abajo">
     
-    <section class="bg-dark borde grande margen-abajo" id="btns-formulario">
+    <section class="bg-dark borde grande margen-abajo">
 
         <div class="centrar-contenido">
             <h3 class="blanco">Agregar</h3>

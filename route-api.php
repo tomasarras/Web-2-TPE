@@ -34,7 +34,7 @@
     $router->addRoute("/eventos/:ID", "PUT", "EventosApiController", "modificarEvento");
     
     $router->addRoute("/comentarios/:ID", "GET", "ComentariosApiController", "getComentario");
-    $router->addRoute("/comentarios/:ID", "DELETE", "ComentariosApiController", "borrarComentario");
+    $router->addRoute("/comentarios/:ID_COMENTARIO", "DELETE", "ComentariosApiController", "borrarComentario");
     $router->addRoute("/eventos/:ID_EVENTO/comentarios", "POST", "ComentariosApiController", "enviarComentario");
     $router->addRoute("/eventos/:ID_EVENTO/comentarios", "GET", "ComentariosApiController", "getComentarios");
 
