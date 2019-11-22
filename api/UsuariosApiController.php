@@ -75,17 +75,37 @@ class UsuariosApiController extends ApiController {
     public function getUsuarioByEmail( $params = null ) {
         $email = $params[":EMAIL"];
         $usuario = $this->model->getUserByEmail($email);
+        
+        if ($usuario){
+            //creo el objeto que voy a devolver y le asigno valores
+            $user = new stdClass();
+            $user->id = $usuario->id_usuario;
+            $user->email = $usuario->email;
+            $user->nombre = $usuario->nombre;
+            $user->pregunta = $usuario->pregunta;
 
+            $this->view->response($user,200);
+        } else
+            $this->view->response("El email={$email} no existe", 404);
+    }
+
+    public function getUsuarioByNombre( $params = null ) {
+        $nombre = $params[":NOMBRE"];
+
+        $usuario = $this->model->getUserByNombre($nombre);
+        
+        if ($usuario) {
         //creo el objeto que voy a devolver y le asigno valores
         $user = new stdClass();
         $user->id = $usuario->id_usuario;
         $user->email = $usuario->email;
+        $user->nombre = $usuario->nombre;
         $user->pregunta = $usuario->pregunta;
 
-        if ($usuario)
             $this->view->response($user,200);
-        else
-            $this->view->response("El email={$email} no existe", 404);
+        } else
+            $this->view->response("El nombre={$nombre} no existe", 404);
+        
     }
     
     public function eliminarUsuario($params = null) {

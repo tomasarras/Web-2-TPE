@@ -36,46 +36,52 @@ function datosCorrectos() {
 
 async function registrarUsuario(event) {
     let form = document.querySelector("#form-registro");
-    event.preventDefault();
-
+    
     let password1 = document.querySelector("#password-1");
     let password2 = document.querySelector("#password-2");
 
-    if ( datosCorrectos() && password1.value != '' && password2.value != '' ) {
-        if ( password1.value === password2.value ) {
-            let json = {
-                "email": document.querySelector("#email").value,
-                "password": password1.value,
-                "usuario": document.querySelector("#user_name").value,
-                "pregunta": document.querySelector("#pregunta").value,
-                "respuesta": document.querySelector("#respuesta").value
-            };
+    let email = document.querySelector("#email").value;
+    
+    if (email.search("@") != -1) {
 
-
-            let response = await fetch("api/usuarios",{
-                "method": "POST",
-                "headers": { "Content-Type": "application/json" },
-                "body": JSON.stringify(json)
-            });
-
-            if (response.ok)
-                form.submit();
-            else {
-                let text = await response.text();
-                if (text == '"El email ya existe"')
-                    errorEmail();
+        if ( datosCorrectos() ) {
+            if ( password1.value === password2.value && password1.value != '' ) {
+                event.preventDefault();
+                /*let json = {
+                    "email": document.querySelector("#email").value,
+                    "password": password1.value,
+                    "usuario": document.querySelector("#user_name").value,
+                    "pregunta": document.querySelector("#pregunta").value,
+                    "respuesta": document.querySelector("#respuesta").value
+                };*/
+                /*
                 
-                if (text == '"El usuario ya existe"')
+                let response = await fetch("api/usuarios",{
+                    "method": "POST",
+                    "headers": { "Content-Type": "application/json" },
+                    "body": JSON.stringify(json)
+                });*/
+                let userName = document.querySelector("#user_name").value;
+                let existeEmail = await fetch("api/usuarios/email/" + email);
+                let existeUsuario = await fetch("api/usuarios/nombre/" + userName);
+
+                if (existeEmail.ok) //si existe el email, no se puede registrar
+                    errorEmail();
+
+                if (existeUsuario.ok) // si existe el usuario no se puede registrar
                     errorUsuario();
+                
+                if (!existeEmail.ok && !existeUsuario.ok)
+                    form.submit();// si no existe el email y el usuario, se puede registrar
+
+            } else {
+                password2.classList.add("is-invalid");
+                event.preventDefault();
             }
 
-        } else
-            password2.classList.add("is-invalid");
-
-    } else {
-
+        } else 
+            event.preventDefault();
     }
-    
 }
 
 

@@ -15,6 +15,7 @@
     $router->addRoute("/usuarios/:ID", "GET", "UsuariosApiController", "getUsuario");
     $router->addRoute("/usuarios/:ID/verificar-respuesta", "POST", "UsuariosApiController", "verificarRespuesta");
     $router->addRoute("/usuarios/email/:EMAIL", "GET", "UsuariosApiController", "getUsuarioByEmail");
+    $router->addRoute("/usuarios/nombre/:NOMBRE", "GET", "UsuariosApiController", "getUsuarioByNombre");
     $router->addRoute("/usuarios/:ID", "DELETE", "UsuariosApiController", "eliminarUsuario");
     $router->addRoute("/usuarios", "POST", "UsuariosApiController", "agregarUsuario");
     $router->addRoute("admin/usuarios/:ID", "PUT", "UsuariosApiController", "cambiarAdmin");

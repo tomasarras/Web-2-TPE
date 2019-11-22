@@ -2,7 +2,7 @@
 
 <div class="centrar-contenido view">
     <section class="bg-dark borde grande">
-        <form action="#" method="POST" id="form-registro">
+        <form action="registrarse" method="POST" id="form-registro">
             
             <div class="form-group">
                 <label for="email" class="blanco">Email</label>
@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <label for="password-1" class="blanco">Contraseña</label>
-                <input type="password" name="password-1" class="form-control largo campo-vacio" id="password-1" placeholder="Contraseña">
+                <input type="password" name="password" class="form-control largo campo-vacio" id="password-1" placeholder="Contraseña">
                 <div class="invalid-feedback">Error, la contraseña no puede quedar vacia</div>
             </div>
 
@@ -33,7 +33,7 @@
 
             <div class="form-group">
                 <label for="pregunta" class="blanco">Seleccione una pregunta de seguridad</label>
-                <select class="form-control" name="preguntas" id="pregunta">
+                <select class="form-control" name="pregunta" id="pregunta">
                     <option value="perro">Nombre de su primera mascota.</option>
                     <option value="apodo">Apodo de pequeño.</option>
                     <option value="escuela">Nombre de su escuela primaria.</option>
