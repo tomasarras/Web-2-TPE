@@ -36,6 +36,6 @@
     </section>
 </div>
 
-<script src="./js/editarBanda.js"><script>
+<script type="module" src="./js/editarBanda.js"><script>
 
 {include file="footer.tpl"}

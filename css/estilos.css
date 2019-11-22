@@ -605,6 +605,10 @@ td.link:hover {
 }
 
 /*switch */
+.toggle-btn .cb-value.not-link {
+  cursor: not-allowed;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Ubuntu);
 
 .toggle-btn {

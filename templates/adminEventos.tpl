@@ -85,6 +85,4 @@
     </section>
 </div>
 
-<script src="./js/eventos.js"></script>
-
 {include file="footer.tpl"}

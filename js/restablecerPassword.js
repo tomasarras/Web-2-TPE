@@ -66,9 +66,8 @@ buttons.forEach(button => {
     button.addEventListener("click",()=>{
         if (button.getAttribute("value") == "back")
             previousStep(button);
-        else {
+        else
             informacionValida(button,()=> nextStep(button) );
-        }
     });
 });
 
@@ -127,4 +126,5 @@ function nextStep(button) {
     moveBar(tabNumber);
     show(nextSection,nextTab);
 }
+
 });

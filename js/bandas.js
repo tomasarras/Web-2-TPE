@@ -1,3 +1,5 @@
+import Helper from './Helper.js';
+
 document.addEventListener("DOMContentLoaded",function(){
 
 let tablaBandas = new Vue({
@@ -9,9 +11,9 @@ let tablaBandas = new Vue({
 let helper = new Helper();
 
 let btnAgregar = document.querySelector("#btn-agregar-banda");
-btnAgregar.addEventListener("click",()=>
-    helper.comprobarInputsVacios(agregarBanda)
-    );
+btnAgregar.addEventListener("click",(event)=>
+    helper.comprobarInputsVacios(event,agregarBanda)
+);
 
 
 async function borrarBanda(id) {
@@ -41,6 +43,8 @@ async function agregarBanda() {
         "body": JSON.stringify(json)
     });
 
+    if (!response.ok)
+        console.log("error de conexion");
     getBandas();
 }
 

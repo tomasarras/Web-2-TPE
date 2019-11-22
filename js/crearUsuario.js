@@ -1,3 +1,5 @@
+import Helper from './Helper.js';
+
 document.addEventListener("DOMContentLoaded",()=>{
 let helper = new Helper();
 
@@ -26,20 +28,6 @@ async function registrarUsuario() {
     if (email.search("@") != -1) {
 
         if ( password1.value === password2.value && password1.value != '' ) {
-            /*let json = {
-                "email": document.querySelector("#email").value,
-                "password": password1.value,
-                "usuario": document.querySelector("#user_name").value,
-                "pregunta": document.querySelector("#pregunta").value,
-                "respuesta": document.querySelector("#respuesta").value
-            };*/
-            /*
-            
-            let response = await fetch("api/usuarios",{
-                "method": "POST",
-                "headers": { "Content-Type": "application/json" },
-                "body": JSON.stringify(json)
-            });*/
             let userName = document.querySelector("#user_name").value;
             let existeEmail = await fetch("api/usuarios/email/" + email);
             let existeUsuario = await fetch("api/usuarios/nombre/" + userName);

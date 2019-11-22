@@ -17,4 +17,6 @@
         </td>
     </tr>
 </tbody>
+
+<script type="module" src="./js/eventos.js"></script>
 {/literal}

@@ -113,6 +113,6 @@
     </div>
 
 </section>
-<script src="./js/comentarios.js"></script>
+<script type="module" src="./js/comentarios.js"></script>
 
 {/literal}

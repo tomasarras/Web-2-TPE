@@ -56,6 +56,6 @@
     </section>
 </div>
 
-<script src="./js/crearUsuario.js"></script>
+<script type="module" src="./js/crearUsuario.js"></script>
 
 {include file="footer.tpl"}

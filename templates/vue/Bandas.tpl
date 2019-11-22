@@ -26,5 +26,5 @@
 </tbody>
 
 
-<script src="./js/bandas.js"></script>
+<script type="module" src="./js/bandas.js"></script>
 {/literal}

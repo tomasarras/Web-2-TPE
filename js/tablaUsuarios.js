@@ -1,8 +1,11 @@
+import Helper from './Helper.js';
+
 document.addEventListener("DOMContentLoaded",()=>{
 let tabla = new Vue({
     el: "#vue-tabla-usuarios",
     data: {
-        usuarios: []
+        usuarios: [],
+        id_usuario: document.querySelector("#user-id").value
     }
 });
 let helper = new Helper();

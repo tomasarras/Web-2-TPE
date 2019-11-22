@@ -1,3 +1,5 @@
+import Helper from './Helper.js';
+
 document.addEventListener("DOMContentLoaded",()=>{
 
 let sectionComentarios = new Vue({

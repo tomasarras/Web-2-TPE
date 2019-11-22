@@ -1,10 +1,10 @@
-class Helper {
+export default class Helper {
 
     comprobarInputsVacios(event,callback) {
         let error = false;
         let btnsComprobar = document.querySelectorAll(".campos-vacios");
         btnsComprobar.forEach(btn => {
-            btn.addEventListener("click", (event) => {//comprobar event
+            btn.addEventListener("click", () => {//comprobar event
             
             let inputs = document.querySelectorAll(".campo-vacio");
             inputs.forEach(input => {
@@ -27,39 +27,7 @@ class Helper {
         if (!error)
             callback();
     }
-/*
-
-
-//agrega popup al apretar el icono de borrar
-function asignarIconosBorrar() {
-    let btnsAbrirPopup = document.querySelectorAll('.btns-abrir-popup');
-    let overlay = document.getElementById('overlay'),
-    popup = document.getElementById('popup'),
-    btnCerrarpopup = document.querySelectorAll('.js-cerrar');
     
-    btnsAbrirPopup.forEach(btnAbrirPopup => {
-        
-        btnAbrirPopup.addEventListener('click', function() {
-            overlay.classList.add('active');
-            popup.classList.add('active');
-            let btnBorrar = document.querySelector("#btn-borrar");
-            btnBorrar.setAttribute("name",btnAbrirPopup.getAttribute("name"));
-            let evento = btnAbrirPopup.parentNode.parentNode.firstElementChild;
-            let spanEvento = document.querySelector("#js-nombre-evento");
-            spanEvento.innerHTML = evento.innerHTML;
-        });
-        
-    });
-    
-    btnCerrarpopup.forEach(btn => {
-        btn.addEventListener('click', function() {
-            overlay.classList.remove('active');
-            popup.classList.remove('active');
-        });
-    });
-}
-
-*/
     asignarIconosBorrar() {
         let btnsAbrirPopup = document.querySelectorAll('.btns-abrir-popup');
         let overlay = document.getElementById('overlay'),
