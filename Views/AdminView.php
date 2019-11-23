@@ -22,7 +22,7 @@ class AdminView {
     function mostrarUsuarios($usuarios) {
         $this->smarty->assign("titulo","Administrar usuarios");
         $this->smarty->assign("usuarios",$usuarios);
-        $this->smarty->display('templates/usuariosCSR.tpl');
+        $this->smarty->display('templates/adminUsuarios.tpl');
     }
 
     function mostrarAdmin() {
@@ -58,4 +58,3 @@ class AdminView {
     }
 
 }
-?>

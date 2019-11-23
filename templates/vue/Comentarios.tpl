@@ -40,7 +40,7 @@
 
                         <textarea name="" id="js-comentario" cols="30" rows="3" placeholder="Agregar comentario..."></textarea>
 
-                        <span class="rojo none"></span>
+                        <span class="invalid rojo none"></span>
 
                         <button class="btn btn-primary ancho" id="btn-enviar-comentario">Enviar</button>
                     </div>

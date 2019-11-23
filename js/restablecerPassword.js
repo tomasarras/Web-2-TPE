@@ -13,16 +13,15 @@ async function informacionValida(btn,callback) {
     if (step == "email") {
         let email = document.querySelector("#email");
 
-        try {
-            let response = await fetch("api/usuarios/email/" + email.value);
+        let response = await fetch("api/usuarios/email/" + email.value);
+        if (response.ok){
             let json = await response.json();
             select.pregunta = json.pregunta;
             select.id = json.id;
             callback(btn);
-        } catch(e) {
+        } else
             email.classList.add("is-invalid");
-        }
-            
+        
     }
 
     if (step == "respuesta") {

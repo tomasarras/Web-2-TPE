@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+<link rel="stylesheet" href="css/comentarios.css">
 
 <section class="container borde fondo-blanco">
     <!-- carousel bootstrap -->
@@ -36,7 +37,7 @@
 
 
 
-    <h2 class="centrado espacio-top">Evento Detallado</h2>
+    <h2 class="centrado margen-arriba">Evento Detallado</h2>
 
     <div class="form-group">
       <label for="evento">Nombre del evento</label>

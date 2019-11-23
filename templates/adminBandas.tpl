@@ -1,7 +1,6 @@
 {include file="header.tpl"}
 
-<div class="centrar-contenido margen-tabla-admin">
-
+<section class="container margen-arriba">
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -15,10 +14,10 @@
         </thead>
         {include file="vue/Bandas.tpl"}
     </table>
-</div>
+</section>
 
 <!-- popup -->
-<div id="overlay" class="overlay">
+<section id="overlay" class="overlay">
     <div id="popup" class="popup">
         
         <div class="flex-end">
@@ -28,7 +27,7 @@
         </div>
         
         <h5>
-            Seguro queres borrar la banda: <span id="js-nombre-evento"></span>?
+            Seguro queres borrar la banda: <span id="js-nombre-elemento"></span>?
         </h5>
 
         
@@ -36,12 +35,11 @@
         <button class="btn btn-primary js-cerrar">Cancelar</button>
         
     </div>	
-</div>
+</section>
 
 
-<div class="centrar-contenido admin margen-abajo">
-    
-    <section class="bg-dark borde grande margen-abajo">
+<div class="centrar-contenido margen-vertical">
+    <section class="bg-dark borde grande">
 
         <div class="centrar-contenido">
             <h3 class="blanco">Agregar</h3>
@@ -49,23 +47,23 @@
             
         <div class="form-group">
             <label for="input-banda" class="blanco">Banda</label>
-            <input type="text" name="banda" class="form-control largo campo-vacio" id="input-banda" placeholder="Nombre de la banda">
+            <input type="text" name="banda" class="form-control campo-vacio" id="input-banda" placeholder="Nombre de la banda">
             <div class="invalid-feedback">Ingresa una banda</div>
         </div>
 
         <div class="form-group">
             <label for="input-cantidad" class="blanco">Cantidad de canciones</label>
-            <input type="number" name="cant-canciones" class="form-control largo campo-vacio" id="input-cantidad" placeholder="Cantidad de canciones de la banda" min="0">
+            <input type="number" name="cant-canciones" class="form-control campo-vacio" id="input-cantidad" placeholder="Cantidad de canciones de la banda" min="0">
             <div id="error-cantidad" class="invalid-feedback">Ingresa la cantidad de canciones</div>
         </div>
 
         <div class="form-group">
             <label for="input-anio" class="blanco">Año</label>
-            <input type="number" name="anio" class="form-control largo campo-vacio" id="input-anio" placeholder="Año de la banda" min="1900">
+            <input type="number" name="anio" class="form-control campo-vacio" id="input-anio" placeholder="Año de la banda" min="1900" max="9999">
             <div class="invalid-feedback">Ingresa un año</div>
         </div>
 
-        <button class="btn btn-primary campos-vacios ancho" id="btn-agregar-banda">Agregar</button>
+        <button class="btn btn-primary ancho" id="btn-agregar-banda">Agregar</button>
         
     </section>
 </div>

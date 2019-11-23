@@ -10,14 +10,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/error.css">
     <link rel="icon"  href="images/favicon.png">
 
     <title>{$titulo}</title>
 </head>
 <body>
-
-<div class="view">
 
     <div class="face err">
         <div class="band err">
@@ -36,6 +34,6 @@
     <div class="centrar-contenido">
         <a class="btn btn-primary err" href="{$home}">Volver al Home</a>
     </div>
-</div>
 
-{include file="footer.tpl"}
+</body>
+</html>

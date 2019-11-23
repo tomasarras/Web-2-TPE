@@ -1,6 +1,7 @@
 {include file="header.tpl"}
+<link rel="stylesheet" href="css/adminUsuarios.css">
 
-<div class="container cuadro">
+<section class="container margen-arriba margen-abajo">
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -10,9 +11,9 @@
                 <th scope="col">Eliminar</th>
             </tr>
         </thead>
-        {include file="vue/TablaUsuarios.tpl"}
+        {include file="vue/Usuarios.tpl"}
     </table>
-</div>
+</section>
 
 
 <!-- popup -->
@@ -26,11 +27,11 @@
         </div>
         
         <h5>
-            Seguro queres borrar al usuario: <span id="js-nombre-evento"></span>?
+            Seguro queres borrar al usuario: <span id="js-nombre-elemento"></span>?
         </h5>
 
         
-        <a src="admin/usuarios/eliminar/" class="btn btn-danger" id="btn-borrar">Borrar</a>
+        <a src="admin/usuarios/eliminar/" href="#" class="btn btn-danger" id="btn-borrar">Borrar</a>
         <button class="btn btn-primary js-cerrar">Cancelar</button>
         
     </div>	

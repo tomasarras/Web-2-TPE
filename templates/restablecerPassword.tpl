@@ -1,7 +1,8 @@
 {include file="header.tpl"}
+<link rel="stylesheet" href="css/restablecerPassword.css">
 
 <section class="container">
-    <div class="flex-center espacio-top">
+    <div class="flex-center margen-arriba">
         <div class="tabsModule borde">
             <div class="tabs">
                 <div class="tab active">Email</div>
@@ -21,7 +22,7 @@
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control largo" id="email" placeholder="Email">
+                            <input type="text" class="form-control" id="email" placeholder="Email">
                             <div class="invalid-feedback">El email no existe</div>
                         </div>
 
@@ -32,14 +33,14 @@
 
                 <div class="section">
                     <div class="content">
-                        <h3 class="espacio-bottom">Pregunta de seguridad</h3>
+                        <h3 class="margen-abajo">Pregunta de seguridad</h3>
                         <p>Responde a la pregunta que elegiste cuando te registraste.</p>
 
                         {include file="vue/preguntaSeguridad.tpl"}
 
                         <div class="form-group">
                             <label for="respuesta">Respuesta</label>
-                            <input type="text" class="form-control largo" id="respuesta" placeholder="Respuesta">
+                            <input type="text" class="form-control" id="respuesta" placeholder="Respuesta">
                             <div class="invalid-feedback">Respuesta invalida</div>
                         </div>
 
@@ -56,13 +57,13 @@
 
                         <div class="form-group">
                                 <label for="password">Contraseña</label>
-                                    <input type="password" class="form-control largo" id="password" placeholder="Contraseña">
+                                    <input type="password" class="form-control" id="password" placeholder="Contraseña">
                                 <div class="invalid-feedback">La contraseña no puede quedar vacia</div>
                             </div>
 
                             <div class="form-group">
                                 <label for="password-2">Confirmar Contraseña</label>
-                                <input type="password" name="password-2" class="form-control largo" id="password-2" placeholder="Confirmar contraseña">
+                                <input type="password" name="password-2" class="form-control" id="password-2" placeholder="Confirmar contraseña">
                                 <div class="invalid-feedback">Volve a escribir la misma contraseña</div>
                             </div>
 
@@ -86,7 +87,5 @@
     </div>
 </section>
 
-
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script src="./js/restablecerPassword.js"><script>
 {include file="footer.tpl"}

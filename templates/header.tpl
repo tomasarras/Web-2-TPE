@@ -14,8 +14,7 @@
     <link rel="icon"  href="images/favicon.png">
     <script src="https://kit.fontawesome.com/a349ac397c.js" crossorigin="anonymous"></script>
     <script src="js/Vue.js"></script>
-    <!--<script src="js/Helper.js"></script>-->
-
+    <script type="module" src="js/script.js"></script>
     <title>{$titulo}</title>
 </head>
 <body>
@@ -58,6 +57,7 @@
                     <input class="none" id="user-admin" value="0">
                     <input class="none" id="user-logueado" value="0">
                     <input class="none" id="user-email" value="">
+                    <input class="none" id="user-nombre" value="">
                     <input class="none" id="user-id" value="">
 
                     <a href="login">

@@ -1,7 +1,6 @@
 {include file="header.tpl"}
 
-<div class="centrar-contenido margen-tabla-admin">
-
+<section class="container margen-arriba">
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -15,10 +14,10 @@
         </thead>
         {include file="vue/Eventos.tpl"}
     </table>
-</div>
+</section>
 
 <!-- popup -->
-<div id="overlay" class="overlay">
+<section id="overlay" class="overlay">
     <div id="popup" class="popup">
         
         <div class="flex-end">
@@ -28,19 +27,18 @@
         </div>
         
         <h5>
-            Seguro queres borrar el evento: <span id="js-nombre-evento"></span>?
+            Seguro queres borrar el evento: <span id="js-nombre-elemento"></span>?
         </h5>
 
         
-        <a class="btn btn-danger" id="btn-borrar">Borrar</a>
+        <a class="btn btn-danger link" id="btn-borrar">Borrar</a>
         <button class="btn btn-primary js-cerrar">Cancelar</button>
         
     </div>	
-</div>
+</section>
 
-<div class="centrar-contenido admin margen-abajo">
-    
-    <section class="bg-dark borde grande margen-abajo">
+<div class="centrar-contenido margen-vertical">
+    <section class="bg-dark borde grande">
         <form action="admin/eventos/agregar" method="POST" enctype="multipart/form-data">
 
             <div class="centrar-contenido">
@@ -49,19 +47,19 @@
                 
             <div class="form-group">
                 <label for="input-evento" class="blanco">Evento</label>
-                <input type="text" name="evento" class="form-control largo campo-vacio" id="input-evento" placeholder="Nombre del evento">
+                <input type="text" name="evento" class="form-control campo-vacio" id="input-evento" placeholder="Nombre del evento">
                 <div class="invalid-feedback">Ingresa un evento</div>
             </div>
 
             <div class="form-group">
                 <label for="input-ciudad" class="blanco">Ciudad del evento</label>
-                <input type="text" name="ciudad" class="form-control largo campo-vacio" id="input-ciudad" placeholder="Ciudad del evento">
+                <input type="text" name="ciudad" class="form-control campo-vacio" id="input-ciudad" placeholder="Ciudad del evento">
                 <div class="invalid-feedback">Ingresa una ciudad</div>
             </div>
 
             <div class="form-group">
                 <label for="input-detalle" class="blanco">Detalle del evento</label>
-                <input type="text" name="detalle" class="form-control largo campo-vacio" id="input-detalle" placeholder="Detalle del evento">
+                <input type="text" name="detalle" class="form-control campo-vacio" id="input-detalle" placeholder="Detalle del evento">
                 <div class="invalid-feedback">Ingresa un detalle del evento</div>
             </div>
 
@@ -79,7 +77,7 @@
                 <label class="custom-file-label" for="validatedCustomFile">Agregar imagenes...</label>
             </div>
 
-            <button type="submit" class="btn btn-primary campos-vacios ancho margen-arriba">Agregar</button>
+            <button type="submit" class="btn btn-primary ancho margen-arriba campos-vacios">Agregar</button>
         </form>
         
     </section>
