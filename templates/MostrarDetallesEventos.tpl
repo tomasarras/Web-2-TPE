@@ -45,6 +45,18 @@
     </div>
 
     <div class="form-group">
+      <label class="block">Promedio</label>
+      <div class="rating">
+          <div class="rating-num" id="promedio-puntaje"></div>
+          <label class="stars-prom"></label>
+          <label class="stars-prom"></label>
+          <label class="stars-prom"></label>
+          <label class="stars-prom"></label>
+          <label class="stars-prom"></label>
+      </div>
+    </div>
+
+    <div class="form-group">
       <label for="ciudad">Ciudad</label>
       <input type="text" class="form-control" id="ciudad" value="{$evento->ciudad}" readonly="readonly">
     </div>
@@ -58,12 +70,6 @@
       <label for="banda-asociada">Banda anfriotiona</label>
       <input type="text" class="form-control" id="banda-asociada" value="{$evento->banda}" readonly="readonly">
     </div>
-
-    <!--
-    <div class="form-group">
-      <label for="materialForm">Precio de la entrada</label>
-      <input type="text" class="form-control" id="materialForm" name="materialForm" value="">
-    </div>-->
 
   {include file="vue/Comentarios.tpl"}
 </section>
