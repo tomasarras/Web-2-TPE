@@ -18,6 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     let helper = new Helper();
+    asignarTabs();
+
+    function asignarTabs() {
+        let divTabs = document.querySelector(".tabs.active");
+        helper.moverTabs(divTabs);
+        let tabs = divTabs.children;
+        for (let i = 0; i < tabs.length; i++)
+            tabs[i].addEventListener("click",()=> {
+                let criterio = tabs[i].getAttribute("name");
+                let orden = tabs[i].getAttribute("value");
+                getComentarios(criterio,orden);
+            });
+    }
 
     function calcularTiempo(comentarios) {
         let fechaActual = new Date();
@@ -130,9 +143,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     //obtiene los comentarios de la api y los muestra
-    function getComentarios() {
+    function getComentarios(criterio,orden) {
+        let url;
         let id = document.querySelector("#evento").getAttribute("name");
-        fetch("api/eventos/" + id + "/comentarios")
+        if (criterio)
+            url = "api/eventos/" + id + "/comentarios?" + criterio + '=' + orden;
+        else
+            url = "api/eventos/" + id + "/comentarios";
+        console.log(url)
+
+        fetch(url)
             .then(response => response.json())
             .then(comentarios => {
                 sectionComentarios.comentarios = comentarios;
@@ -220,5 +240,4 @@ document.addEventListener("DOMContentLoaded", () => {
     let btnBorrarComentario = document.querySelector("#btn-borrar");
     btnBorrarComentario.addEventListener("click", () =>
         borrarComentario(btnBorrarComentario.getAttribute("name")));
-
 });

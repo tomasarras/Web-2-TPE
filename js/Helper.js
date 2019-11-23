@@ -48,4 +48,23 @@ export default class Helper {
             });
         });
     }
+
+    moverTabs(divTabs) {
+        let tabs = divTabs.children;
+
+        for (let i = 0; i < tabs.length; i++) {
+
+            tabs[i].addEventListener("click", () => {
+                for (let j = 0; j < tabs.length; j++)
+                    tabs[j].classList.remove("active");
+
+                tabs[i].classList.add("active");
+                let bar = divTabs.nextElementSibling.firstElementChild;
+                let porcentaje = 100 / tabs.length;
+                porcentaje = porcentaje * i;
+                bar.style.marginLeft = porcentaje + '%';
+            });
+
+        }
+    }
 }

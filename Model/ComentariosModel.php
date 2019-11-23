@@ -43,12 +43,13 @@ class ComentariosModel {
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function getComentariosByEvento($id_evento) {
+    public function getComentariosByEvento($id_evento,$orden="fecha") {
         $sql = "SELECT usuario.nombre,usuario.email,usuario.admin, comentario.*
         FROM comentario
         JOIN evento ON evento.id_evento = comentario.id_evento 
         JOIN usuario ON usuario.id_usuario = comentario.id_usuario 
-        WHERE evento.id_evento = ?;";
+        WHERE evento.id_evento = ?
+        ORDER BY $orden;";
         $sentencia = $this->db->prepare($sql);
         $sentencia->execute( array($id_evento) );
         return $sentencia->fetchAll(PDO::FETCH_OBJ);

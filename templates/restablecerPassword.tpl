@@ -1,5 +1,4 @@
 {include file="header.tpl"}
-<link rel="stylesheet" href="css/restablecerPassword.css">
 
 <section class="container">
     <div class="flex-center margen-arriba">

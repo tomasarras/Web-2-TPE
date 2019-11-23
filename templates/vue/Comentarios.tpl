@@ -4,6 +4,23 @@
 <!-- Contenedor Principal -->
 	<div class="comments-container">
 		<h1>Comentarios</h1>
+<div id="a">
+    <div name="1"></div>
+    <div name="2"></div>
+    <div name="3"></div>
+</div>
+        <!--tabs-->
+        <div class="tabsModule borde" id="orden-comentarios">
+            <div class="tabs active ancho">
+                <div class="tab active" name="fecha"   value="des">Fecha (mas reciente)</div>
+                <div class="tab"        name="fecha"   value="asc">Fecha (mas antiguo)</div>
+                <div class="tab"        name="puntaje" value="des">Puntaje (mas alto)</div>
+                <div class="tab"        name="puntaje" value="asc">Puntaje (mas bajo)</div>
+            </div>
+            <div class="tabSlider">
+                <div class="bar"></div>
+            </div>
+        </div>
 
 		<ul id="comments-list" class="comments-list">
             <li v-if="user.logueado == 1">
@@ -42,10 +59,14 @@
 
                         <span class="invalid rojo none"></span>
 
-                        <button class="btn btn-primary ancho" id="btn-enviar-comentario">Enviar</button>
+                        <button class="btn btn-primary ancho" id="btn-enviar-comentario">
+                            Enviar <i class="fas fa-paper-plane"></i>
+                        </button>
                     </div>
+
                 </div>
             </li>
+
 
 			<li v-for="comentario in comentarios">
 				<div class="comment-main-level">

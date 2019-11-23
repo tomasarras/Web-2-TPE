@@ -40,7 +40,18 @@ class ComentariosApiController extends ApiController {
     public function getComentarios($params = null) {
 
         $id_evento = $params[":ID_EVENTO"];
-        $comentarios = $this->model->getComentariosByEvento($id_evento);
+        if (isset($_GET["fecha"])) {
+            $comentarios = $this->model->getComentariosByEvento($id_evento,"fecha");
+            if ($_GET["fecha"] == "des")
+                $comentarios = array_reverse($comentarios);
+        } 
+        else if (isset($_GET["puntaje"])) {
+                $comentarios = $this->model->getComentariosByEvento($id_evento,"puntaje");
+                if ($_GET["puntaje"] == "des")
+                    $comentarios = array_reverse($comentarios);
+            }
+        else
+            $comentarios = $this->model->getComentariosByEvento($id_evento);
 
         $this->view->response($comentarios, 200);
     }
