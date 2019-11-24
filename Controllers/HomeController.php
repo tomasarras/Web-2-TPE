@@ -36,23 +36,31 @@ class HomeController {
   }
 
   function Home() {
-    $ordenBandas = false;
-    $ordenEventos = false;
-
     if ( isset($_POST['eventos']) ) {
       $ordenEventos = $_POST['eventos'];
-      $eventos = $this->eventosModel->getEventosOrdenado($ordenEventos);
+      switch ($ordenEventos) {
+        case 'evento': $eventos = $this->eventosModel->getEventosConBanda('evento'); break;
+        case 'ciudad': $eventos = $this->eventosModel->getEventosConBanda('ciudad'); break;
+        case 'detalle': $eventos = $this->eventosModel->getEventosConBanda('detalle'); break;
+        case 'banda': $eventos = $this->eventosModel->getEventosConBanda('banda'); break;
+        default: $eventos = $this->eventosModel->getEventosConBanda(); break;
+      }
     } else {
       $eventos = $this->eventosModel->getEventosConBanda();
     }
 
     if ( isset($_POST['bandas']) ) {
       $ordenBandas = $_POST['bandas'];
-      $bandas = $this->bandasModel->getBandasOrdenadas($ordenBandas);
+      switch ($ordenBandas) {
+        case 'banda': $bandas = $this->bandasModel->GetBandas('banda'); break;
+        case 'anio': $bandas = $this->bandasModel->GetBandas('anio'); break;
+        case 'cantidad-canciones': $bandas = $this->bandasModel->GetBandas('cantidad_canciones'); break;
+        default : $bandas = $this->bandasModel->GetBandas(); break;
+      }
     } else {
       $bandas = $this->bandasModel->GetBandas();
     }
-    $this->homeView->Mostrar($bandas, $eventos,$this->user,$ordenEventos,$ordenBandas);
+    $this->homeView->Mostrar($bandas, $eventos,$this->user);
   }
 
   function filtrarPorEvento(){

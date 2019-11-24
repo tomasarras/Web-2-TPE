@@ -50,8 +50,11 @@ class ComentariosApiController extends ApiController {
                 if ($_GET["puntaje"] == "des")
                     $comentarios = array_reverse($comentarios);
             }
-        else
+        else {
             $comentarios = $this->model->getComentariosByEvento($id_evento);
+            $comentarios = array_reverse($comentarios);
+
+        }
 
         $this->view->response($comentarios, 200);
     }

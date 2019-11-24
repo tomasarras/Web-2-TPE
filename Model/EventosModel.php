@@ -22,21 +22,14 @@
       return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function getEventosOrdenado($orden) {
-      switch ( $orden ) {
-        case "nombre": $oredenamiento = "nombre"; break;
-        case "detalle": $oredenamiento = "detalle"; break;
-        case "banda": $oredenamiento = "banda"; break;
-        default: $oredenamiento = "nombre"; break;
-      }
-
-      $sql = "SELECT evento.*, banda.banda FROM evento
-      INNER JOIN banda ON evento.id_banda = banda.id_banda
-      ORDER BY $oredenamiento;";
+    function getEventosConBanda($orden="evento") {
+      $sql = "SELECT evento.*, banda.banda 
+      FROM evento JOIN banda 
+      ON evento.id_banda = banda.id_banda
+      ORDER BY $orden;";
 
       $sentencia = $this->db->prepare($sql);
       $sentencia->execute();
-      //$sentencia->execute( array($orden) );
       return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
@@ -67,15 +60,6 @@
       return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function getEventosConBanda() {
-      $sql = "SELECT evento.*, banda.banda 
-      FROM evento JOIN banda 
-      ON evento.id_banda = banda.id_banda";
-
-        $sentencia = $this->db->prepare($sql);
-        $sentencia->execute();
-        return $sentencia->fetchAll(PDO::FETCH_OBJ);
-    }
 
     function agregarEvento($evento,$detalle,$id_banda,$ciudad) {
       $sql = "INSERT INTO evento(id_evento,id_banda,evento,detalle,ciudad) VALUES (NULL,?,?,?,?)";

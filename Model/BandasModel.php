@@ -21,29 +21,14 @@ class BandasModel {
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function GetBandas(){
-        $sentencia = $this->db->prepare( "SELECT * FROM banda");
+    function GetBandas($orden="banda"){
+        $sentencia = $this->db->prepare( "SELECT * FROM banda ORDER BY $orden;");
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
     function getNombreBandas() {
         $sentencia = $this->db->prepare("SELECT banda.banda,banda.id_banda FROM banda");
-        $sentencia->execute();
-        return $sentencia->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    function getBandasOrdenadas($orden) {
-        switch ( $orden ) {
-            case "banda": $ordenamiento = "banda"; break;
-            case "anio": $ordenamiento = "anio"; break;
-            case "cantidad_canciones": $ordenamiento = "cantidad_canciones"; break;
-            default: $ordenamiento = "banda"; break;
-        }
-
-        $sql = "SELECT * FROM banda ORDER BY $ordenamiento;";
-        $sentencia = $this->db->prepare($sql);
-        //$sentencia->execute( array($orden) );
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
