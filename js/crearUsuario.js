@@ -29,17 +29,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (password1.value === password2.value && password1.value != '') {
                 let userName = document.querySelector("#user_name").value;
-                let existeEmail = await fetch("api/usuarios/email/" + email.value);
-                let existeUsuario = await fetch("api/usuarios/nombre/" + userName);
+                let pregunta = document.querySelector("#pregunta").value;
+                let respuesta = document.querySelector("#respuesta").value;
 
-                if (existeEmail.ok) //si existe el email, no se puede registrar
-                    errorEmail();
+                let enviar = {
+                    "nombre": userName,
+                    "email": email.value,
+                    "password": password1.value,
+                    "pregunta": pregunta,
+                    "respuesta": respuesta,
+                };
 
-                if (existeUsuario.ok) // si existe el usuario no se puede registrar
-                    errorUsuario();
+                
+                let response = await fetch("api/signUp",{
+                    "method": "POST",
+                    "headers" : { "Content-Type": "application/json" },
+                    "body": JSON.stringify(enviar)
+                });
 
-                if (!existeEmail.ok && !existeUsuario.ok)
-                    form.submit(); // si no existe el email y el usuario, se puede registrar
+                if (response.ok) {
+                    let token = await response.json();
+                    helper.guardarToken(token);
+                    let emailUser = document.querySelector("#email-usuario");
+                    emailUser.value = userName;
+                    form.submit();
+                } else {
+                    let error = await response.text();
+                    if (error == '"El email ya existe"')
+                        errorEmail();
+                    else if (error == '"El usuario ya existe"')
+                        errorUsuario();
+                }
+
 
             } else
                 password2.classList.add("is-invalid");

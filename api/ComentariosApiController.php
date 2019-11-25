@@ -15,16 +15,20 @@ class ComentariosApiController extends ApiController {
     }
 
     public function borrarComentario($params = null) {
-        $this->authHelper->verificarPermiso();
-        $id_comentario = $params[":ID_COMENTARIO"];
+        $token = $this->getToken();
+        $user = $this->decode($token);
+        if ($user->admin){
+            $id_comentario = $params[":ID_COMENTARIO"];
 
-        $comentario = $this->model->getComentario($id_comentario);
-        if ($comentario) {
-            $this->model->borrarComentario($id_comentario);
-            $this->view->response("Se elimino el comentario id={$id_comentario}",200);
+            $comentario = $this->model->getComentario($id_comentario);
+            if ($comentario) {
+                $this->model->borrarComentario($id_comentario);
+                $this->view->response("Se elimino el comentario id={$id_comentario}",200);
+            } else
+                $this->view->response("El comentario con el id={$id_comentario} no existe", 404);
         } else
-            $this->view->response("El comentario con el id={$id_comentario} no existe", 404);
-
+            $this->view->response("Necesitas ser administrador para borrar comentarios",403);
+        
     }
 
     public function getComentario($params = null) {
@@ -38,7 +42,6 @@ class ComentariosApiController extends ApiController {
     }
 
     public function getComentarios($params = null) {
-
         $id_evento = $params[":ID_EVENTO"];
         if (isset($_GET["fecha"])) {
             $comentarios = $this->model->getComentariosByEvento($id_evento,"fecha");
@@ -60,28 +63,29 @@ class ComentariosApiController extends ApiController {
     }
 
     public function enviarComentario($params = null) {
-        $logueado = $this->authHelper->isLoged();
+        $token = $this->getToken();
+        $user = $this->decode($token);
+        
+        if ($user) {
+            $body = $this->getData();
+            
+            $id_usuario = $user->sub;
+            $id_evento = $params[":ID_EVENTO"];
+            $comentario = $body->comentario;
+            $puntaje = $body->puntaje;
+            date_default_timezone_set('UTC');
+            $fecha = date(DATE_W3C);
 
-        if ( !$logueado ) {
-            $this->view->response("Necesitas iniciar sesion para comentar",502);
+            $id = $this->model->enviarComentario($id_usuario,$id_evento,$comentario,$puntaje,$fecha);
+            if ($id)
+                $this->view->response("Comentario enviado id={$id}",200);
+            else
+                $this->view->response("Error al enviar el comentario", 500);
+        } else {
+            $this->view->response("Necesitas iniciar sesion para comentar",401);
             die();
         }
 
-        $body = $this->getData();
-        
-        $id_usuario = $_SESSION["id_usuario"];
-        $id_evento = $params[":ID_EVENTO"];
-        $comentario = $body->comentario;
-        $puntaje = $body->puntaje;
-        date_default_timezone_set('UTC');
-        $fecha = date(DATE_W3C);
-
-        $id = $this->model->enviarComentario($id_usuario,$id_evento,$comentario,$puntaje,$fecha);
-        if ($id)
-            $this->view->response("Comentario enviado id={$id}",200);
-        else
-            $this->view->response("Error al enviar el comentario", 500);
     }
 
-    
 }

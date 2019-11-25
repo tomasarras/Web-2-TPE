@@ -20,6 +20,35 @@ export default class Helper {
             callback();
     }
 
+    guardarToken(token) {
+        document.cookie = "token=" + token;
+    }
+
+    getToken() {
+        let cookies = document.cookie.split(";");
+        let i = 0; 
+        let token;
+        while ( i < cookies.length) {
+            if (cookies[i].search("token") == 0) {
+                token = cookies[i].split("=")[1];
+                i = cookies.length;
+            }
+            i++;
+        }
+        return token;
+    }
+
+
+    quitarToken() {
+    let lista = document.cookie.split(";");
+    for (let i = 0; i < lista.length; i++) {
+        let igual = lista[i].indexOf("=");
+        let nombre = lista[i].substring(0,igual);
+        lista[i] = nombre+"="+""+";expires=1 Dec 2000 00:00:00 GMT"
+        document.cookie = lista[i]
+        } 
+    }
+
     asignarIconosBorrar() {
         let btnsAbrirPopup = document.querySelectorAll('.btns-abrir-popup');
         let overlay = document.getElementById('overlay'),

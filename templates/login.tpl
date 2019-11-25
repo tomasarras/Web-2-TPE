@@ -2,8 +2,7 @@
 
 <div class="centrar-contenido view">
     <section class="bg-dark borde grande">
-        <form action="login" method="POST">
-            
+        <form action="login" method="POST" id="form-login">
             <div class="form-group">
                 <label for="email-usuario" class="blanco">Nombre de usuario o email</label>
                 <input type="text" name="email-usuario" class="form-control campo-vacio" id="email-usuario" placeholder="Ingresa tu nombre de usuario o email">
@@ -19,11 +18,13 @@
             <a href="login/restablecer-contraseña">Olvide mi contraseña</a>
 
             <div class="centrar-contenido margen-arriba">
-                <button type="submit" class="btn btn-primary ancho campos-vacios">Login</button>
+                <button type="submit" class="btn btn-primary ancho campos-vacios" id="btn-login">Login</button>
             </div>
 
-            <div class="rojo centrar-contenido invalid">{$mensaje}</div>
-        </form>  
+            <div class="rojo centrar-contenido invalid none" id="mensaje-error">Usuario o contraseña incorrecto</div>
+        </form>
     </section>
 </div>
+
+<script type="module" src="./js/login.js"></script>
 {include file="footer.tpl"}

@@ -1,3 +1,5 @@
+import Helper from './Helper.js';
+
 document.addEventListener("DOMContentLoaded",()=>{
 let select = new Vue({
     el:"#pregunta-seguridad-vue",
@@ -6,6 +8,9 @@ let select = new Vue({
         id: ""
     }
 });
+
+let helper = new Helper();
+let token = '';
 
 async function informacionValida(btn,callback) {
     let step = btn.getAttribute("value");
@@ -34,8 +39,10 @@ async function informacionValida(btn,callback) {
             "body": JSON.stringify(json)
         });
 
-        if (response.ok)
+        if (response.ok) {
+            token = await response.json();
             callback(btn);
+        }
         else
             respuesta.classList.add("is-invalid");
     }
@@ -50,7 +57,10 @@ async function informacionValida(btn,callback) {
             let json = { "password" : passwordUno };
             fetch("api/usuarios/" + select.id,{
                 "method" : "PUT",
-                "headers": { "Content-Type": "application/json" },
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                },
                 "body": JSON.stringify(json)
             });
             callback(btn);

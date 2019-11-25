@@ -86,5 +86,5 @@
     </div>
 </section>
 
-<script src="./js/restablecerPassword.js"><script>
+<script type="module" src="./js/restablecerPassword.js"><script>
 {include file="footer.tpl"}

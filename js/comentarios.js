@@ -150,7 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
             url = "api/eventos/" + id + "/comentarios?" + criterio + '=' + orden;
         else
             url = "api/eventos/" + id + "/comentarios";
-        console.log(url)
 
         fetch(url)
             .then(response => response.json())
@@ -185,8 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (comentario != '') {
 
             if (puntaje != '0') {
-
-
                 let id_evento = document.querySelector("#evento").getAttribute("name");
 
                 let json = {
@@ -196,7 +193,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 let response = await fetch("api/eventos/" + id_evento + "/comentarios", {
                     "method": "POST",
-                    "headers": { "Content-Type": "application/json" },
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + helper.getToken()
+                    },
                     "body": JSON.stringify(json)
                 });
 
@@ -224,6 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function borrarComentario(id) {
         await fetch("api/comentarios/" + id, {
+            "headers": { "Authorization": "Bearer " + helper.getToken() },
             "method": "DELETE"
         });
 

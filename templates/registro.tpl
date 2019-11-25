@@ -2,7 +2,7 @@
 
 <div class="centrar-contenido view">
     <section class="bg-dark borde grande">
-        <form action="registrarse" method="POST" id="form-registro">
+        <form action="login" method="POST" id="form-registro">
             
             <div class="form-group">
                 <label for="email" class="blanco">Email</label>
@@ -18,6 +18,8 @@
                 <div class="invalid-feedback">Error, nombre de usuario no puede quedar vacio</div>
                 <div id="usuario-existente" class="invalid none">El nombre de usuario ya esta en uso</div>
             </div>
+
+            <input type="text" class="none" name="email-usuario" id="email-usuario">
 
             <div class="form-group">
                 <label for="password-1" class="blanco">Contraseña</label>

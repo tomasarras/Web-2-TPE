@@ -31,7 +31,7 @@
         </h5>
 
         
-        <a src="admin/usuarios/eliminar/" href="#" class="btn btn-danger" id="btn-borrar">Borrar</a>
+        <a class="btn btn-danger link" id="btn-borrar">Borrar</a>
         <button class="btn btn-primary js-cerrar">Cancelar</button>
         
     </div>	

@@ -47,20 +47,19 @@ class UsuariosController {
         }
     }
         
-        private function checkPassword($user,$pass) {
-            $hash = $user->password;
-            
-            if ( password_verify($pass, $hash) ){
-                session_start();
-                $_SESSION["id_usuario"] = $user->id_usuario;
-                $_SESSION["email"] = $user->email;
-                $_SESSION["nombre"] = $user->nombre;
+    private function checkPassword($user,$pass) {
+        $hash = $user->password;
+        
+        if ( password_verify($pass, $hash) ){
+            $_SESSION["id_usuario"] = $user->id_usuario;
+            $_SESSION["email"] = $user->email;
+            $_SESSION["nombre"] = $user->nombre;
             $_SESSION["admin"] = $user->admin;
             header("Location: ". HOME);
             die();
-        }
+        }       
 
-    }
+    }   
 
     function getLogin(){
         $this->checkLog();
@@ -94,7 +93,7 @@ class UsuariosController {
             }
             
             $id = $this->usuariosModel->registrarse($email, $pass,$userName,$pregunta,$respuesta);
-            session_start();
+            //session_start();
             $_SESSION["id_usuario"] = $id;
             $_SESSION["email"] = $email;
             $_SESSION["nombre"] = $userName;
@@ -110,7 +109,6 @@ class UsuariosController {
     }
 
     function logout() {
-        session_start();
         session_destroy();
         header("Location: ". HOME);
         die();
