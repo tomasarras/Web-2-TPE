@@ -50,9 +50,10 @@ class AdminView {
         $this->smarty->display('templates/adminEditarBanda.tpl');
     }
 
-    function mostrarEditarEvento($evento,$bandas) {
+    function mostrarEditarEvento($evento,$bandas,$imagenes) {
         $this->smarty->assign("titulo","Editar evento");
         $this->smarty->assign("evento",$evento);
+        $this->smarty->assign("imagenes",$imagenes);
         $this->smarty->assign("bandas",$bandas);
         $this->smarty->display('templates/adminEditarEvento.tpl');
     }

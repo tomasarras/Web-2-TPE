@@ -1,19 +1,11 @@
 <?php 
-
-class ComentariosModel {
+require_once("./Model/AbstractModel.php");
+class ComentariosModel extends AbstractModel {
 
     function __construct(){
-        $this->db = $this->Connect();
+        parent::__construct();
     }
     
-    private function connect(){
-        try {
-            return new PDO('mysql:host=localhost;'.'dbname=bandas;charset=utf8','root', '');
-        } catch (Exception $e) {
-            echo "ERROR: ". $e->getMessage();
-        }
-    }
-
     public function enviarComentario($id_usuario,$id_evento,$comentario,$puntaje,$fecha) {
         $sql = "INSERT comentario(id_comentario,id_usuario,id_evento,comentario,puntaje,fecha)
         VALUES (NULL,?,?,?,?,?);";

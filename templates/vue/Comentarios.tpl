@@ -4,11 +4,6 @@
 <!-- Contenedor Principal -->
 	<div class="comments-container">
 		<h1>Comentarios</h1>
-<div id="a">
-    <div name="1"></div>
-    <div name="2"></div>
-    <div name="3"></div>
-</div>
         <!--tabs-->
         <div class="tabsModule borde" id="orden-comentarios">
             <div class="tabs active ancho">
@@ -123,7 +118,7 @@
             </div>
             
             <h5>
-                Seguro queres borrar el comentario de: <span id="js-nombre-evento"></span>?
+                Seguro queres borrar el comentario de: <span id="js-nombre-elemento"></span>?
             </h5>
 
             

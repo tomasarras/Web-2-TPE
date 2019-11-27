@@ -8,7 +8,6 @@ class UsuariosController {
     private $usuariosView;
     private $usuariosModel;
     private $authHelper;
-    private $user;
     private $logueado;
 
     function __construct(){
@@ -22,23 +21,25 @@ class UsuariosController {
         if ($this->logueado)
             header("Location: ". HOME);
     }
+
     function verificarUser() {
         $this->checkLog();
 
-        if ( isset($_POST['email-usuario']) && isset($_POST['password']) ) {
+        if ( isset($_POST['email-usuario']) && isset($_POST['password']) 
+             && $_POST['email-usuario'] != '' && $_POST['password'] != '') {
             
             $user = $_POST['email-usuario'];
             $pass = $_POST['password'];
             
-            $usuario = $this->usuariosModel->getUserByEmail($user);//pido por email
+            $usuario = $this->usuariosModel->getUserByEmail($user);
             
             if (!$usuario) {//si no existe por email, compruebo por nombre
-                $usuario = $this->usuariosModel->getUserByNombre($user);//pido por nombre
+                $usuario = $this->usuariosModel->getUserByNombre($user);
                 
                 if ($usuario) {//nombre valido
                     $this->checkPassword($usuario,$pass);
                 } else
-                $this->usuariosView->getLogin("Usuario o contraseña incorrectos");
+                    $this->usuariosView->getLogin("Usuario o contraseña incorrectos");
             }
             else {//email valido
                 $this->checkPassword($usuario,$pass);
@@ -46,21 +47,22 @@ class UsuariosController {
             
         }
     }
+    
         
-        private function checkPassword($user,$pass) {
-            $hash = $user->password;
-            
-            if ( password_verify($pass, $hash) ){
-                session_start();
-                $_SESSION["id_usuario"] = $user->id_usuario;
-                $_SESSION["email"] = $user->email;
-                $_SESSION["nombre"] = $user->nombre;
+    private function checkPassword($user,$pass) {
+        $hash = $user->password;
+        
+        if ( password_verify($pass, $hash) ){
+            $_SESSION["id_usuario"] = $user->id_usuario;
+            $_SESSION["email"] = $user->email;
+            $_SESSION["nombre"] = $user->nombre;
             $_SESSION["admin"] = $user->admin;
             header("Location: ". HOME);
-            die();
+        } else {
+            $this->usuariosView->getLogin("Usuario o contraseña incorrectos");
         }
 
-    }
+    }   
 
     function getLogin(){
         $this->checkLog();
@@ -94,7 +96,7 @@ class UsuariosController {
             }
             
             $id = $this->usuariosModel->registrarse($email, $pass,$userName,$pregunta,$respuesta);
-            session_start();
+            //session_start();
             $_SESSION["id_usuario"] = $id;
             $_SESSION["email"] = $email;
             $_SESSION["nombre"] = $userName;
@@ -110,7 +112,6 @@ class UsuariosController {
     }
 
     function logout() {
-        session_start();
         session_destroy();
         header("Location: ". HOME);
         die();

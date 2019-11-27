@@ -1,7 +1,6 @@
 {include file="header.tpl"}
-{include file="correo.tpl"}
 
-<div class="container fondo-blanco borde"> 
+<div class="container fondo-blanco borde min-size"> 
 
     <form class="margen-abajo" action="filtrar-eventos" method="POST"> <!-- filtro -->
         <div class="centrar-contenido">

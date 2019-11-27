@@ -85,6 +85,10 @@ body {
     background-color: #FFF;
 }
 
+.min-size {
+    min-width: 500px;
+}
+
 .flex-center {
     display: flex;
     justify-content: center;
@@ -110,6 +114,7 @@ body {
 }
 
 .botonera {
+    margin-top: 1%;
     display: flex;
     flex-direction: row;
 }
@@ -164,6 +169,10 @@ section.grande {
 
 .ancho {
     width: 100%;
+}
+
+.contenedor-grande {
+    width: 80%;
 }
 
 .none {
@@ -236,6 +245,10 @@ svg {
 
 .link {
     cursor: pointer;
+}
+
+tr.no-link th a {
+    color: white;
 }
 
 td.link {
@@ -364,6 +377,10 @@ td.link:hover {
     margin: 5% 0;
 }
 
+.margen-horizontal {
+    margin: 0 5%;
+}
+
 .margen-der {
     margin: 0 1% 0 0;
 }
@@ -474,6 +491,21 @@ td.link:hover {
     }
     nav a.titulo {
         font-size: 0.8em;
+    }
+}
+@media only screen and (max-width:400px) {
+    .botonera {
+        flex-direction: column;
+    }
+
+    .botonera .margen-der, .botonera .margen-izq {
+        margin: 0 0 3% 0;
+    }
+
+    .table tr th,
+    .table td {
+        font-size: 0.8em;
+        padding: 2px;
     }
 }
 

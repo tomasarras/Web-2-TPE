@@ -47,7 +47,7 @@
                     {/if}
 
                     <a href="logout">
-                        <div class="log nav-item btn btn-danger">
+                        <div class="log nav-item btn btn-danger" id="logout">
                             <img src="images/newuser.png">
                             Cerrar sesión
                         </div>

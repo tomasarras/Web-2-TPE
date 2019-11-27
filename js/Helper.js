@@ -20,6 +20,7 @@ export default class Helper {
             callback();
     }
 
+
     asignarIconosBorrar() {
         let btnsAbrirPopup = document.querySelectorAll('.btns-abrir-popup');
         let overlay = document.getElementById('overlay'),
@@ -33,7 +34,11 @@ export default class Helper {
                 overlay.classList.add('active');
                 popup.classList.add('active');
                 let btnBorrar = document.querySelector("#btn-borrar");
-                btnBorrar.setAttribute("name", btnAbrirPopup.getAttribute("name"));
+                let id = btnAbrirPopup.getAttribute("name");
+                let href = btnBorrar.getAttribute("src") + id;
+                btnBorrar.setAttribute("href", href);
+                btnBorrar.setAttribute("name", id);
+
                 let evento = btnAbrirPopup.parentNode.parentNode.firstElementChild;
                 let spanEvento = document.querySelector("#js-nombre-elemento");
                 spanEvento.innerHTML = evento.innerHTML;

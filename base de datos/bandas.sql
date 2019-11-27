@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2019 a las 02:11:37
+-- Tiempo de generación: 26-11-2019 a las 19:51:56
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.1.31
 
@@ -55,9 +55,9 @@ CREATE TABLE `comentario` (
   `id_comentario` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_evento` int(11) NOT NULL,
-  `comentario` text NOT NULL,
-  `puntaje` int(11) NOT NULL,
-  `fecha` varchar(30) NOT NULL
+  `comentario` text DEFAULT NULL,
+  `puntaje` int(11) DEFAULT NULL,
+  `fecha` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -125,9 +125,7 @@ ALTER TABLE `banda`
 -- Indices de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  ADD PRIMARY KEY (`id_comentario`),
-  ADD KEY `id_usuario` (`id_usuario`),
-  ADD KEY `id_evento` (`id_evento`);
+  ADD PRIMARY KEY (`id_comentario`);
 
 --
 -- Indices de la tabla `evento`
@@ -163,7 +161,7 @@ ALTER TABLE `banda`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `evento`
@@ -186,13 +184,6 @@ ALTER TABLE `usuario`
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `comentario`
---
-ALTER TABLE `comentario`
-  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
-  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id_evento`);
 
 --
 -- Filtros para la tabla `evento`

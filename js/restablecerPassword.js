@@ -7,6 +7,8 @@ let select = new Vue({
     }
 });
 
+let token = '';
+
 async function informacionValida(btn,callback) {
     let step = btn.getAttribute("value");
 
@@ -27,15 +29,18 @@ async function informacionValida(btn,callback) {
     if (step == "respuesta") {
         let respuesta = document.querySelector("#respuesta");
         let json = { "respuesta": respuesta.value };
-
-        let response = await fetch("api/usuarios/" + select.id + "/verificar-respuesta",{
+        let url = "api/usuarios/" + select.id + "/verificar-respuesta";
+        console.log(url)
+        let response = await fetch(url,{
             "method": "POST",
             "headers": { "Content-Type":"application/json" },
             "body": JSON.stringify(json)
         });
 
-        if (response.ok)
+        if (response.ok) {
+            token = await response.json();
             callback(btn);
+        }
         else
             respuesta.classList.add("is-invalid");
     }
@@ -48,9 +53,12 @@ async function informacionValida(btn,callback) {
         if (passwordUno === passwordDos.value && passwordUno != '') {
 
             let json = { "password" : passwordUno };
-            fetch("api/usuarios/" + select.id,{
+            await fetch("api/usuarios/" + select.id,{
                 "method" : "PUT",
-                "headers": { "Content-Type": "application/json" },
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                },
                 "body": JSON.stringify(json)
             });
             callback(btn);

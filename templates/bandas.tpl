@@ -5,10 +5,16 @@
 
     <table class="table">
         <thead class="thead-dark">
-            <tr>
-                <th scope="col">Banda</th>
-                <th scope="col">Año</th>
-                <th scope="col">Cantidad de canciones</th>
+            <tr class="no-link">
+                <th scope="col">
+                    <a href="?bandas=banda">Banda</a>
+                </th>
+                <th scope="col">
+                    <a href="?bandas=anio">año</a>
+                </th>
+                <th scope="col">
+                    <a href="?bandas=cantidad-canciones">Cantidad de canciones</a>
+                </th>
                 <th scope="col">Mas info</th>
             </tr>
         </thead>

@@ -1,15 +1,10 @@
 import Helper from './Helper.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-    let tabla = new Vue({
-        el: "#vue-tabla-usuarios",
-        data: {
-            usuarios: [],
-            id_usuario: document.querySelector("#user-id").value
-        }
-    });
     let helper = new Helper();
     let id_user = document.querySelector("#user-id").value;
+    resaltarUsuario();
+    moverSwitches();
 
     //agrega el efecto al hacer click en el switch
     function moverSwitches() {
@@ -22,58 +17,29 @@ document.addEventListener("DOMContentLoaded", () => {
                         mainParent.classList.add("active");
                     else
                         mainParent.classList.remove("active");
+                    let url = swich.nextElementSibling.getAttribute("href");
+                    location.href = url;
                 }
             });
         });
     }
 
-    let btnBorrar = document.querySelector("#btn-borrar");
-    btnBorrar.addEventListener("click", () => {
-        let href = btnBorrar.getAttribute("src") + btnBorrar.getAttribute("name");
-        btnBorrar.setAttribute("href", href);
-    });
+    function resaltarUsuario(){
+        let trs = document.querySelectorAll(".ids_usuarios");
+        trs.forEach(tr => {
+            let id = tr.getAttribute("name");
+            if (id == id_user) {
+                let tdUsuario = tr.children;
+                tdUsuario[0].classList.add("resaltar");
+                tdUsuario[1].classList.add("resaltar");
+                let switc = tdUsuario[2].firstElementChild.firstElementChild;
+                console.log(switc)
+                switc.classList.add("not-link");
+                tdUsuario[3].classList.remove("none");
+                tdUsuario[4].classList.add("none");
 
-    //agrega o quita permisos de admin
-    async function asignarSwitches() {
-        let switches = document.querySelectorAll(".cb-value");
-        switches.forEach(checkbox => {
-            checkbox.addEventListener("click", () => {
-                let estado = checkbox.checked;
-                if (checkbox.getAttribute("name") != id_user) //quitar de smarty
-                    cambiarAdmin(estado, checkbox.getAttribute("name"));
-            });
+            }
+
         });
     }
-
-    //envia a la api el usuario admin
-    async function cambiarAdmin(estado, id) {
-        let json = {};
-        if (estado)
-            json = { "admin": "1" }
-        else
-            json = { "admin": "0" }
-
-        await fetch('api/admin/usuarios/' + id, { //enviar mas datos en json
-            "method": "PUT",
-            "headers": { "Content-Type": "application/json" },
-            "body": JSON.stringify(json)
-        });
-
-    }
-
-    function getUsuarios(callback) {
-        fetch("api/usuarios")
-            .then(response => response.json())
-            .then(usuarios => {
-                tabla.usuarios = usuarios;
-            })
-            .then(() => callback())
-            .catch(error => console.log(error));
-    }
-
-    getUsuarios(() => {
-        moverSwitches();
-        asignarSwitches();
-        helper.asignarIconosBorrar();
-    });
 });

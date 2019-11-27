@@ -1,6 +1,5 @@
 <?php
 require_once("./api/JSONView.php");
-
 abstract class ApiController {
     protected $model;
     protected $view;
@@ -14,5 +13,6 @@ abstract class ApiController {
 
     function getData(){ 
         return json_decode($this->data); 
-    }  
+    } 
+
 }

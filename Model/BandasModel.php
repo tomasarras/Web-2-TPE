@@ -1,34 +1,13 @@
 <?php
-class BandasModel {
+require_once("./Model/AbstractModel.php");
+class BandasModel extends AbstractModel {
     
     function __construct(){
-        $this->db = $this->Connect();
-    }
-    
-    private function connect(){
-        try {
-            return new PDO('mysql:host=localhost;'.'dbname=bandas;charset=utf8','root', '');
-        } catch (Exception $e) {
-            echo "ERROR: ". $e->getMessage();
-        }
-    }
-    
-
-    function getBandasNombre() {
-        $sql = "SELECT banda.id_banda, banda.banda FROM banda";
-        $sentencia = $this->db->prepare($sql);
-        $sentencia->execute();
-        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        parent::__construct();
     }
 
     function GetBandas($orden="banda"){
         $sentencia = $this->db->prepare( "SELECT * FROM banda ORDER BY $orden;");
-        $sentencia->execute();
-        return $sentencia->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    function getNombreBandas() {
-        $sentencia = $this->db->prepare("SELECT banda.banda,banda.id_banda FROM banda");
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
@@ -42,6 +21,12 @@ class BandasModel {
         WHERE banda.id_banda IS NULL";
         
         $sentencia = $this->db->prepare($sql);
+        $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function getNombreBandas() {
+        $sentencia = $this->db->prepare("SELECT banda.banda,banda.id_banda FROM banda");
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
@@ -79,6 +64,8 @@ class BandasModel {
         $sentencia = $this->db->prepare($sql);
         $sentencia->execute( array($id) );
     }
+    
+    
     function GetDetalleBanda($id){
         $sentencia = $this->db->prepare( "SELECT * FROM banda WHERE id_banda=?");
         $sentencia->execute(array($id));

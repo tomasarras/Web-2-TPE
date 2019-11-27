@@ -12,7 +12,39 @@
                 <th scope="col">Eliminar</th>
             </tr>
         </thead>
-        {include file="vue/Bandas.tpl"}
+        
+        <tbody>
+        {foreach from=$bandas item=banda}
+        <tr v-for="banda in bandas">
+            <td>{$banda->banda}</td>
+            <td>{$banda->anio}</td>
+            <td>{$banda->cantidad_canciones}</td>
+
+            {if $banda->evento eq null}
+                <td>Ningun evento asignado</td>
+            {else}
+                <td>{$banda->evento}</td>
+            {/if}
+
+            <td>
+                <a href="admin/bandas/editar/{$banda->id_banda}">
+                    <i class='far fa-edit icono'></i>
+                </a>
+            </td>
+
+            {if $banda->evento eq null}
+                <td>
+                    <a href="javascript:void(0);" class="btns-abrir-popup" name="{$banda->id_banda}">
+                        <i class="fa fa-trash-o rojo icono"></i>
+                    </a>
+                </td>
+            {else}
+                <td v-else>No disponible</td>
+            {/if}
+        </tr>
+        {/foreach}
+</tbody>
+
     </table>
 </section>
 
@@ -31,7 +63,7 @@
         </h5>
 
         
-        <button class="btn btn-danger" id="btn-borrar">Borrar</button>
+        <a src="admin/bandas/eliminar/" class="btn btn-danger" id="btn-borrar">Borrar</a>
         <button class="btn btn-primary js-cerrar">Cancelar</button>
         
     </div>	
@@ -39,32 +71,32 @@
 
 
 <div class="centrar-contenido margen-vertical">
-    <section class="bg-dark borde grande">
+    <section class="bg-dark borde grande blanco">
+        <form action="admin/bandas/agregar" method="POST">
+            <div class="centrar-contenido">
+                <h3 class="blanco">Agregar</h3>
+            </div>
+                
+            <div class="form-group">
+                <label for="input-banda">Banda</label>
+                <input type="text" name="banda" class="form-control campo-vacio" id="input-banda" placeholder="Nombre de la banda">
+                <div class="invalid-feedback">Ingresa una banda</div>
+            </div>
 
-        <div class="centrar-contenido">
-            <h3 class="blanco">Agregar</h3>
-        </div>
-            
-        <div class="form-group">
-            <label for="input-banda" class="blanco">Banda</label>
-            <input type="text" name="banda" class="form-control campo-vacio" id="input-banda" placeholder="Nombre de la banda">
-            <div class="invalid-feedback">Ingresa una banda</div>
-        </div>
+            <div class="form-group">
+                <label for="input-cantidad">Cantidad de canciones</label>
+                <input type="number" name="cant-canciones" class="form-control campo-vacio" id="input-cantidad" placeholder="Cantidad de canciones de la banda" min="0">
+                <div id="error-cantidad" class="invalid-feedback">Ingresa la cantidad de canciones</div>
+            </div>
 
-        <div class="form-group">
-            <label for="input-cantidad" class="blanco">Cantidad de canciones</label>
-            <input type="number" name="cant-canciones" class="form-control campo-vacio" id="input-cantidad" placeholder="Cantidad de canciones de la banda" min="0">
-            <div id="error-cantidad" class="invalid-feedback">Ingresa la cantidad de canciones</div>
-        </div>
+            <div class="form-group">
+                <label for="input-anio">Año</label>
+                <input type="number" name="anio" class="form-control campo-vacio" id="input-anio" placeholder="Año de la banda" min="1900" max="9999">
+                <div class="invalid-feedback">Ingresa un año</div>
+            </div>
 
-        <div class="form-group">
-            <label for="input-anio" class="blanco">Año</label>
-            <input type="number" name="anio" class="form-control campo-vacio" id="input-anio" placeholder="Año de la banda" min="1900" max="9999">
-            <div class="invalid-feedback">Ingresa un año</div>
-        </div>
-
-        <button class="btn btn-primary ancho" id="btn-agregar-banda">Agregar</button>
-        
+            <button class="btn btn-primary ancho campos-vacios">Agregar</button>
+        </form>
     </section>
 </div>
 

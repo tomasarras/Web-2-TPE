@@ -12,7 +12,26 @@
                 <th scope="col">Eliminar</th>
             </tr>
         </thead>
-        {include file="vue/Eventos.tpl"}
+        <tbody>
+            {foreach from=$eventos item=evento}
+            <tr>
+                <td name="{$evento->id_evento}">{$evento->evento}</td>
+                <td>{$evento->detalle}</td>
+                <td>{$evento->ciudad}</td>
+                <td name="{$evento->id_banda}">{$evento->banda}</td>
+                <td>
+                    <a href="admin/eventos/editar/{$evento->id_evento}">
+                        <i class='far fa-edit icono-tabla icono'></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="javascript:void(0);" class="btns-abrir-popup" name="{$evento->id_evento}">
+                        <i class="fa fa-trash-o rojo icono"></i>
+                    </a>
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
     </table>
 </section>
 
@@ -31,14 +50,14 @@
         </h5>
 
         
-        <a class="btn btn-danger link" id="btn-borrar">Borrar</a>
+        <a src="admin/eventos/eliminar/" class="btn btn-danger link" id="btn-borrar">Borrar</a>
         <button class="btn btn-primary js-cerrar">Cancelar</button>
         
     </div>	
 </section>
 
 <div class="centrar-contenido margen-vertical">
-    <section class="bg-dark borde grande">
+    <section class="bg-dark borde grande blanco">
         <form action="admin/eventos/agregar" method="POST" enctype="multipart/form-data">
 
             <div class="centrar-contenido">
@@ -46,25 +65,25 @@
             </div>
                 
             <div class="form-group">
-                <label for="input-evento" class="blanco">Evento</label>
+                <label for="input-evento">Evento</label>
                 <input type="text" name="evento" class="form-control campo-vacio" id="input-evento" placeholder="Nombre del evento">
                 <div class="invalid-feedback">Ingresa un evento</div>
             </div>
 
             <div class="form-group">
-                <label for="input-ciudad" class="blanco">Ciudad del evento</label>
+                <label for="input-ciudad">Ciudad del evento</label>
                 <input type="text" name="ciudad" class="form-control campo-vacio" id="input-ciudad" placeholder="Ciudad del evento">
                 <div class="invalid-feedback">Ingresa una ciudad</div>
             </div>
 
             <div class="form-group">
-                <label for="input-detalle" class="blanco">Detalle del evento</label>
+                <label for="input-detalle">Detalle del evento</label>
                 <input type="text" name="detalle" class="form-control campo-vacio" id="input-detalle" placeholder="Detalle del evento">
                 <div class="invalid-feedback">Ingresa un detalle del evento</div>
             </div>
 
             <div class="form-group">
-                <label for="banda-asociada" class="blanco">Banda asociada</label>
+                <label for="banda-asociada">Banda asociada</label>
                 <select class="custom-select" name="id_banda" id="banda-asociada">
                     {foreach from=$bandas item=banda}
                         <option value="{$banda->id_banda}">{$banda->banda}</option>

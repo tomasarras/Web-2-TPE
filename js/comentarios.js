@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let puntaje = "0";
-    /* efecto al hacer click en las rating-stars */
+    //efecto al hacer click en las rating-stars
     let stars = document.querySelectorAll(".rating-star");
     stars.forEach(star => {
         star.addEventListener("click", () => {
@@ -150,7 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
             url = "api/eventos/" + id + "/comentarios?" + criterio + '=' + orden;
         else
             url = "api/eventos/" + id + "/comentarios";
-        console.log(url)
 
         fetch(url)
             .then(response => response.json())
@@ -185,8 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (comentario != '') {
 
             if (puntaje != '0') {
-
-
                 let id_evento = document.querySelector("#evento").getAttribute("name");
 
                 let json = {
