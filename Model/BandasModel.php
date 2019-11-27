@@ -15,6 +15,7 @@ class BandasModel extends AbstractModel {
     function getBandasyEventos() {
         $sql = "SELECT banda.*,evento.evento FROM banda 
         LEFT JOIN evento ON banda.id_banda = evento.id_banda 
+        GROUP BY banda
         UNION ALL
         SELECT banda.*,evento.evento FROM banda 
         RIGHT JOIN evento ON banda.id_banda = evento.id_banda 

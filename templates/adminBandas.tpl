@@ -7,7 +7,7 @@
                 <th scope="col">Banda</th>
                 <th scope="col">Año</th>
                 <th scope="col">Cantidad de canciones</th>
-                <th scope="col">Ciudad</th>
+                <th scope="col">Evento</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
             </tr>
