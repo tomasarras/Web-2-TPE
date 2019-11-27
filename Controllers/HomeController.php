@@ -36,12 +36,11 @@ class HomeController {
   }
 
   function Home() {
-    if ( isset($_POST['eventos']) ) {
-      $ordenEventos = $_POST['eventos'];
+    if ( isset($_GET['eventos']) ) {
+      $ordenEventos = $_GET['eventos'];
       switch ($ordenEventos) {
         case 'evento': $eventos = $this->eventosModel->getEventosConBanda('evento'); break;
         case 'ciudad': $eventos = $this->eventosModel->getEventosConBanda('ciudad'); break;
-        case 'detalle': $eventos = $this->eventosModel->getEventosConBanda('detalle'); break;
         case 'banda': $eventos = $this->eventosModel->getEventosConBanda('banda'); break;
         default: $eventos = $this->eventosModel->getEventosConBanda(); break;
       }
@@ -49,8 +48,8 @@ class HomeController {
       $eventos = $this->eventosModel->getEventosConBanda();
     }
 
-    if ( isset($_POST['bandas']) ) {
-      $ordenBandas = $_POST['bandas'];
+    if ( isset($_GET['bandas']) ) {
+      $ordenBandas = $_GET['bandas'];
       switch ($ordenBandas) {
         case 'banda': $bandas = $this->bandasModel->GetBandas('banda'); break;
         case 'anio': $bandas = $this->bandasModel->GetBandas('anio'); break;
@@ -74,6 +73,7 @@ class HomeController {
       $this->noExiste();
     }
   }
+  
   function VerDetallesEvento($params = null) {
     $id = $params[':ID'];
     $evento = $this->eventosModel->GetDetalleEvento($id);

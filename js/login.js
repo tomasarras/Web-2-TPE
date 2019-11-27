@@ -2,7 +2,6 @@ import Helper from './Helper.js';
 
 document.addEventListener("DOMContentLoaded",()=>{
     let helper = new Helper();
-    
     let btnLogin = document.querySelector("#btn-login");
     btnLogin.addEventListener("click",(e)=> {
         e.preventDefault();
@@ -41,8 +40,5 @@ document.addEventListener("DOMContentLoaded",()=>{
         }
 
     }
-
-    
-
 
 });

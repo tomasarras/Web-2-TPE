@@ -2,7 +2,6 @@ import Helper from './Helper.js';
 
 document.addEventListener("DOMContentLoaded",()=>{
 let helper = new Helper();
-
     
 async function editarBanda() {
     let id_banda = document.querySelector("#id_banda").value;
@@ -15,7 +14,11 @@ async function editarBanda() {
 
     await fetch("api/bandas/" + id_banda,{
         "method" : "PUT",
-        "headers" : { "Content-Type" : "application/json" },
+        "headers" : {
+            "Content-Type" : "application/json",
+            "Authorization": "Bearer " + helper.getToken()
+
+        },
         "body" : JSON.stringify(json)
     });
 }

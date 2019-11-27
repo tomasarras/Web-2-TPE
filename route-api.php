@@ -12,21 +12,19 @@
     $router = new Router();
 
     // rutas
+    $router->addRoute("/signUp", "POST", "UsuariosApiController", "signUp");
+    $router->addRoute("/login", "POST", "UsuariosApiController", "logIn");
+
     $router->addRoute("/usuarios", "GET", "UsuariosApiController", "getUsuarios");
     $router->addRoute("/usuarios/:ID", "GET", "UsuariosApiController", "getUsuario");
+    $router->addRoute("/usuarios/:ID", "DELETE", "UsuariosApiController", "eliminarUsuario");
+    $router->addRoute("/admin/usuarios/:ID", "PUT", "UsuariosApiController", "cambiarAdmin");
+
     $router->addRoute("/usuarios/:ID/verificar-respuesta", "POST", "UsuariosApiController", "verificarRespuesta");
+    $router->addRoute("/usuarios/:ID", "PUT", "UsuariosApiController", "cambiarPassword");
     $router->addRoute("/usuarios/email/:EMAIL", "GET", "UsuariosApiController", "getUsuarioByEmail");
     $router->addRoute("/usuarios/nombre/:NOMBRE", "GET", "UsuariosApiController", "getUsuarioByNombre");
-    $router->addRoute("/usuarios/:ID", "DELETE", "UsuariosApiController", "eliminarUsuario");
-    $router->addRoute("/usuarios", "POST", "UsuariosApiController", "agregarUsuario");
-    $router->addRoute("admin/usuarios/:ID", "PUT", "UsuariosApiController", "cambiarAdmin");
-    $router->addRoute("/usuarios/:ID", "PUT", "UsuariosApiController", "cambiarPassword");
     
-    $router->addRoute("/prueba", "GET", "UsuariosApiController", "prueba");
-    $router->addRoute("/login", "POST", "UsuariosApiController", "logIn");
-    $router->addRoute("/signUp", "POST", "UsuariosApiController", "signUp");
-    
-
     $router->addRoute("/bandas", "GET", "BandasApiController", "getBandas");
     $router->addRoute("/bandas/:ID", "GET", "BandasApiController", "getBanda");
     $router->addRoute("/bandas/:ID", "DELETE", "BandasApiController", "eliminarBanda");

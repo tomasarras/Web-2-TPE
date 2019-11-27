@@ -8,7 +8,6 @@ class UsuariosController {
     private $usuariosView;
     private $usuariosModel;
     private $authHelper;
-    private $user;
     private $logueado;
 
     function __construct(){
@@ -22,6 +21,7 @@ class UsuariosController {
         if ($this->logueado)
             header("Location: ". HOME);
     }
+
     function verificarUser() {
         $this->checkLog();
 
@@ -30,15 +30,15 @@ class UsuariosController {
             $user = $_POST['email-usuario'];
             $pass = $_POST['password'];
             
-            $usuario = $this->usuariosModel->getUserByEmail($user);//pido por email
+            $usuario = $this->usuariosModel->getUserByEmail($user);
             
             if (!$usuario) {//si no existe por email, compruebo por nombre
-                $usuario = $this->usuariosModel->getUserByNombre($user);//pido por nombre
+                $usuario = $this->usuariosModel->getUserByNombre($user);
                 
                 if ($usuario) {//nombre valido
                     $this->checkPassword($usuario,$pass);
                 } else
-                $this->usuariosView->getLogin("Usuario o contraseña incorrectos");
+                    $this->usuariosView->getLogin("Usuario o contraseña incorrectos");
             }
             else {//email valido
                 $this->checkPassword($usuario,$pass);
@@ -46,6 +46,7 @@ class UsuariosController {
             
         }
     }
+    
         
     private function checkPassword($user,$pass) {
         $hash = $user->password;

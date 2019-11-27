@@ -4,11 +4,11 @@
     <tr v-for="usuario in usuarios">
 
         <td v-bind:name="usuario.id_usuario" v-bind:class="{ resaltar: usuario.id_usuario == id_usuario }">
-            {{usuario.email}}
+            {{usuario.nombre}}
         </td>
 
         <td v-bind:name="usuario.id_usuario" v-bind:class="{ resaltar: usuario.id_usuario == id_usuario }">
-            {{usuario.nombre}}
+            {{usuario.email}}
         </td>
 
         <td v-if="usuario.id_usuario != id_usuario">
@@ -24,6 +24,7 @@
                 <span class="round-btn"></span>
             </div>
         </td>
+        
         <td v-if="usuario.id_usuario == id_usuario">No disponible</td>
 
         <td v-if="usuario.id_usuario != id_usuario"> 

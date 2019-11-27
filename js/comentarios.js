@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let puntaje = "0";
-    /* efecto al hacer click en las rating-stars */
+    //efecto al hacer click en las rating-stars
     let stars = document.querySelectorAll(".rating-star");
     stars.forEach(star => {
         star.addEventListener("click", () => {

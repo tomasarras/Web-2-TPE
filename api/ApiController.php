@@ -12,6 +12,21 @@ abstract class ApiController {
         $this->data = file_get_contents("php://input"); 
     }
 
+    public function verificarAdmin() {
+        $token = $this->getToken();
+        $user = $this->decode($token);
+        if (!$user->admin) {
+            $this->view->response("Necesitas ser administrador",403);
+            die();
+        }
+    }
+
+    public function checkLog() {
+        $token = $this->getToken();
+        $user = $this->decode($token);
+        return $user->sub;
+    }
+
     function getData(){ 
         return json_decode($this->data); 
     } 

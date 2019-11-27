@@ -1,5 +1,3 @@
-import Helper from './Helper.js';
-
 document.addEventListener("DOMContentLoaded",()=>{
 let select = new Vue({
     el:"#pregunta-seguridad-vue",
@@ -9,7 +7,6 @@ let select = new Vue({
     }
 });
 
-let helper = new Helper();
 let token = '';
 
 async function informacionValida(btn,callback) {
@@ -55,7 +52,7 @@ async function informacionValida(btn,callback) {
         if (passwordUno === passwordDos.value && passwordUno != '') {
 
             let json = { "password" : passwordUno };
-            fetch("api/usuarios/" + select.id,{
+            await fetch("api/usuarios/" + select.id,{
                 "method" : "PUT",
                 "headers": {
                     "Content-Type": "application/json",

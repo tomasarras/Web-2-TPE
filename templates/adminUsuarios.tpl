@@ -5,8 +5,8 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Email</th>
                 <th scope="col">Nombre de usuario</th>
+                <th scope="col">Email</th>
                 <th scope="col">Admin</th>
                 <th scope="col">Eliminar</th>
             </tr>

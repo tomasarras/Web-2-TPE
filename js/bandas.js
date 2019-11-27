@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     async function borrarBanda(id) {
         await fetch("api/bandas/" + id, {
+            "headers": { "Authorization": "Bearer " + helper.getToken() },
             "method": "DELETE"
         });
 
@@ -39,7 +40,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let response = await fetch("api/bandas", {
             "method": "POST",
-            "headers": { "Content-Type": "application/json" },
+            "headers": {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + helper.getToken()
+            },
             "body": JSON.stringify(json)
         });
 

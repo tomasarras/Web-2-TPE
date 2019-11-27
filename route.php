@@ -1,6 +1,5 @@
 <?php
 
-require_once("./Controllers/BandasController.php");
 require_once("./Controllers/UsuariosController.php");
 require_once("./Controllers/HomeController.php");
 require_once("./Controllers/AdminController.php");
@@ -10,6 +9,7 @@ define("HOME","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"]."/
 define("LOGIN","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/login");
 define("ADMINISTRAR_BANDAS","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/admin/bandas");
 define("ADMINISTRAR_EVENTOS","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/admin/eventos");
+define("EDITAR_EVENTO","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/admin/eventos/editar/");
 define("ADMINISTRAR_USUARIOS","http://". $_SERVER["SERVER_NAME"].dirname($_SERVER["PHP_SELF"])."/admin/usuarios");
 
 $router = new Router();
@@ -36,6 +36,7 @@ $router->addRoute("admin/eventos/agregar", "POST", "adminController", "agregarEv
 $router->addRoute("admin/eventos/editar/:ID", "GET", "adminController", "showEditarEvento");
 $router->addRoute("admin/eventos/editar/:ID", "POST", "adminController", "editarEvento");
 $router->addRoute("admin/eventos/eliminar/:ID", "GET", "adminController", "eliminarEvento");
+$router->addRoute("admin/eventos/:ID_EVENTO/eliminar/imagen/:ID_IMAGEN", "GET", "adminController", "eliminarImagen");
 
 $router->addRoute("admin/usuarios", "GET", "adminController", "mostrarUsuarios");
 $router->addRoute("admin/usuarios/eliminar/:ID", "GET", "adminController", "eliminarUsuario");

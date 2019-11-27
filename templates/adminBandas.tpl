@@ -7,7 +7,7 @@
                 <th scope="col">Banda</th>
                 <th scope="col">Año</th>
                 <th scope="col">Cantidad de canciones</th>
-                <th scope="col">Evento</th>
+                <th scope="col">Ciudad</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
             </tr>
@@ -39,26 +39,26 @@
 
 
 <div class="centrar-contenido margen-vertical">
-    <section class="bg-dark borde grande">
+    <section class="bg-dark borde grande blanco">
 
         <div class="centrar-contenido">
             <h3 class="blanco">Agregar</h3>
         </div>
             
         <div class="form-group">
-            <label for="input-banda" class="blanco">Banda</label>
+            <label for="input-banda">Banda</label>
             <input type="text" name="banda" class="form-control campo-vacio" id="input-banda" placeholder="Nombre de la banda">
             <div class="invalid-feedback">Ingresa una banda</div>
         </div>
 
         <div class="form-group">
-            <label for="input-cantidad" class="blanco">Cantidad de canciones</label>
+            <label for="input-cantidad">Cantidad de canciones</label>
             <input type="number" name="cant-canciones" class="form-control campo-vacio" id="input-cantidad" placeholder="Cantidad de canciones de la banda" min="0">
             <div id="error-cantidad" class="invalid-feedback">Ingresa la cantidad de canciones</div>
         </div>
 
         <div class="form-group">
-            <label for="input-anio" class="blanco">Año</label>
+            <label for="input-anio">Año</label>
             <input type="number" name="anio" class="form-control campo-vacio" id="input-anio" placeholder="Año de la banda" min="1900" max="9999">
             <div class="invalid-feedback">Ingresa un año</div>
         </div>

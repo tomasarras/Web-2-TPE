@@ -123,7 +123,7 @@
             </div>
             
             <h5>
-                Seguro queres borrar el comentario de: <span id="js-nombre-evento"></span>?
+                Seguro queres borrar el comentario de: <span id="js-nombre-elemento"></span>?
             </h5>
 
             

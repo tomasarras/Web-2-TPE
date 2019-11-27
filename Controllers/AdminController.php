@@ -34,7 +34,6 @@ class AdminController {
         $id = $params[':ID'];
         $this->UsuariosModel->eliminarUsuario($id);
         header("Location: ".ADMINISTRAR_USUARIOS);
-        die();
     }
 
     function getAdmin() {
@@ -42,7 +41,7 @@ class AdminController {
     }
 
     function getBandas(){
-        $bandas = $this->bandasModel->getBandasyEventos();
+        $bandas = $this->bandasModel->GetBandas();
         $this->adminView->mostrarBandas($bandas);
     }
 
@@ -54,26 +53,58 @@ class AdminController {
     }
 
     function agregarBanda() {
-        $banda = $_POST['banda'];
-        $cantidad = $_POST['cant-canciones'];
-        $anio = $_POST['anio'];
+        if (isset($_POST['banda']) && isset($_POST['cant-canciones']) && isset($_POST['anio']) &&
+            $_POST['banda'] != '' && $_POST['cant-canciones'] =! '' && $_POST['anio'] != '') {
 
-        $this->bandasModel->agregarBanda($banda,$cantidad,$anio);
-        header("Location: ".ADMINISTRAR_BANDAS);
-        die();
+            $banda = $_POST['banda'];
+            $cantidad = $_POST['cant-canciones'];
+            $anio = $_POST['anio'];
+            
+            $this->bandasModel->agregarBanda($banda,$cantidad,$anio);
+            header("Location: ".ADMINISTRAR_BANDAS);
+        }
     }
+
+    function editarEvento($params = null) {
+        $id = $params[':ID'];
+        if ( isset($_POST['evento']) && isset($_POST['detalle']) && 
+             isset($_POST['id_banda']) && isset($_POST["ciudad"]) ) {
+            if ($_POST['evento'] != '' && $_POST['detalle'] != '' &&
+            $_POST['id_banda'] != '' && $_POST["ciudad"] != '') {
+
+                $evento = $_POST['evento'];
+                $detalle = $_POST['detalle'];
+                $idBanda = $_POST["id_banda"];
+                $ciudad = $_POST["ciudad"];
+
+                $this->agregarImagenes($id);
+                $this->eventosModel->editarEvento($evento,$detalle,$id,$idBanda,$ciudad);
+                header("Location: ".ADMINISTRAR_EVENTOS);
+            }
+        }
+    }
+    
 
     function agregarEvento() {
 
         if (isset($_POST["evento"]) && isset($_POST["detalle"]) && isset($_POST["id_banda"]) && isset($_POST["ciudad"])) {
-            $evento = $_POST['evento'];
-            $detalle = $_POST['detalle'];
-            $id_banda = $_POST['id_banda'];
-            $ciudad = $_POST["ciudad"];
+            if ($_POST["evento"] != '' && $_POST["detalle"] != '' && $_POST["id_banda"] != '' && $_POST["ciudad"] != '') {
+                $evento = $_POST['evento'];
+                $detalle = $_POST['detalle'];
+                $id_banda = $_POST['id_banda'];
+                $ciudad = $_POST["ciudad"];
 
-            $id_evento = $this->eventosModel->agregarEvento($evento,$detalle,$id_banda,$ciudad);
-            
-            $cantidadArchivos = count($_FILES["imagesToUpload"]["name"]);
+                $id_evento = $this->eventosModel->agregarEvento($evento,$detalle,$id_banda,$ciudad);
+                
+                $this->agregarImagenes($id_evento);
+            }
+        }
+
+        header("Location: ".ADMINISTRAR_EVENTOS);
+    }
+
+    function agregarImagenes($id_evento){
+        $cantidadArchivos = count($_FILES["imagesToUpload"]["name"]);
 
             for ($i = 0; $i < $cantidadArchivos; $i++) {
 
@@ -93,21 +124,18 @@ class AdminController {
                         $this->eventosModel->agregarImagen($id_evento,$filePath);
                 } 
             }
-        }
-
-        header("Location: ".ADMINISTRAR_EVENTOS);
     }
 
     function editarBanda($params = null) {
         $id = $params[':ID'];
-        if ( isset($_POST['banda']) && isset($_POST['cant-canciones']) && isset($_POST['anio']) ) {
+        if ( isset($_POST['banda']) && isset($_POST['cant-canciones']) && isset($_POST['anio']) &&
+            $_POST['banda'] != '' && $_POST['cant-canciones'] != '' && $_POST['anio'] != '') {
             $banda = $_POST['banda'];
             $cantidad = $_POST['cant-canciones'];
             $anio = $_POST['anio'];
     
             $this->bandasModel->editarBanda($banda,$cantidad,$anio,$id);
             header("Location: ". ADMINISTRAR_BANDAS);
-            die();
         }
     }
 
@@ -122,26 +150,14 @@ class AdminController {
         }
     }
 
-    function editarEvento($params = null) {
-        $id = $params[':ID'];
-        if ( isset($_POST['evento']) && isset($_POST['detalle']) && isset($_POST['id_banda']) ) {
-            $evento = $_POST['evento'];
-            $detalle = $_POST['detalle'];
-            $idBanda = $_POST["id_banda"];
-            $ciudad = $_POST["ciudad"];
-            
-            $this->eventosModel->editarEvento($evento,$detalle,$id,$idBanda,$ciudad);
-            header("Location: ".ADMINISTRAR_EVENTOS);
-        }
-    }
-
     function showEditarEvento($params = null) {
         $id = $params[':ID'];
 
         $evento = $this->eventosModel->getEvento($id);
         if ($evento) {
-            $bandas = $this->bandasModel->getBandasNombre();
-            $this->adminView->mostrarEditarEvento($evento,$bandas);
+            $bandas = $this->bandasModel->getNombreBandas();
+            $imagenes = $this->eventosModel->getImagenesEvento($id);
+            $this->adminView->mostrarEditarEvento($evento,$bandas,$imagenes);
         } else {
             $this->homeView->noExiste("Este evento no existe");
         }
@@ -152,7 +168,6 @@ class AdminController {
 
         $this->bandasModel->eliminarBanda($id);
         header("Location: ".ADMINISTRAR_BANDAS);
-        die();
     }
 
     function eliminarEvento($params = null) {
@@ -160,10 +175,17 @@ class AdminController {
 
         $this->eventosModel->eliminarEvento($id);
         header("Location: ".ADMINISTRAR_EVENTOS);
-        die();
     }
+    
 
+    public function eliminarImagen( $params = null ) {
+        $id_imagen = $params[":ID_IMAGEN"];
+        $id_evento = $params[":ID_EVENTO"];
+        $this->eventosModel->eliminarImagen($id_imagen);
+        header("Location: ".EDITAR_EVENTO . $id_evento);
+    }
 }
+
 
 
 ?>

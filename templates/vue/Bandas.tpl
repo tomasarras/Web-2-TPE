@@ -1,5 +1,5 @@
 {literal}
-    
+
 <tbody id="tabla-bandas">
     <tr v-for="banda in bandas">
         <td>{{banda.banda}}</td>
@@ -24,7 +24,6 @@
         <td v-else>No disponible</td>
     </tr>
 </tbody>
-
 
 <script type="module" src="./js/bandas.js"></script>
 {/literal}

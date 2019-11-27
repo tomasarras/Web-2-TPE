@@ -11,25 +11,20 @@ class ComentariosApiController extends ApiController {
     public function __construct() {
         parent::__construct();
         $this->model = new ComentariosModel();
-        $this->authHelper = new AuthHelper();
     }
 
     public function borrarComentario($params = null) {
-        $token = $this->getToken();
-        $user = $this->decode($token);
-        if ($user->admin){
-            $id_comentario = $params[":ID_COMENTARIO"];
+        $this->verificarAdmin();
+        $id_comentario = $params[":ID_COMENTARIO"];
 
-            $comentario = $this->model->getComentario($id_comentario);
-            if ($comentario) {
-                $this->model->borrarComentario($id_comentario);
-                $this->view->response("Se elimino el comentario id={$id_comentario}",200);
-            } else
-                $this->view->response("El comentario con el id={$id_comentario} no existe", 404);
+        $comentario = $this->model->getComentario($id_comentario);
+        if ($comentario) {
+            $this->model->borrarComentario($id_comentario);
+            $this->view->response("Se elimino el comentario id={$id_comentario}",200);
         } else
-            $this->view->response("Necesitas ser administrador para borrar comentarios",403);
-        
+            $this->view->response("El comentario con el id={$id_comentario} no existe", 404);
     }
+    
 
     public function getComentario($params = null) {
         $id = $params[":ID"];
@@ -63,13 +58,10 @@ class ComentariosApiController extends ApiController {
     }
 
     public function enviarComentario($params = null) {
-        $token = $this->getToken();
-        $user = $this->decode($token);
+        $id_usuario = $this->checkLog();
+        $body = $this->getData();
         
-        if ($user) {
-            $body = $this->getData();
-            
-            $id_usuario = $user->sub;
+        if ($body->comentario != '' && $body->puntaje > '0' && $body->puntaje < '6') {
             $id_evento = $params[":ID_EVENTO"];
             $comentario = $body->comentario;
             $puntaje = $body->puntaje;
@@ -77,13 +69,10 @@ class ComentariosApiController extends ApiController {
             $fecha = date(DATE_W3C);
 
             $id = $this->model->enviarComentario($id_usuario,$id_evento,$comentario,$puntaje,$fecha);
-            if ($id)
-                $this->view->response("Comentario enviado id={$id}",200);
-            else
-                $this->view->response("Error al enviar el comentario", 500);
+            $coment = $this->model->getComentario($id);
+            $this->view->response($coment,200);
         } else {
-            $this->view->response("Necesitas iniciar sesion para comentar",401);
-            die();
+            $this->view->response("Falta comentario o puntaje",400);
         }
 
     }

@@ -6,10 +6,16 @@
 
     <table class="table">
         <thead class="thead-dark">
-            <tr>
-                <th scope="col">Nombre del evento</th>
-                <th scope="col">Ciudad</th>
-                <th scope="col">Banda asociada</th>
+            <tr class="no-link">
+                <th name="evento" scope="col">
+                    <a href="?eventos=evento">Nombre del evento</a>
+                </th>
+                <th name="ciudad" scope="col">
+                    <a href="?eventos=ciudad">Ciudad</a>
+                </th>
+                <th name="banda"  scope="col">
+                    <a href="?eventos=banda">Banda asociada</a>
+                </th>
                 <th scope="col">Mas info</th>
             </tr>
         </thead>
