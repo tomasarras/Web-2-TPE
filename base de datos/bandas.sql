@@ -81,17 +81,18 @@ CREATE TABLE `evento` (
   `id_banda` int(11) NOT NULL,
   `evento` text DEFAULT NULL,
   `ciudad` text NOT NULL,
-  `detalle` text DEFAULT NULL
+  `detalle` text DEFAULT NULL,
+  `path_preview` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `evento`
 --
 
-INSERT INTO `evento` (`id_evento`, `id_banda`, `evento`, `ciudad`, `detalle`) VALUES
-(1, 1, 'Rock in Rio', 'Rio de janeiro', 'Conocido como El festival más grande del mundo'),
-(2, 1, 'OzzFest', 'New York Usa', 'Ozzfest es un festival anual de rock'),
-(3, 1, 'Rock \'n roll', 'San Diego', 'Lorem lorem sarasa sarasa');
+INSERT INTO `evento` (`id_evento`, `id_banda`, `evento`, `ciudad`, `detalle`, `path_preview`) VALUES
+(1, 1, 'Rock in Rio', 'Rio de janeiro', 'Conocido como El festival más grande del mundo', 'images/eventos/5ddddfd78fdcb4.35368109.jpg'),
+(2, 1, 'OzzFest', 'New York Usa', 'Ozzfest es un festival anual de rock', 'images/eventos/5ddddca4b95b25.72191112.png'),
+(3, 1, 'Rock \'n roll', 'San Diego', 'Evento de rock en San Diego', 'images/eventos/5dddde6c5b7a75.54539926.jpg');
 
 -- --------------------------------------------------------
 
@@ -139,11 +140,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `email`, `password`, `pregunta`, `respuesta`, `admin`) VALUES
-(7, 'tomas', 'tomasarras@gmail.com', '$2y$10$ryLAjw9CJt/KBouViTUhCu2N.TTCg1awz110OaUUUm2sGY7lMIz3m', 'apodo', '$2y$10$3bKQClJAjiE838Z94ZxOHOerChI7zAuZm86KpGoaQK316etP8yC7S', 1),
-(8, 'laLechuza', 'jeremiascaballero@gmail.com', '$2y$10$BcJ6yVpYeaAiZ8tcxgS6Ru8W9Zo8UdeOhp6gcu7hZ5DJXKFz3dMwy', 'apodo', '$2y$10$o3tyxdPie3d4J6OlM/ziueRbTq2Sw7gcdw1XIxA78qoxpaBTe.m/O', 0),
+(7, 'tomas', 'tomasarras@gmail.com', '$2y$10$ryLAjw9CJt/KBouViTUhCu2N.TTCg1awz110OaUUUm2sGY7lMIz3m', 'apodo', '$2y$10$3bKQClJAjiE838Z94ZxOHOerChI7zAuZm86KpGoaQK316etP8yC7S', 0),
+(8, 'jeremias', 'jeremiascaballero@gmail.com', '$2y$10$BcJ6yVpYeaAiZ8tcxgS6Ru8W9Zo8UdeOhp6gcu7hZ5DJXKFz3dMwy', 'apodo', '$2y$10$o3tyxdPie3d4J6OlM/ziueRbTq2Sw7gcdw1XIxA78qoxpaBTe.m/O', 0),
 (9, 'admin', 'admin@admin', '$2y$10$oX4EnnvBy.UzS3vDEUazyOeaFGoqMnJeVKXIuzffXbujRrITAueFi', 'perro', '$2y$10$I3tea0Q/EfNy01Qwg7lCC.NaBAHExe6imggcv2qaJtoM4TxUzKUYO', 1),
 (10, 'user', 'otro@otroUser.com', '$2y$10$wo2xmBMqOuuSQ6PvDprsAeLJnOdjirIwtzSqmnVtI3WNH1cVJFdBm', 'perro', '$2y$10$H7bLC3ZU2IVQkmE6gDavMu/rg46DC3a3Pv7kDSUR8Zffj.5Safl0W', 0),
-(11, 'user3', 'q@q', '$2y$10$yu2oQ4frjXdW0qt66.SdEe0q1.Ob4LMueCHaWX1Q2LsdmHvoBlEQG', 'perro', '$2y$10$bDzX2LsOzrrkrDShyvR9hONvhVG/llY5w0Mqw5giU9h5XtDY3oZ8q', 0);
+(11, 'user3', 'q@q.com', '$2y$10$yu2oQ4frjXdW0qt66.SdEe0q1.Ob4LMueCHaWX1Q2LsdmHvoBlEQG', 'perro', '$2y$10$bDzX2LsOzrrkrDShyvR9hONvhVG/llY5w0Mqw5giU9h5XtDY3oZ8q', 0);
 
 --
 -- Índices para tablas volcadas

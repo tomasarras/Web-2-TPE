@@ -47,7 +47,7 @@
                     {/if}
 
                     <a href="logout">
-                        <div class="log nav-item btn btn-danger" id="logout">
+                        <div class="log nav-item btn btn-primary" id="logout">
                             <img src="images/newuser.png">
                             Cerrar sesión
                         </div>
@@ -61,13 +61,13 @@
                     <input class="none" id="user-id" value="">
 
                     <a href="login">
-                        <div class="log nav-item btn btn-danger">
+                        <div class="log nav-item btn btn-primary">
                             <img src="images/lock.png">
                             Login
                         </div>
                     </a>
                     <a href="registrarse">
-                        <div class="log nav-item btn btn-danger cd-signup">
+                        <div class="log nav-item btn btn-primary cd-signup">
                             <img src="images/newuser.png">
                             Registro
                         </div>

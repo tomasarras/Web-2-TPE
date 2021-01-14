@@ -72,9 +72,14 @@
                 </select>
             </div>
 
-            <div class="custom-file">
+            <div class="custom-file"  id="images-events">
                 <input type="file" class="custom-file-input" name="imagesToUpload[]" id="validatedCustomFile" multiple>
                 <label class="custom-file-label" for="validatedCustomFile">Agregar imagenes...</label>
+            </div>
+
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" name="previewFile" id="validatedCustomFile">
+                <label class="custom-file-label" for="validatedCustomFile">Previsualizacion del evento...</label>
             </div>
 
             <button type="submit" class="btn btn-primary ancho margen-arriba campos-vacios">Agregar</button>

@@ -7,6 +7,7 @@
     <table class="table">
         <thead class="thead-dark">
             <tr class="no-link">
+                <th></th>
                 <th name="evento" scope="col">
                     <a href="?eventos=evento">Nombre del evento</a>
                 </th>
@@ -22,6 +23,12 @@
         <tbody>
             {foreach from=$eventos item=evento}
                 <tr>
+                    <td> 
+                    {if $evento->path_preview == ''}
+                        <div class="default-event"></div>
+                    {else}
+                        <img src="{$evento->path_preview}" class="preview-event"></td>
+                    {/if}
                     <td>{$evento->evento}</td>
                     <td>{$evento->ciudad}</td>
                     <td>{$evento->banda}</td>

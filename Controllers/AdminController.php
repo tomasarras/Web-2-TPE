@@ -93,8 +93,9 @@ class AdminController {
                 $detalle = $_POST['detalle'];
                 $id_banda = $_POST['id_banda'];
                 $ciudad = $_POST["ciudad"];
+                $path_preview = $this->getPathOfPreviewImg();
 
-                $id_evento = $this->eventosModel->agregarEvento($evento,$detalle,$id_banda,$ciudad);
+                $id_evento = $this->eventosModel->agregarEvento($evento,$detalle,$id_banda,$ciudad,$path_preview);
                 
                 $this->agregarImagenes($id_evento);
             }
@@ -103,27 +104,44 @@ class AdminController {
         header("Location: ".ADMINISTRAR_EVENTOS);
     }
 
+    function getPathOfPreviewImg() {
+        $previewImg = $_FILES["previewFile"];
+        $type = $previewImg["type"];
+        $name = $previewImg["name"];
+        $tmp_name = $previewImg["tmp_name"];
+
+        if ($this->isImg($type)) {
+            $filePath = "images/eventos/" . uniqid("", true) . "." 
+                . strtolower(pathinfo($name, PATHINFO_EXTENSION));
+                
+                move_uploaded_file($tmp_name, $filePath);
+                return $filePath;
+        } else {
+            return '';
+        }
+    }
+
     function agregarImagenes($id_evento){
         $cantidadArchivos = count($_FILES["imagesToUpload"]["name"]);
 
-            for ($i = 0; $i < $cantidadArchivos; $i++) {
+        for ($i = 0; $i < $cantidadArchivos; $i++) {
 
-                $type     = $_FILES["imagesToUpload"]["type"][$i];
-                $name     = $_FILES["imagesToUpload"]["name"][$i];
-                $tmp_name = $_FILES["imagesToUpload"]["tmp_name"][$i];
+            $type     = $_FILES["imagesToUpload"]["type"][$i];
+            $name     = $_FILES["imagesToUpload"]["name"][$i];
+            $tmp_name = $_FILES["imagesToUpload"]["tmp_name"][$i];
 
-                if (   $type == "image/jpg"
-                    || $type == "image/jpeg"
-                    || $type == "image/png" ) {
+            if ($this->isImg($type)) {
+                $filePath = "images/eventos/" . uniqid("", true) . "." 
+                . strtolower(pathinfo($name, PATHINFO_EXTENSION));
+                
+                move_uploaded_file($tmp_name, $filePath);
+                $this->eventosModel->agregarImagen($id_evento,$filePath);
+            } 
+        }
+    }
 
-                        
-                        $filePath = "images/eventos/" . uniqid("", true) . "." 
-                        . strtolower(pathinfo($name, PATHINFO_EXTENSION));
-                        
-                        move_uploaded_file($tmp_name, $filePath);
-                        $this->eventosModel->agregarImagen($id_evento,$filePath);
-                } 
-            }
+    function isImg($type) {
+        return $type == "image/jpg" || $type == "image/jpeg" || $type == "image/png";
     }
 
     function editarBanda($params = null) {

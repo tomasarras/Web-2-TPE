@@ -50,14 +50,15 @@ class EventosModel extends AbstractModel{
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function agregarEvento($evento,$detalle,$id_banda,$ciudad) {
-        $sql = "INSERT INTO evento(id_evento,id_banda,evento,detalle,ciudad) VALUES (NULL,?,?,?,?)";
+    function agregarEvento($evento,$detalle,$id_banda,$ciudad,$path_preview) {
+        $sql = "INSERT INTO evento(id_evento,id_banda,evento,detalle,ciudad,path_preview) VALUES (NULL,?,?,?,?,?)";
         $sentencia = $this->db->prepare($sql);
         $sentencia->execute(array(
             $id_banda,
             $evento,
             $detalle,
-            $ciudad
+            $ciudad,
+            $path_preview
         ));
         return $this->db->lastInsertId();
     }
