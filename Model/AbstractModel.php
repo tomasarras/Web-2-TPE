@@ -7,9 +7,9 @@ abstract class AbstractModel {
 
     private function connect(){
         $server = "sql10.freemysqlhosting.net";
-        $username = "sql10386892";
-        $dbname = "sql10386892";
-        $password = "Z1MxUb2wCu";
+        $username = "sql10409476";
+        $dbname = "sql10409476";
+        $password = "lifrck4f5H";
         
         try {
             return new PDO('mysql:host='.$server.';'.'dbname=' . $dbname . ';charset=utf8',$username, $password);
